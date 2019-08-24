@@ -1,14 +1,15 @@
 import sys
 import RPi.GPIO as GPIO
+import time
 
 #GPIO setup and assignments:
 GPIO.setmode(GPIO.BOARD) 
 
-motorL_pin_step = 17
-motorL_pin_dir = 4
-motorR_pin_step = 22
-motorR_pin_dir = 23
-servo_pin = 18
+motorL_pin_step = 7
+motorL_pin_dir = 11
+motorR_pin_step = 13
+motorR_pin_dir = 15
+servo_pin = 12
 
 GPIO.setup(motorL_pin_step, GPIO.OUT)
 GPIO.setup(motorL_pin_dir, GPIO.OUT)
@@ -28,7 +29,24 @@ GPIO.setup(servo_pin, GPIO.OUT)
         originMotor2 = 0        
         printWidth = 0          #Print dimensions from origin
         printHeight = 0
-        delay = 0.005           #Delay between high/low for each motor step. Affects speed and accuracy.
+        delay = 0.001           #Delay between high/low for each motor step. Affects speed and accuracy.
+
+#move shit
+
+print("Moving shit")
+
+GPIO.output(motorL_pin_dir, True):
+for i in range(512):
+    GPIO.output(motorL_pin_step,True)
+    GPIO.output(motorL_pin_step,False)
+    time.sleep(delay)
+
+GPIO.output(motorL_pin_dir, False):
+    for i in range(512):
+        GPIO.output(motorL_pin_step,True)
+        GPIO.output(motorL_pin_step,False)
+        time.sleep(delay)
+
 
 #todo
     #load and scale path to fit within print dimensions
@@ -39,3 +57,6 @@ GPIO.setup(servo_pin, GPIO.OUT)
         #Length to number of steps, based off of stepsPerRev and distancePerStep
         #lift servo if movement isn't for a line.
         #for each step on each motor switch low/high on motorstep pin, set direction pin.
+
+
+GPIO.cleanup()
