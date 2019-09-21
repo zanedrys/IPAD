@@ -39,7 +39,7 @@ print("Moving shit")
 
 GPIO.output(step_enable, False) #yup, low enables the steppers.
 
-GPIO.output(motorL_pin_dir, True):
+GPIO.output(motorL_pin_dir, True)
 for i in range(512):
     GPIO.output(motorL_pin_step,True)
     GPIO.output(motorL_pin_step,False)
@@ -47,11 +47,11 @@ for i in range(512):
 
 print("Changing direction")
 
-GPIO.output(motorL_pin_dir, False):
-    for i in range(512):
-        GPIO.output(motorL_pin_step,True)
-        GPIO.output(motorL_pin_step,False)
-        time.sleep(delay)
+GPIO.output(motorL_pin_dir, False)
+for i in range(512):
+    GPIO.output(motorL_pin_step,True)
+    GPIO.output(motorL_pin_step,False)
+    time.sleep(delay)
 
 
 #todo
