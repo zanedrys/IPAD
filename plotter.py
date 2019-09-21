@@ -5,12 +5,14 @@ import time
 #GPIO setup and assignments:
 GPIO.setmode(GPIO.BOARD) 
 
+step_enable = 12
 motorL_pin_step = 7
 motorL_pin_dir = 11
 motorR_pin_step = 13
 motorR_pin_dir = 15
 servo_pin = 12
 
+GPIO.setup(step_enable, GPIO.OUT)
 GPIO.setup(motorL_pin_step, GPIO.OUT)
 GPIO.setup(motorL_pin_dir, GPIO.OUT)
 GPIO.setup(motorR_pin_step, GPIO.OUT)
@@ -34,6 +36,8 @@ GPIO.setup(servo_pin, GPIO.OUT)
 #move shit
 
 print("Moving shit")
+
+GPIO.output(step_enable, False) #yup, low enables the steppers.
 
 GPIO.output(motorL_pin_dir, True):
 for i in range(512):
