@@ -31,7 +31,7 @@ originMotor1 = 0        #length of cable from motors at origin (top left print a
 originMotor2 = 0        
 printWidth = 0          #Print dimensions from origin
 printHeight = 0
-delay = 0.001           #Delay between high/low for each motor step. Affects speed and accuracy.
+delay = 0.005           #Delay between high/low for each motor step. Affects speed and accuracy.
 
 #move shit
 
@@ -42,6 +42,7 @@ GPIO.output(step_enable, False) #yup, low enables the steppers.
 GPIO.output(motorL_pin_dir, True)
 for i in range(512):
     GPIO.output(motorL_pin_step,True)
+    time.sleep(delay)
     GPIO.output(motorL_pin_step,False)
     time.sleep(delay)
 
@@ -50,8 +51,11 @@ print("Changing direction")
 GPIO.output(motorL_pin_dir, False)
 for i in range(512):
     GPIO.output(motorL_pin_step,True)
+    time.sleep(delay)
     GPIO.output(motorL_pin_step,False)
     time.sleep(delay)
+
+print("All done")
 
 
 #todo
