@@ -20,18 +20,18 @@ GPIO.setup(motorR_pin_dir, GPIO.OUT)
 GPIO.setup(servo_pin, GPIO.OUT)
 
 #Machine Constants
-    #Motor Properties:
-        stepsPerRev = 400       #Steps per full rotation of stepper motor
-        gearRadius = 5          #Radius of the cable gear.
-        reverseMotorL = False   #swap motor direction
-        reverseMotorR = False 
-    #Machine Dimensions:
-        motorSeparation = 1000  #todo, distance between the motors (mm)
-        originMotor1 = 0        #length of cable from motors at origin (top left print area)
-        originMotor2 = 0        
-        printWidth = 0          #Print dimensions from origin
-        printHeight = 0
-        delay = 0.001           #Delay between high/low for each motor step. Affects speed and accuracy.
+#Motor Properties:
+stepsPerRev = 400       #Steps per full rotation of stepper motor
+gearRadius = 5          #Radius of the cable gear.
+reverseMotorL = False   #swap motor direction
+reverseMotorR = False 
+#Machine Dimensions:
+motorSeparation = 1000  #todo, distance between the motors (mm)
+originMotor1 = 0        #length of cable from motors at origin (top left print area)
+originMotor2 = 0        
+printWidth = 0          #Print dimensions from origin
+printHeight = 0
+delay = 0.001           #Delay between high/low for each motor step. Affects speed and accuracy.
 
 #move shit
 
@@ -44,6 +44,8 @@ for i in range(512):
     GPIO.output(motorL_pin_step,True)
     GPIO.output(motorL_pin_step,False)
     time.sleep(delay)
+
+print("Changing direction")
 
 GPIO.output(motorL_pin_dir, False):
     for i in range(512):
