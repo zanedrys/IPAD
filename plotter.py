@@ -35,7 +35,7 @@ delay = 0.005           #Delay between high/low for each motor step. Affects spe
 
 #move shit
 
-print("Moving shit")
+print("Moving")
 
 GPIO.output(step_enable, False) #yup, low enables the steppers.
 
