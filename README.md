@@ -20,6 +20,6 @@ Setting up a Gamepad/Joystick
  
     1. Plug in necessary component
     2. Download and install Joys2Key
-    3. Downloiad the library file JoyToKeyToPlotter.cfg file
+    3. Download the library file JoyToKeyToPlotter.cfg file
     4. Import file to JoyToKey
     4. From within UGS (Universal Gcode Sender), use the joystick 
