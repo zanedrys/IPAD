@@ -15,4 +15,11 @@ Getting Started - Testing Hardware
     8. Plug and Play Away
     
     
-    
+Setting up a Gamepad/Joystick   
+  Below are the methods to using a joystick/gamepad or any analog input method.
+ 
+    1. Plug in necessary component
+    2. Download and install Joys2Key
+    3. Downloiad the library file JoyToKeyToPlotter.cfg file
+    4. Import file to JoyToKey
+    4. From within UGS (Universal Gcode Sender), use the joystick 
