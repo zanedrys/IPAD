@@ -2,7 +2,8 @@
 Interactive Programmable Arts Display
 
 
-Getting Started - Testing Hardware
+Getting Started - Testing Hardware,
+
   Below are the instructions to setup and test the hardware (CNC shield, Arduino, Stepper Motors, Drivers and various connections.
 
     1. Plug in necessary hardware, uno on arduino, 12v to cnc, steppers to cnc etc (See wiring diagram)
