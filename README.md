@@ -19,7 +19,16 @@ Setting up a Gamepad/Joystick
   Below are the methods to using a joystick/gamepad or any analog input method.
  
     1. Plug in necessary component
-    2. Download and install Joys2Key
-    3. Download the library file JoyToKeyToPlotter.cfg file
+    2. Download and install Joys2Key https://joytokey.net/en/
+    3. Download the library file 'JoyToKeyToPlotter.cfg' file (In repo)
     4. Import file to JoyToKey
     4. From within UGS (Universal Gcode Sender), use the joystick 
+
+
+Setting up WASD Input Method (Any Input Is Possible)
+  Below are instructions to create live Gcode to be sent to the UGS Command Line, highly configurable
+  
+    1. Download and Install AutoHotkey https://www.autohotkey.com/
+    2. Download library file 'GcodeWASD.ahk' file (In repo)
+    3. Run the file (Manipulate as desired for alternate inputs)
+    4. From within UGS Command Line, use WASD to initiate movement
