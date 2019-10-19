@@ -1,0 +1,5028 @@
+PROCESSING 2.2.1 (REV 0227) - 19 May 2014
+
+A handful of bug fixes, the most prominent rolls back a change that broke
+PDE X and other Modes and Tools. 
+
++ Bring back setIcon(Frame) for PDE X and others
+  https://github.com/processing/processing-experimental/issues/64
+
++ Add additional code for crashing when the Mode is changed or new editor
+  windows opened.
+
++ Use mouseReleased() instead of mousePressed() in the color selector, 
+  otherwise it registers the release as a click in the color window
+  https://github.com/processing/processing/issues/2514
+
++ Missing 'version' in contribution properties file causes NullPointerException
+  https://github.com/processing/processing/issues/2517
+
++ A handful of fixes to Auto Format
+  https://github.com/processing/processing/pull/2271
+
++ Command line tools not working on OS X due to AppleDouble file boogers.
+  https://github.com/processing/processing/issues/2520
+
++ Make "Archive Sketch" Tool force a .zip file extension
+  https://github.com/processing/processing/issues/2526
+
++ Event handling modifications in video and serial libraries w/ Python Mode
+  https://github.com/processing/processing/pull/2527
+  https://github.com/processing/processing/pull/2528
+  https://github.com/processing/processing/pull/2529
+
++ Permit mouse PRESS to set mouseX/mouseY
+  https://github.com/processing/processing/pull/2509
+
++ Fix for video: the loop() method was broken in the last release.
+  https://github.com/processing/processing/issues/2524
+
++ Updated reference files included in the download.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.2 (REV 0226) - 12 May 2014
+
+Major changes to, and improvements upon, how "Export to Application" works.
+Plus dozens of bug fixes for all manner of atrocities.
+
+
+[ bug fixes and additions ] 
+
++ Sketches only starting once, or half-starting and hanging on Mac OS X.
+  A major problem on OS X, thanks to David Fokkema for tracking down a fix.
+  https://github.com/processing/processing/issues/2402
+  https://github.com/processing/processing/pull/2455
+
++ Re-open current sketch in new mode editor if file extension is compatible.
+  This was a regression in 2.1.2 due to the Python Mode changes.
+  https://github.com/processing/processing/pull/2457
+  https://github.com/processing/processing/issues/2456
+
++ Crash in the 'recent' menu on startup
+  https://github.com/processing/processing/issues/2463
+
++ Avoid conflict when some goofball has installed JNA DLLs in your path.
+  https://github.com/processing/processing/issues/2239
+
++ Add support for "import static" syntax from Java
+  https://github.com/processing/processing/issues/8
+  https://github.com/processing/processing/pull/2273
+
++ Improve error handling during Tool loading. In previous releases, an
+  out of date QuickReference Tool was able to hang Processing. No longer.
+  https://github.com/processing/processing/issues/2229
+
++ Save the previous open dialog so that we return to the directory
+  https://github.com/processing/processing/pull/2366
+
++ "if-else" block formatting wasn't following Processing conventions
+  https://github.com/processing/processing/issues/364
+  https://github.com/processing/processing/pull/2477
+
++ Tab characters not recognized or handled in the editor (since 2.1)
+  https://github.com/processing/processing/issues/2180
+  https://github.com/processing/processing/issues/2183
+
++ Chinese text is overlapped in Processing 2.1 editor
+  https://github.com/processing/processing/issues/2173
+  https://github.com/processing/processing/pull/2318
+  https://github.com/processing/processing/pull/2323
+
+
+[ export to application ]
+
++ The return of multi-platform export! Create applications for Windows
+  and Linux while using OS X. Create a Linux application from Windows. 
+  Against my better judgement, we're supporting it again. It's extremely
+  difficult, but was disappointing to remove it earlier.
+
++ When exporting with local Java embedded, always use that version
+  https://github.com/processing/processing/issues/2349
+
++ Change Windows export to use launch4j instead of our custom launcher.
+  This will fix many, many problems, but may introduce some new ones. 
+
++ Windows (64-bit) now creates a proper .exe instead of a .bat file
+  https://github.com/processing/processing/issues/923
+
++ Exported apps on Windows 64 were not quite working correctly
+  https://github.com/processing/processing/issues/2468
+
++ Improved icons on Windows for exported apps
+
++ Add additional language and explanation to the Export dialog box
+
++ Make it possible to edit the background colors for full screen as well as
+  the stop button color directly from the Export dialog box
+  https://github.com/processing/processing/issues/69
+
++ Exported apps reporting as "damaged" on OS X
+  https://github.com/processing/processing/issues/2095
+  You'll have to install Xcode to remove the warnings, but it's possible
+
+
+[ core ]
+
++ Fix for splice() throwing a ClassCastException with other object types
+  https://github.com/processing/processing/issues/1445
+  https://github.com/processing/processing/pull/2461
+
++ Add candDraw() method to the retina renderer to fix embedding problems
+
++ Fix sketchPath() issue when used in other environments (i.e. Eclipse)
+
++ Substitute MOVE cursor with HAND on OS X
+  https://github.com/processing/processing/issues/2358
+
++ Allow textWidth() with the default font
+  https://github.com/processing/processing/issues/2331
+  https://github.com/processing/processing/pull/2338
+
++ Bug in relative moveto commands for SVG
+  https://github.com/processing/processing/issues/2377
+
++ Add a constructor to bind Server to a specific address 
+  https://github.com/processing/processing/issues/2356
+
++ Fonts from loadFont() show up as blocks in P3D (regression)
+  https://github.com/processing/processing/issues/2465
+
++ loadPixels() problems in OpenGL
+  https://github.com/processing/processing/issues/2493
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.1.2 (REV 0225) - 15 April 2014
+
+Lots of small bug fixes plus some additional changes to support 
+the new Python Mode, coming soon: https://github.com/jdf/processing.py
+
+
+[ the pde ] 
+
++ The PDE was using 15% of CPU while just sitting idle. Thanks to
+  David Fokkema for the fix (and pull request).
+  https://github.com/processing/processing/issues/1561
+  https://github.com/processing/processing/pull/2451
+
++ Fix exception caused by Runner when it can't find location
+  https://github.com/processing/processing/issues/2346
+  https://github.com/processing/processing/pull/2359
+
++ Serial: Update to latest upstream (fixes potential port handle leak)
+  https://github.com/processing/processing/pull/2361
+
++ Add affordance for mode developers to run from Eclipse
+  https://github.com/processing/processing/pull/2422
+
++ Non-PDE extensions for modes cause a crash
+  https://github.com/processing/processing/issues/2419
+
++ Remove some hardcoding for .pde as extension
+  https://github.com/processing/processing/issues/2420
+
++ Update code signing for Processing.app for Mavericks changes
+  https://github.com/processing/processing/issues/2453
+
+
+[ the core ] 
+
++ sketchPath() was returning user.home in exported apps on OS X
+  https://github.com/processing/processing/issues/2181
+
++ Fix bug in StringDict(Reader) that wasn't setting the indices hashmap
+
++ Call revalidate() via reflection so that build works under 1.6 (using
+  1.6 very much not supported, but we need it for regression testing).
+
++ Some text rendering improvements. Fairly limited in what we can fix here.
+
++ PGraphics.colorCalcARGB(int, float) wasn't properly capping alpha values
+  https://github.com/processing/processing/issues/2439
+
++ Make sure that the window background color isn't the same as the default 
+  sketch background color (otherwise the sketch area isn't clear). 
+  https://github.com/processing/processing/issues/2297
+
++ Fix for occasional NullPointerException in paint()
+  https://github.com/processing/processing/issues/2354
+
+
+[ andres vs opengl, episode 225 ] 
+
++ copy() under OPENGL uses upside-down coordinates for cropping
+  https://github.com/processing/processing/issues/2345
+
++ Video on Windows causes exception
+  https://github.com/processing/processing/issues/2327
+
++ Shape Font Rendering was broken with the OpenGL Renderer
+  https://github.com/processing/processing/issues/2375
+
++ Depth buffer shouldn't be cleared when depth mask is disabled
+  https://github.com/processing/processing/issues/2296
+
++ Set pixels transparent by default in P2D/P3D
+  https://github.com/processing/processing/issues/2207
+
++ Unwind depth sorting because it was breaking DXF export
+  https://github.com/processing/processing/issues/2404
+
++ Sketch hangs if sketchRenderer() returns an OpenGL renderer
+  https://github.com/processing/processing/issues/2363
+
++ "buffer" uniform triggers shader compilation error
+  https://github.com/processing/processing/issues/2325
+  buffer has been renamed to ppixels for shaders
+
++ noLoop() clears screen on Windows 8
+  https://github.com/processing/processing/issues/2416
+
++ Fix pixels[] array for video capture
+  https://github.com/processing/processing/issues/2424
+
+
+[ fixed in earlier releases ] 
+
++ draw() called again before finishing on OS X (retina issue)
+  https://github.com/processing/processing/issues/1709
+
++ get() not always setting alpha channel when used with point()
+  https://github.com/processing/processing/issues/1756
+
++ support for geometry and tessellation shaders (on desktop)
+  https://github.com/processing/processing/issues/2252
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.1.1 (REV 0224) - 21 January 2014
+
+Several fixes for issues in 2.1 that weren't found in the 2.1 beta release.
+Still a number of known issues, but this cleans up several of the biggies.
+
++ Fixed infinite loop in Find/Replace
+  https://github.com/processing/processing/issues/2082
+
++ Updated to Minim 2.2
+  https://github.com/processing/processing/pull/2250
+
++ Minor change to bracket handling
+  https://github.com/processing/processing/pull/2313
+
++ On the command line version, --no-java wasn't working properly
+  https://github.com/processing/processing/issues/2182
+
++ get() + video requires loadPixels in P2D/P3D
+  https://github.com/processing/processing/issues/2202
+
+
+[ windows ] 
+
++ Export to Application was broken on Windows
+  https://github.com/processing/processing/issues/2219
+
++ Right-click on selection was causing text to de-select on Windows
+  https://github.com/processing/processing/issues/2210
+
+
+[ mac os x ]
+
++ On Mac OS X, the app was called procesing.app.Base
+  https://github.com/processing/processing/issues/2217
+
++ Better support for native libraries in exported applications on OS X
+  https://github.com/processing/processing/pull/2269
+
+
+[ serial library ]
+
++ readStringUntil() missing from new serial library
+  https://github.com/processing/processing/issues/2174
+
++ Miscellaneous pdates to the serial library
+  https://github.com/processing/processing/pull/2265
+
++ Serial (apears to be) running slowly
+  https://github.com/processing/processing/issues/2249
+  https://github.com/processing/processing/issues/2214
+
++ Read a single character at a time to emulate RXTX behavior
+  https://github.com/processing/processing/pull/2240
+
++ Add basic tests for throughput and latency
+  https://github.com/processing/processing/pull/2225
+
++ Add a debug() method to Serial
+  https://github.com/processing/processing/pull/2237
+
++ Switch the examples over to use printArray()
+  https://github.com/processing/processing/pull/2226
+
++ Handle the UnsatisfiedLinkError when loading the native library fails
+  https://github.com/processing/processing/pull/2266
+
+
+[ core fixes ] 
+
++ PImage resize() causes PImage not to be rendered in JAVA2D
+  https://github.com/processing/processing/issues/2179
+
++ Remove make.sh from core source folder... ancient
+
++ Remove println() from the dataPath() method
+
++ Add special case for 'null' to println()
+
++ Added print() method to IntList
+
++ Fix esoteric typo with alpha and color
+  https://github.com/processing/processing/issues/2230
+
++ pushStyle/popStyle should save/restore blendMode
+  https://github.com/processing/processing/issues/2232
+
+
+[ opengl updates ]
+
++ PImage copy() function used with P2D flips the image
+  https://github.com/processing/processing/issues/2171
+
++ Filter shaders don't need to use the texture uniform
+  https://github.com/processing/processing/issues/2204
+
++ texture() bug with stroke() in P2D
+  https://github.com/processing/processing/issues/2205
+
++ Allow sharing of GL context amongst multiple windows
+  https://github.com/processing/processing/issues/1698
+
++ Texture sampling setting ignored when creating an offscreen PGraphics
+  https://github.com/processing/processing/issues/1900
+
++ Rounded rectangle broken with Processing 2.1 P3D renderer
+  https://github.com/processing/processing/issues/2193
+
++ Clear the global PGL on dispose()
+  https://github.com/processing/processing/pull/2279
+
++ Pie arcs have stroke between endpoints in P2D/P3D
+  https://github.com/processing/processing/issues/2233
+
+
+[ missing in the 2.1 release notes ] 
+
++ init() not called on tools until later 
+  https://github.com/processing/processing/issues/1859
+
++ Finish changes so the PDE can use an unmodified JRE
+  https://github.com/processing/processing/issues/1840
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.1 (REV 0223) - 27 October 2013
+
+There have been major changes since 2.0.3, most of them are outlined in 
+the release notes for 2.1 beta 1 (look down a few dozen lines).
+
+This release includes a few updates to fix problems introduced in the beta 
+release, as well as additional general bug fixes, especially for OpenGL.
+
++ Added an option to not embed the Java runtime into an exported application.
+  This saves you the 100 MB footprint, but requires your users to install
+  Java 7u45 or later. Details on the same page that nobody read last time:
+  http://wiki.processing.org/w/Export_Info_and_Tips
+
++ The new println() (see the beta 1 notes) makes some old code behave a 
+  little differently. In the past, println() with an array would write 
+  out the array, one element per line, with the index in the front. i.e.:
+  PFont.list()) would write something like this to the console:
+
+  [0] "Serif"
+  [1] "SansSerif"
+  [2] "Monospaced"
+  [3] "Dialog"
+  [4] "DialogInput"
+  [5] "ACaslonPro-Bold"
+  [6] "ACaslonPro-BoldItalic"
+  ...and so on
+
+  Now it's going to write out something like:
+
+  Serif SansSerif Monospaced Dialog DialogInput ACaslonPro-Bold...
+
+  To get the old behavior, use printArray(). It's the price of progress, 
+  and shouldn't really "break" anyone's code since it's just writing to the
+  console. We think the new syntax outweighs the downside of the change. 
+
+  With arrays of primitive types (int[], float[], anything that's not an
+  object), we've added code so that println() works as before. But we
+  can't do the same for arrays of objects, such as String. 
+
++ The preference for font smoothing (anti-aliasing) in the editor has been
+  reset in this release. Fonts are unusably gross on OS X (and Linux) 
+  without smoothing and Oracle's version of Java (now in use with 2.1),
+  and many longtime users have anti-aliasing turned off. You can still 
+  turn off smoothing in the Preferences window, but the results may be poor.
+  https://github.com/processing/processing/issues/2164
+  https://github.com/processing/processing/issues/2160
+
+
+[ bug fixes ]
+
++ Fix dataPath() problem with OS X (was breaking Movie on export)
+
++ Command line processing-java was broken in 2.1 beta 1 on OS X
+  https://github.com/processing/processing/issues/2159
+
++ Fix a situation where processing-java would return 0 instead of 1 on errors
+  https://github.com/processing/processing/issues/1798#issuecomment-26711847
+
++ Alpha values from the pixels array were coming back as 0
+  https://github.com/processing/processing/issues/2030
+
++ Additional UI font tweaks due to decreased legibility with Oracle Java
+  https://github.com/processing/processing/issues/2135
+
+
+[ OpenGL updates ] 
+
++ Using sketchQuality() does not work properly with P3D, OPENGL, P2D
+  https://github.com/processing/processing/pull/2157
+
++ Fix crashes when the sketch window is resized
+  https://github.com/processing/processing/issues/1880
+  https://github.com/processing/processing/pull/2156
+
++ scale() wasn't affecting stroke weight in P3D
+  https://github.com/processing/processing/issues/2162
+
++ Add set(boolean) to PShader
+  https://github.com/processing/processing/issues/1991
+  https://github.com/processing/processing/pull/1993
+
++ Add PMatrix.preApply(PMatrix)
+  https://github.com/processing/processing/pull/2146
+  https://github.com/processing/processing/issues/2145
+
++ Updated to another version of JOGL (jogl-2.1-b1115, gluegen-2.1-b735)
+  for OS X 10.9 support.
+
++ Add warning when no uv texture coordinates are supplied
+  https://github.com/processing/processing/issues/2034
+
++ Flicker issues when resizing P2D/P3D/OPENGL
+  https://github.com/processing/processing/issues/15
+
++ Additional fix for occasional flash/flicker with drawing complex scenes
+  https://github.com/processing/processing/commit/cca2f08a24ef892c494f5a75aa0e4b01de7e5d8a
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.1 beta 1 (REV 0222) - 20 October 2013
+
+This release contains major changes. The big ones:
+
++ Java 7 is now used across all platforms. On Mac OS X, 
+  we're now embedding Java 7u45. More info here:
+  http://wiki.processing.org/w/Supported_Platforms#Java_Versions
+
++ Major changes have been made to Export to Application. 
+  Read here: http://wiki.processing.org/w/Export_Info_and_Tips
+
++ print() and println() now make debugging fun! They can now take any 
+  number of parameters, which means that code like:
+  println(x, y, mouseX, mouseY);
+  will print out
+  3 5 142 220
+  No more println(x + " " +  y + " " + mouseX + " " + mouseY);
+  that was for suckers!
+
++ A new serial library has been added! The results of Gottfried Haider's
+  Google Summer of Code project now replaces the old serial library.
+
+And everyone should wish Casey Reas happy birthday today! 
+This release is my birthday present for him. What did you get him?
+
+Here's a more detailed rundown of what else is in this release:
+
+
+[ new features and additions ] 
+
++ For people using Eclipse, the new print() and println() methods add
+  some quirks because of how println() works for arrays in previous
+  versions of Processing. When printing an array, you should instead use
+  the new printArray() function, which works the same as the old println().
+  This will help avoid the compiler warnings with Eclipse and others.
+  In the PDE, this should be transparent, because warnings are not shown.
+  https://github.com/processing/processing/issues/2056
+
++ Update the JavaDoc, remove java.* package prefix ugliness. Also link
+  out to the online version of the Oracle documentation. 
+
++ Major work on the source and the build scripts as we completed the 
+  transition to Java 7, and away from Apple's deprecated Java 6.
+  http://wiki.processing.org/w/Supported_Platforms#Mac_OS_X
+
++ Incorporated a version of Oracle's appbundler for OS X build. Made heavy
+  modifications to the original version to add features and simplify.
+
++ Culled un-needed resources from the Java 7 runtime to save space.
+  Unfortunately Java 7 is also much larger than Java 6, so the size change
+  isn't as considerable as we would hope.
+
++ Remove unused/outdated 'Mangler' Tool example
+
++ Remove video library for other platforms in download. This saves 
+  significant space because we're not doing cross-platform export anymore.
+
++ Update apple.jar file with new version
+  https://developer.apple.com/legacy/library/samplecode/AppleJavaExtensions/Introduction/Intro.html
+
++ Update build instructions on Github
+  https://github.com/processing/processing/wiki/Build-Instructions
+  https://github.com/processing/processing/issues/1629
+
++ Many changes to the Supported Platforms page
+  http://wiki.processing.org/w/Supported_Platforms
+
++ Updates to the Export page to cover changes in this release
+  http://wiki.processing.org/w/Export_Info_and_Tips
+
++ Removed the 32- and 64-bit selector from the Preferences on OS X.
+  Java 7 on OS X only supports 64-bit, so 32-bit is no longer available.
+
+
+[ editor fixes ] 
+
++ Deal with null/missing folders for Tools and Modes
+  https://github.com/processing/processing/issues/2068
+
++ Non-compliant libraries cause crash on "Add Library"
+  https://github.com/processing/processing/issues/2026
+
++ Bad tools could bring down the environment
+  http://code.google.com/p/processing/issues/detail?id=798
+  https://github.com/processing/processing/issues/836
+
++ Open new PDE maximized when current PDE is maximized
+  https://github.com/processing/processing/pull/2037
+
++ cmd-left was bringing up the text area popup, causing X Mode weirdness
+  https://github.com/processing/processing/issues/2103
+
+
+[ core bug fixes ]
+
++ Screen stops updating sometimes with retina displays on OS X
+  https://github.com/processing/processing/issues/1699
+  This was an Apple bug, and is fixed by our switch to Oracle's Java 7.
+
++ Background color for present mode had no effect
+  https://github.com/processing/processing/issues/2071
+  https://github.com/processing/processing/pull/2072
+
++ Add desktopPath() and desktopFile() methods for testing (not finished)
+
++ Unicode NLF causing problems in XML files
+  https://github.com/processing/processing/issues/2100
+
++ Fix image transparency in PDF output
+  https://github.com/processing/processing/pull/2070
+
++ Java2D images crash after being resized
+  https://github.com/processing/processing/issues/2113
+
++ Constrain lerpColor() between 0 and 1. Unlike lerp(), where it might 
+  make mathematical sense, going outside the boundary colors produces 
+  really messy results.
+
++ JSONObject/Array.format(-1) not working on embedded JSONObjects
+  https://github.com/processing/processing/issues/2119
+
++ Fix insertRow() bug with Table
+  https://github.com/processing/processing/issues/2137
+
+
+[ opengl updates ]
+
++ Updated to JOGL 2.1.0
+  https://github.com/processing/processing/issues/2136
+
++ Fixed inconsistency with P2D and resetMatrix()
+  https://github.com/processing/processing/issues/2087
+
++ Deal with text rendering problems
+  https://github.com/processing/processing/issues/2109
+
++ Fix textSize() problem with P2D
+  https://github.com/processing/processing/issues/2073
+
++ Repair incorrectly applied transformations in retained mode
+  https://github.com/processing/processing/issues/2097
+
++ push/popStyle() was causing color problems with P2D/P3D
+  https://github.com/processing/processing/issues/2102
+
++ Child SVG elements were misplaced when rendering with P2D/P3D
+  https://github.com/processing/processing/issues/2086
+
++ SUBTRACT and DIFFERENCE blend modes are swapped
+  https://github.com/processing/processing/issues/2075
+
++ Throw an error for textureMode(REPEAT)
+  https://github.com/processing/processing/issues/2052
+
++ Vertex codes were not being properly set in P2D/P3D
+  https://github.com/processing/processing/issues/2131
+
++ Some box normals were inverted
+  https://github.com/processing/processing/issues/2151
+
+
+[ new serial library ] 
+
++ Incorporate the new serial library. Woohoo!
+  https://github.com/processing/processing/pull/2093
+
++ 64-bit version of serial library
+  http://code.google.com/p/processing/issues/detail?id=1237
+  https://github.com/processing/processing/issues/1275
+
++ Closed several serial bugs because they're no longer relevant:
+  http://code.google.com/p/processing/issues/detail?id=52
+  http://code.google.com/p/processing/issues/detail?id=318
+  https://github.com/processing/processing/issues/2114
+  https://github.com/processing/processing/issues/2066
+  https://github.com/processing/processing/issues/1460
+  https://github.com/processing/processing/issues/1374
+
+
+[ font fixes and changes ] 
+
++ Add ability to change the editor (and console) font from a menu 
+  in the Preferences window.
+  https://github.com/processing/processing/issues/2078
+
++ Add ability to change the console font size from the Preferences window.
+  http://code.google.com/p/processing/issues/detail?id=226
+  https://github.com/processing/processing/issues/265
+
++ Allow editor and console font changes without restart.
+
++ Anti-aliasing fix for the editor line status. 
+
++ Change to bold instead of semibold version of Source Code Pro. 
+  The semibold wasn't mapping properly as the same family.
+
++ Use the same font in the console as the editor.
+
++ Fix Windows/Linux console font issues.
+
+
+[ movie maker ]
+
++ Fix default gamma issues inside MovieMaker by adding extra atom
+
++ TGA files cause Movie Maker to not work properly
+  https://github.com/processing/processing/issues/1933
+
++ Fix file selection dialog with MovieMaker (instead of the nasty
+  Swing-based version that was in use)
+
++ Add support for many other image file types to Movie Maker
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0.3 (REV 0221) - 5 September 2013
+
+Lots of bug fixes, primarily a ton of work by Andres to improve 
+OpenGL rendering with P2D and P3D.
+
+
+[ andres vs the volcano ]
+
++ blendMode() change causes OpenGL renderer to be very slow
+  https://github.com/processing/processing/issues/2021
+
++ Serious OpenGL performance issues on OS X, this was fixed 
+  with the JOGL update in 2.0.2, but we neglected to note it.
+  https://github.com/processing/processing/issues/1714
+
++ P2D low quality text rendering
+  https://github.com/processing/processing/issues/1972
+
++ Fix issues with slow text rendering and OpenGL
+  https://github.com/processing/processing/issues/2025
+
++ Corrupted text with large font and OpenGL
+  https://github.com/processing/processing/issues/1869
+
++ loadFont hangs on Processing 2.0 with any OpenGL renderer
+  https://github.com/processing/processing/issues/1854
+
++ Rendering artifacts on the diagonal line (topleft to bottomright) in P2D
+  https://github.com/processing/processing/issues/1964
+
++ loadShape doesn't load OBJ files in subdirectories properly
+  https://github.com/processing/processing/issues/2003
+
++ more OpenGL issues fixed by JOGL or newer drivers
+  https://github.com/processing/processing/issues/1986
+
++ Vertical offset when sketch height is indivisible by 2
+  https://github.com/processing/processing/issues/1985
+
++ ellipse() causes RuntimeException: java.lang.OutOfMemoryError
+  https://github.com/processing/processing/issues/1941
+
++ beginShape()...endShape() lines look wrong at joins/caps with P2D
+  https://github.com/processing/processing/issues/1927
+
++ Problem with bit shifting and video
+  https://github.com/processing/processing/pull/2023
+  https://github.com/processing/processing/pull/2022
+  https://github.com/processing/processing/issues/2021
+
++ Copy doesn't produce a true copy with P2D and P3D renderers
+  https://github.com/processing/processing/issues/1924
+
++ Additional improvements to memory handling with images
+  https://github.com/processing/processing/issues/1975
+
++ Additional memory handling changes for render buffers
+  https://github.com/processing/processing/issues/1776
+
++ PShape does not draw arc properly
+  https://github.com/processing/processing/issues/1990
+
++ PShape style is not restored after calling enableStyle in P2D/P3D
+  https://github.com/processing/processing/issues/2061
+
+
+[ other bug fixes ] 
+
++ Fix options parsing on loadTable() to handle spaces.
+
++ PVector.angleBetween() returns 0 for 3D vectors whenever x and y are both 0
+  https://github.com/processing/processing/issues/2045
+  https://github.com/processing/processing/pull/2046
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0.2 (REV 0220) - 14 August 2013
+
+Many small bug fixes and lots of work on the Library/Tool/Mode Manager. 
+Full screen is back for Windows, and lots more.
+
+
+[ bug fixes ] 
+
++ Fix Windows issues with associating .pde files 
+  https://github.com/processing/processing/issues/286
+  http://code.google.com/p/processing/issues/detail?id=247
+
++ Present Mode does not work properly on Windows
+  https://github.com/processing/processing/issues/1955
+
++ pixels[] array not updated with Capture and P2D/P3D
+  https://github.com/processing/processing/issues/1852
+
++ Unable to get TAB key event with P2D/P3D renderer
+  https://github.com/processing/processing/issues/1967
+
++ Setting an INT4 uniform in PShader causes an out of bounds exception
+  https://github.com/processing/processing/issues/1994
+
++ Fix "less less" typo 
+  https://github.com/processing/processing/issues/1928
+
++ Slash breaks syntax highlighting when spaces are involved
+  https://github.com/processing/processing/issues/1681
+  Fix from Github user hamzaissa - thanks!
+
++ selectInput() in exported OS X sketch treats .app package as a folder
+  https://github.com/processing/processing/issues/1959
+
++ Code with a NUL character causes an error
+  https://github.com/processing/processing/issues/1973
+  Also remove NUL characters when loading PDE files
+
++ Allow delete of files in unsaved sketches
+  https://github.com/processing/processing/issues/1942
+  https://github.com/processing/processing/pull/1945
+
++ UnsatisfiedLinkError was causing huge/unreadable message
+
++ selectInput() in exported OS X sketch treats .app package as a folder
+  https://github.com/processing/processing/issues/1959
+
++ Retain blendMode() between frames
+  https://github.com/processing/processing/issues/1962
+
+
+[ contribution managers ] 
+
++ Support multiple categories for libraries
+  https://github.com/processing/processing/issues/1970
+
++ Notify users that Modes and Tools require restart.
+  https://github.com/processing/processing/issues/1782
+  https://github.com/processing/processing/issues/1504
+  http://code.google.com/p/processing/issues/detail?id=1466
+
++ Change the location of the manager download to something more stable.
+
++ Restrict library categories to the ones in the document. If it's not
+  correct, shows up as 'other'.
+
++ Catch Errors (not just Exceptions) when loading libraries, modes, 
+  and tools. Handles UnsupportedClassVersionError and other quirks.
+
++ Redo handling of "old" versions of contributions.
+
++ Update example list when library is installed
+  https://github.com/processing/processing/issues/1909
+  https://github.com/processing/processing/pull/1925
+
+
+[ data, data, data ] 
+
++ Error in IntList and FloatList insert()
+  https://github.com/processing/processing/issues/1929
+
++ Add a sort() method to Table.
+
++ Implement version of Table that takes a dictionary file. Syntax is:
+  Table t = loadTable("bigdata.tsv", "dictionary=bigdata-dict.tsv")
+  This allows you to set the data type of columns before loading, which
+  provides much better performance and lower memory usage.
+
++ Constructing table from an Iterator is missing
+  https://github.com/processing/processing/issues/1956
+
++ Add sum() to IntList and FloatList
+  https://github.com/processing/processing/issues/1893
+
++ When using increment() on IntList, make sure the index exists and
+  automatically resize the list if necessary. This is more in keeping 
+  with increment() in the Dict classes.
+
++ getSubset() broken in IntList, StringList, and missing from FloatList
+  https://github.com/processing/processing/issues/1979
+
++ Add join() method to Int/Float/StringList
+
++ Add getContent(defaultValue) to XML
+
++ Add isNull() (returns boolean) to JSONObject/Array
+  https://github.com/processing/processing/issues/2009
+
++ Add getXxxx(xxx, defaultValue) methods to JSONObject/Array
+  https://github.com/processing/processing/issues/2007
+
+
+[ internal changes you'll never notice... unless I broke something ] 
+
++ Add an exception wrapper for startup, hopefully we can catch/debug
+  more "Processing can't start!" issues with this.
+
++ Update JNA from 3.2.4 to 3.5.2.
+
++ Updated JOGL to 2.0.2.
+
++ Added methods to move files to Trash/Recycle Bin where available.
+
++ Implement basic proxy server support for update checking and the
+  contribution managers.
+  https://github.com/processing/processing/issues/1476
+
++ Basic getShape(ch) implementation for font glyph shapes. Not finished
+  and (therefore) not yet documented.
+
++ Change QUAD_BEZIER_VERTEX to QUADRATIC_VERTEX to match the API call
+  (because this lives inside PConstants).
+
++ Add retina switch for PApplet to set useActive with OS X and 7u40.
+  Prevents speed/performance issues with old sketches on retina macs.
+
++ Add error message for raspberry pi (and others?) about int buffers
+  https://github.com/processing/processing/issues/2010
+
+
+[ changes ] 
+
++ Experimental Mode has been removed from the default download, 
+  so that it can be updated more frequently. Install it and help us 
+  test what will become the 3.0 release of Processing!
+
++ Add "Processing Foundation" to the Help menu.
+  https://github.com/processing/processing/issues/1908
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0.1 (REV 0219) - 21 June 2013
+
+Bug fixes for some of what ailed the Processing 2.0 release, including
+two contributed from Josh Giesbrecht. Thanks Josh!
+
+[ bug fixes ] 
+
++ Modes, Tools, Libraries not moving properly on Windows
+  https://github.com/processing/processing/issues/1781
+
++ Undo seems to not be going to the right location (now with example)
+  https://github.com/processing/processing/issues/707
+  http://code.google.com/p/processing/issues/detail?id=668
+
++ Fix a problem with exporting Windows applications from OS X and Linux. 
+  https://github.com/processing/processing/issues/1890
+
++ getVertex() trying to get three values when no Z-coord is available
+  "PShape getVertex() not implemented properly for SVG files"
+  https://github.com/processing/processing/issues/1596
+
++ Fix typo in default printProjection() method
+  https://github.com/processing/processing/issues/1863
+
+[ additions ] 
+
++ Add error message for that reports what line was bad while parsing a table.
+  (Otherwise confusing ArrayIndexOutOfBoundsException while parsing bad CSV.)
+
++ Added option to remove the background image at the top of the window.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0 (REV 0218) - 3 June 2013
+
+And just like that, here we are at 2.0. 
+
+[ bug fixes ] 
+
++ Example window has the Java application icon
+  https://github.com/processing/processing/issues/1800
+
++ The update checker sometimes insisted there were updates, 
+  even though there were not, due to a build problem.
+  https://github.com/processing/processing/issues/1792
+
++ Removed the 'modes' folder from the sketchbook listing
+  https://github.com/processing/processing/issues/1832
+
++ Add return code to processing-java on Linux
+  https://github.com/processing/processing/issues/1798
+
++ Command line tool on OS X was broken due to classpath problems.
+  https://github.com/processing/processing/issues/1787
+
++ saveJSONArray() loops forever, triggers error
+  https://github.com/processing/processing/issues/1827
+
++ patch to make font textures smaller in P2D/P3D
+  https://github.com/processing/processing/pull/1775
+
++ .png data written when .jpg file specified with save/saveFrame()
+  https://github.com/processing/processing/issues/1810
+
++ remove() broken in the List classes
+  https://github.com/processing/processing/issues/1826
+
++ PGraphics objects that used JAVA2D weren't updating when used with OpenGL
+  https://github.com/processing/processing/issues/1786
+
++ P2D/P3D sketches don't get focus until clicked
+  https://github.com/processing/processing/issues/1700
+
+[ changes ] 
+
++ A handful of tweaks to smooth out the 2.0 user interface. 
+  Incorporates some of the feedback suggested here: 
+  https://github.com/processing/processing/pull/1822
+  while trying to preserve the look & feel of our PDE design.
+
++ Added built-in fonts (Source Sans and Source Code from Adobe)
+  as the default font for the UI and editor. As usual, the editor 
+  font can be changed in preferences.txt. And if you already have 
+  a preferences.txt file, the new font won't override it. Fonts
+  for GUI elements can be modified in lib/theme.txt, but be careful
+  with those, and don't complain if/when they break.
+
++ Added several additional functions for data classes. More details 
+  in the reference and coming soon.
+
++ Changed how null values were handled with binary tables. If anyone
+  was using the (undocument) .bin format for Table, you'll need to 
+  re-save your data.
+
++ Changed XML.toString() (what's called when you print() or println() 
+  an XML object) to just send a single line of text instead of a full 
+  XML document with a header. Use format(numSpaces) if you want a
+  properly formatted document with declaration at the top.
+
+[ andres on the attack ] 
+
++ PImage not drawn after resize()/get() in P2D/P3D
+  https://github.com/processing/processing/issues/1830
+
++ Can't disable textures for loaded OBJ shapes (2b9)
+  https://github.com/processing/processing/issues/1825
+
++ Can't mask PGraphics with another PGraphics
+  https://github.com/processing/processing/issues/1738
+
++ PGL.readPixels() causes "invalid operation" error
+  https://github.com/processing/processing/issues/1666
+
++ Strange behavior of PGraphics pixels[] when using P2D and P3D renderer
+  https://github.com/processing/processing/issues/1815
+
++ PShape setVertex has a memory leak
+  https://github.com/processing/processing/issues/1670
+
++ PGL lacks a wrapper for the alphaFunc() method and the ALPHA_TEST constant
+  https://github.com/processing/processing/issues/1703
+
++ Implement textMode(SHAPE) for 3D
+  https://github.com/processing/processing/issues/777
+
++ An internal change so that PImage.loadPixels() doesn't call the renderer.
+  Fixes some odd quirks in saveFrame() and other draw/get/save operations.
+
++ Setting smooth(n) affects disables background in setup()
+  https://github.com/processing/processing/issues/1452
+
++ textureWrap(REPEAT) + textureMode(IMAGE) clamps positive coordinates
+  https://github.com/processing/processing/issues/1809
+
++ P2D, P3D drawing errors in static mode, gray screen
+  https://github.com/processing/processing/issues/1648
+
++ Window shorter than 127 pixels high is not rendered correctly in P2D/P3D
+  https://github.com/processing/processing/issues/1683
+
++ Multiple screen crash with OpenGL
+  https://github.com/processing/processing/issues/1515
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b9 (REV 0217) - 18 May 2013
+
+The 2.0 interface has arrived! Mmm... pretty.
+
+We've removed Android and JavaScript modes from the default download. You 
+can easily install them by selected "Add Mode" from the Mode menu. They've
+been removed because the changes have not kept pace with the rest of 
+Processing, and it was holding up the release of 2.0. As separate projects, 
+we hope it'll be easier for volunteers to get involved, rather than our
+tiny, worn out development team. View the projects here:
+https://github.com/fjenett/javascript-mode-processing
+https://github.com/processing/processing-android
+
+There are also lots of goodies in the new data classes found in the
+processing.data package that will make it much easier to handle data from
+inside Processing. More documentation coming soon!
+
+We're hoping this is the last beta before 2.0, but we're still haggling
+with one or two issues that could require a beta 10. That's a lot of beta.
+
+[ fixes ] 
+
++ Major OutOfMemoryError problem with images fixed by Andres!
+  http://code.google.com/p/processing/issues/detail?id=1353
+  https://github.com/processing/processing/issues/1391
+
++ Lots of fixes for the library/mode/tool manager. 
+  Repairing colors, layout, etc. along with lots of internal fixes.
+
++ Fix MovieMaker, it was completely broken
+  https://github.com/processing/processing/issues/1669
+
++ processing-java dialog window was huge
+  https://github.com/processing/processing/issues/1748
+
++ Library with bad version number in version causes stack trace to print. 
+  Added warning message about it with a pointer to the remedy.
+
++ "New version available" mesage is showing HTML tags around it
+   https://github.com/processing/processing/issues/1684
+
++ "Update" not working in the manager
+  https://github.com/processing/processing/issues/1701
+
++ tint() with JAVA2D does not automatically refresh (with possible fix)
+  https://github.com/processing/processing/issues/1730
+
++ Lines not properly renderered in P3D when using ortographic projection
+  https://github.com/processing/processing/issues/1661
+
++ Fix JSON and get it working properly. Now official API.
+  https://github.com/processing/processing/issues/1660
+  https://github.com/processing/processing/issues/1680
+
++ Plus dozens of other P2D/P3D fixes that Andres snuck in there.
+
++ Last lines of a beginShape(LINES) are invisible in the P2D renderer
+  https://github.com/processing/processing/issues/1761
+
++ Incorrect number of vertices on beginShape(TRIANGLES) affect subsequent Shapes
+  https://github.com/processing/processing/issues/1760
+
++ Rendering unlit geometry with TEXLIGHT shader throws misleading error message
+  https://github.com/processing/processing/issues/1757
+
+[ changes ]
+
++ New images for modes. New design!
+
++ Added loadJSONArray(), loadJSONObject. 
+
++ Hundreds of changes to the new data classes, sorting out their API, etc.
+
++ Fix autoformat to indent like the p5 book/examples. Thanks pif!
+  http://code.google.com/p/processing/issues/detail?id=325
+  https://github.com/processing/processing/issues/364
+
++ Removed netscape.javascript stuff that was only relevant for applets
+
++ Change error message for libraries (especially serial) for 32- vs 64-bit
+  to clarify that the 32- or 64-bit version of Processing can be used instead.
+
++ Rebuilt the internal Runner to use SocketAttach... This may bring up 
+  a firewall message on some machines. Don't worry, it's safe (as long as
+  the message is showing up when you hit Run, that's expected).
+
++ Add set(x, y) to PVector. 
+
++ Removed div() and mult() from PVector, since not a legit math operation.
+  https://code.google.com/p/processing/issues/detail?id=1506
+  https://github.com/processing/processing/issues/1544
+
++ loadImage() with TGA causing images to be upside-down
+  https://github.com/processing/processing/issues/1682
+
++ Added getIntContent(), getFloatContent() to XML
+
++ Table switch to CATEGORY instead of CATEGORICAL (not documented)
+
++ removed createXML() and createTable()... just use 'new' for these
+
++ Add official API for mouse wheel support
+  https://github.com/processing/processing/issues/1461
+  http://code.google.com/p/processing/issues/detail?id=1423
+
++ Incorporated JDI changes from Manindra. This makes the download a little
+  larger, but is a step toward being able to have a simpler download that
+  only requires a JRE (and is therefore much smaller!)
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b8 (REV 0216) - 24 February 2013
+
+Dead bugs on the windscreen as we head down the road to 2.0. 
+(The fact that we're still in bad metaphor territory suggests
+we're still a little ways off from 2.0 final.)
+
+[ bugs fixed ] 
+
++ "Find in Reference" broken in 2.0b7
+   http://code.google.com/p/processing/issues/detail?id=1456
+
++ Add java.io.File to default imports
+  http://code.google.com/p/processing/issues/detail?id=1453
+
++ Default Renderer slow on retina displays
+  http://code.google.com/p/processing/issues/detail?id=1262
+  https://github.com/processing/processing/issues/1300
+
++ Remove extra separator at the top of the Help menu on Windows and Linux
+
++ MovieMaker tool will not start on Windows 8
+  http://code.google.com/p/processing/issues/detail?id=1447
+
++ On Windows, the Help menu starts with a separator (no more)
+
++ Color coding for if/else in Processing IDE doesn't match
+  http://code.google.com/p/processing/issues/detail?id=1457
+
++ Ignore ArrayIndexOutOfBoundsException in JEditTextArea.xToOffset() 
+
++ Fix IllegalStateException on Windows/Linux in Save prompt
+  happened when hitting ESC or otherwise closing the window
+
++ Don't open Changes page on the Wiki from command line
+  http://code.google.com/p/processing/issues/detail?id=1520
+
++ Prevent inertia scrolling on OS X from making the editor jumpy
+
++ processing-java throws java.lang.ArrayIndexOutOfBoundsException: -1
+  http://code.google.com/p/processing/issues/detail?id=1548
+
++ "Auto Format" should not scroll current line to first line
+  http://code.google.com/p/processing/issues/detail?id=1533
+
++ Fix "Bounds out of range" when outdenting a block of text
+  Exception in thread "AWT-EventQueue-0" 
+  java.lang.IllegalArgumentException: Bounds out of range: 5374,5376 [5375]
+  at processing.app.syntax.JEditTextArea.select(JEditTextArea.java:1214)
+  at processing.app.Editor.handleIndentOutdent(Editor.java:1819)
+
++ Play button (and others) no longer highlighting
+  http://code.google.com/p/processing/issues/detail?id=688
+  Patch from John Li (jli at circularly.org) Thanks!
+
++ readlink error when running processing-java on Linux
+  Patch from richard at crash.net.nz. Thanks!
+  http://code.google.com/p/processing/issues/detail?id=1578
+
++ Fix table loading quirk with extensions
+
++ PImage.resize() greater than image size hangs 
+  http://code.google.com/p/processing/issues/detail?id=1463
+
++ loadBytes() does not close input stream
+  http://code.google.com/p/processing/issues/detail?id=1542
+
++ Fixes for removeColumn()
+
++ Remove SVG warning about "#text" ignored
+
++ Fix bug where noDelays wasn't being used in PApplet
+
++ XML.format(0) throws error
+  http://code.google.com/p/processing/issues/detail?id=1512
+
+[ improvements, updates, and changes ]
+
++ Add basic retina support (text/labels, buttons not yet updated) 
+  to the Mac OS X version.
+
++ Clean up the code and interface for the Movie Maker tool
+  http://code.google.com/p/processing/issues/detail?id=836 
+
++ Suggest possible import statements for common Java classes
+  http://code.google.com/p/processing/issues/detail?id=1550
+
++ Add 6u37 as the Java runtime (unfortunately woefully outdated by now)
+
++ Add ESC and cmd/ctrl-W to the Examples window
+
++ Move token/syntax coloring out of theme.txt and back into preferences
+
++ Discern variable vs function with Find in Reference
+
++ If no selection, attempt to expand the selection for Find in Reference
+
++ Add cmd-shift-O to "Open Examples" on OS X with no window open
+
++ Remove Quaqua library
+  http://code.google.com/p/processing/issues/detail?id=1509
+
++ Most recent moved to the top of the "Recent" menu
+
++ Disable single-click expand on OS X for the examples
+
++ Add clear() to replace background(0, 0, 0, 0)
+  http://code.google.com/p/processing/issues/detail?id=1446
+
++ Change heading2D() to just heading() 
+  http://code.google.com/p/processing/issues/detail?id=987
+
++ Remove hint(ENABLE_NATIVE_FONTS)
+
++ Add warning message when registering AWT mouse/key events
+
++ Show warning when registering mouse/key events with OpenGL
+
++ Add functions for mousePressed(event) and keyPressed(event) et al
+
++ Add randomGaussian() method
+
++ Add TAU as alias for TWO_PI
+  http://code.google.com/p/processing/issues/detail?id=1488
+  reference: https://github.com/processing/processing-web/issues/9
+
++ Miscellaneous XML fixes and cleanups
+
+[ tool/mode/library manager ] 
+
++ General cleanup of the visuals/layout
+
++ Library manager leaves temporary folders in sketchbook folder
+  http://code.google.com/p/processing/issues/detail?id=1527
+
++ Add Mode is also reporting that it's a library that contains multiple
+
++ Add Tool is having problems
+  https://github.com/processing/processing/issues/1607
+  http://code.google.com/p/processing/issues/detail?id=1569
+
++ Make already installed libraries distinguishable in the list
+  https://github.com/processing/processing/issues/1250
+  http://code.google.com/p/processing/issues/detail?id=1212
+
++ Fix up the design of the list entries themselves
+
++ Using "Add Library" requires restart of Processing before lib recognized
+  https://github.com/processing/processing/issues/1425
+  http://code.google.com/p/processing/issues/detail?id=1387
+
+[ android ] 
+
++ Update documentation and tools for Android SDK Tools revision 21
+  http://code.google.com/p/processing/issues/detail?id=1398
+
++ Update Wiki to reflect no need for Google APIs
+
++ Add clear and close to some stream methods
+  http://code.google.com/p/processing/issues/detail?id=244
+
++ OpenGL sketch crashes on older Android devices
+  http://code.google.com/p/processing/issues/detail?id=1455
+
++ Remove mouseEvent and keyEvent variables (deprecated on desktop)
+
+[ table ] 
+
++ Added lastRowIndex()
+
++ rows() instead of getRows() (doesn't perform like our other get() functions)
+
++ addRow() returns TableRow object to be modified
+
++ lastRowIndex() (to avoid getRowCount() - 1)
+
++ Change makeNullEmpty() -> replace(null, ""); and
+  makeEmptyNull() -> replace("", null);
+
++ Add saveTable("filename.tsv") or saveTable("filename.txt", "tsv")
+
++ createTable() method in PApplet
+
++ Removed getUniqueXxxx() and some others, pending naming decision
+
++ Added getColumnCount() to TableRow
+
+[ andres assault ] 
+
++ P3D sketches failing to run
+  http://code.google.com/p/processing/issues/detail?id=1500
+
++ Transparent pixels are not set on multisampled offscreen GL surfaces
+  http://code.google.com/p/processing/issues/detail?id=1516
+
++ Clean-up PShape API
+  http://code.google.com/p/processing/issues/detail?id=1518
+
++ Several key/mouse event issues in the db
+  http://code.google.com/p/processing/issues/detail?id=1464
+
++ Finalize shader API
+  https://github.com/processing/processing/issues/13
+
++ "focused" become false when window is clicked in OPENGL and P2D renderer
+  http://code.google.com/p/processing/issues/detail?id=1483
+  https://github.com/processing/processing/issues/1521
+
++ cursor(...) and noCursor() having trouble in P2D or P3D mode
+  http://code.google.com/p/processing/issues/detail?id=1574
+  https://github.com/processing/processing/issues/1612
+
++ OpenGL/P3D sketches show graphical corruption
+  http://code.google.com/p/processing/issues/detail?id=1452
+  https://github.com/processing/processing/issues/1490
+
++ Disable stroke perspective by default
+  https://github.com/processing/processing/issues/1598
+  http://code.google.com/p/processing/issues/detail?id=1560
+
++ Fix get()/set() problems with images and OpenGL
+  https://github.com/processing/processing/issues/1613
+  http://code.google.com/p/processing/issues/detail?id=1575
+
++ Child PShape disappears when geometric transformations are applied
+  http://code.google.com/p/processing/issues/detail?id=1460
+  https://github.com/processing/processing/issues/1498
+
++ Repeated fill() in P3D throws ex for groups, weird behavior for single shapes
+  http://code.google.com/p/processing/issues/detail?id=1524
+  https://github.com/processing/processing/issues/1562
+
++ Incorrect sampler2D alpha channel from PGraphics.filter(shader)
+  https://github.com/processing/processing/issues/1557
+  http://code.google.com/p/processing/issues/detail?id=1519
+
++ Mouse data erratic in P2D
+  https://github.com/processing/processing/issues/1626
+
++ Destroying an OpenGL PApplet doesn't terminate SharedResourceRunner thread
+  https://github.com/processing/processing/issues/1483
+  http://code.google.com/p/processing/issues/detail?id=1445
+
++ exit() crashes Java on P2D and 3D when fullscreen only
+  https://github.com/processing/processing/issues/12
+
++ Default filter on PGraphics does nothing (JAVA2D) or causes crash (P2D/P3D)
+  https://github.com/processing/processing/issues/1534
+  http://code.google.com/p/processing/issues/detail?id=1496
+
++ Crash when running latest P2D/P3D under VMware
+  https://github.com/processing/processing/issues/1644
+
++ SVG width and height not properly set with P2D, P3D & OPENGL renderers
+  https://github.com/processing/processing/issues/1641
+
++ Re-implement per-vertex coloring in P2D/P3D
+  https://github.com/processing/processing/issues/1196
+  http://code.google.com/p/processing/issues/detail?id=1158
+
++ P2D, P3D drawing errors in static mode, gray screen
+  https://github.com/processing/processing/issues/1648
+  Still seeing a few of these in some cases, but hopefully 
+  this is fixed for the most part.
+
+[ manindra magic ]
+
++ Problems with Find & Replace getting stuck in a loop, or replacing
+  with odd text after text was no longer found.
+  https://github.com/processing/processing/issues/1643
+  https://github.com/processing/processing/pull/1652
+
++ Error checker broken in experimental mode (fix from Manindra)
+  http://code.google.com/p/processing/issues/detail?id=1449
+
++ Bug that was causing the Debugger to point to wrong break point line numbers
+  'Debug' button does not re-run the project when it is already running.
+  http://code.google.com/p/processing/issues/detail?id=1504
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b7 (REV 0215) - 7 December 2012
+
+475,382 bug fixes in this release as we work on finalizing 2.0. 
+
+[ changes ] 
+
++ Removed all imports that aren't covered in the Processing reference. 
+  If you use java.awt, java.util, or other classes in your sketch, you
+  will need to add an import line to the beginning of your sketch.
+
+  Only the classes that are covered in the reference (HashMap, ArrayList, 
+  and some others) are now imported by default. This has been done to improve
+  overall cross-platform parity and to avoid users unknowingly adding 
+  Java classes, and then the sadness that comes when switching to Android
+  or JavaScript modes. 
+
+  The list of imports is now hard-coded (no longer read from preferences.txt)
+  and includes the following:
+  import java.util.HashMap;
+  import java.util.ArrayList;
+  import java.io.BufferedReader;
+  import java.io.PrintWriter;
+  import java.io.InputStream;
+  import java.io.OutputStream;
+  import java.io.IOException;
+
+  If we're missing anything that's covered in the reference, please let us 
+  know via the bugs database.
+
++ A new "experimental" mode has been added. It's the start of combining two
+  of our Google Summer of Code projects (DebugMode and XQMode) to enable 
+  a debugger and on-the-fly error checking. We're including it in the release
+  so that folks can test it out and let us know how it's doing. The interface
+  still needs work and its innards may be a bit buggy, but it represents
+  some exciting upcoming improvements for the PDE.
+
++ hint(ENABLE_ACCURATE_2D) has been renamed to hint(DISABLE_OPTIMIZED_STROKE)
+  to better reflect what it actually does. Reference has been added.
+  OpenGL drawing is significantly faster when the fill and stroke of a shape
+  is drawn separately. This leads to visual artifacts on shapes where both
+  fill and stroke is enabled (not a great idea in 3D anyway), so this option
+  fixes the visual artifacts at the expense of speed.
+  http://code.google.com/p/processing/issues/detail?id=1302
+
++ Sketch names can no longer begin with underscores (fixes an Android
+  compatibility issue). This was changed in recent releases, but missing here.
+  http://code.google.com/p/processing/issues/detail?id=859
+
++ More Mac OS X key bindings have been implemented in the editor:
+  http://code.google.com/p/processing/issues/detail?id=1354
+  http://guides.macrumors.com/Keyboard_shortcuts&section=10#Text_Shortcuts
+
++ Set quality level higher when exporting JPEG images. This will result 
+  in larger JPEG files with save() and saveFrame(), but the default quality 
+  setting in the past was unacceptable for many/most projects. 
+  http://code.google.com/p/processing/issues/detail?id=58
+  See the bug report link for how to implement in case you want to set 
+  the quality lower (or even higher) than the new default.
+
++ Table row iterating syntax has changed. This code:
+  for (TableRow row : table) { ... }
+  has now changed to 
+  for (TableRow row : table.getRows()) { ... }
+  (This may change to rows() on the next round, pending other API tweaks)
+
++ Change default for shift-backspace to just be backspace. To change it back,
+  set editor.keys.shift_backspace_is_delete=true in preferences.txt.
+
++ Implement clip() and noClip() to set the clipping region.
+
++ Added blendMode() feature.
+  http://code.google.com/p/processing/issues/detail?id=1385
+
++ Add different styles of arc drawing.
+  http://code.google.com/p/processing/issues/detail?id=711
+  http://code.google.com/p/processing/issues/detail?id=1406
+
++ Added XML.getLong() (also updated Android)
+  http://code.google.com/p/processing/issues/detail?id=1378
+
++ Implement back-buffer sampler in OpenGL renderers.
+  http://code.google.com/p/processing/issues/detail?id=1169
+
++ Change how get(x, y, w, h) was handled with offscreen areas.
+  http://code.google.com/p/processing/issues/detail?id=925
+
++ Make key and mouse events interleave, also improve threading.
+  http://code.google.com/p/processing/issues/detail?id=79
+
++ Changed event constants to PRESS, RELEASE, CLICK, DRAG, MOVE, ENTER, EXIT
+  instead of past-tense versions of the same.
+
++ Removed mask(int[]) from PImage.
+
++ Implement postEvent() to put new events on the queue.
+
++ Add mouseEntered/Exited on the desktop.
+  http://code.google.com/p/processing/issues/detail?id=500
+
++ Change output from processing-java to be UTF-8 encoded.
+  http://code.google.com/p/processing/issues/detail?id=1418
+
++ Disable Quartz renderer to fix line blending problem on OS X. 
+  This older renderer was faster but had some bugs, like one that
+  caused lines to composite incorrectly when alpha was used. 
+  Add "PApplet.useQuartz = true;" into your PApplet.main() 
+  function to switch back to the old method:
+  http://processing.googlecode.com/svn/trunk/processing/build/javadoc/core/processing/core/PApplet.html#useQuartz
+
++ Remove requirement for Google APIs in Android mode.
+  http://code.google.com/p/processing/issues/detail?id=613
+
+
+[ bug fixes ] 
+
++ mouseButton not being set properly in mouseClicked.
+  http://code.google.com/p/processing/issues/detail?id=1350
+
++ mouseButton is 0 in mouseReleased() on OS X
+  http://code.google.com/p/processing/issues/detail?id=1373
+
++ mousePressed() coloring now different from mousePressed
+  http://code.google.com/p/processing/issues/detail?id=41
+  Still not necessarily perfect, but it's a big improvement.
+  Note for people implementing their own Modes: FUNCTION1 and 
+  FUNCTION2 have now been added for functions with parens.
+
++ 32-bit mode / 64-bit mode preference was ignored on OS X.
+  http://code.google.com/p/processing/issues/detail?id=1426
+
++ Prevent errors on first line of a new tab from highlighting the last 
+  line of the previous tab. In particular, a single letter on a new tab 
+  was highlighting the last line of the tab to its left.
+
++ Android debug information wasn't being passed through to the console. 
+  In addition, on Windows, error reporting wasn't working properly
+  (couldn't find the right line or report the error correctly).
+  http://code.google.com/p/processing/issues/detail?id=1440
+
++ Fix ugly results from resize() command on PImage:
+  http://code.google.com/p/processing/issues/detail?id=332
+  and similar on Android:
+  http://code.google.com/p/processing/issues/detail?id=239
+
++ P2D/P3D PGraphics buffer failing to draw if larger than main surface.
+  http://code.google.com/p/processing/issues/detail?id=1255
+
++ Fix double error report when textMode(SCREEN) was used: 
+  textMode(SCREEN) has been removed from Processing 2.0.
+  textMode(256) is not supported by this renderer.
+
++ image(pgraphics, x, y, w, h) was only drawing once when shrinking.
+  http://code.google.com/p/processing/issues/detail?id=1382
+
++ beginShape(QUAD) was not working with Java2D.
+  http://code.google.com/p/processing/issues/detail?id=1365
+
++ Relative coordinates not updated properly on closepath with SVG files.
+  http://code.google.com/p/processing/issues/detail?id=1058
+
++ PShape and lights results in more lit vertices.
+  http://code.google.com/p/processing/issues/detail?id=1342
+
++ Implement anisotropic filtering when using OPENGL.
+  http://code.google.com/p/processing/issues/detail?id=502
+
++ Update reference for begin/endContour.
+  http://code.google.com/p/processing/issues/detail?id=1396
+
++ Fix "expecting EOF, found 'import'" error on previously working sketch.
+  http://code.google.com/p/processing/issues/detail?id=1376
+
++ Prevent potential race condition when resizing sketches.
+  http://code.google.com/p/processing/issues/detail?id=697
+
++ Mode detection wasn't properly ignoring code inside comments.
+  http://code.google.com/p/processing/issues/detail?id=1404
+
++ Fix error line numbers from command line version to count from one
+  instead of zero, so that they're compatible with other systems.
+  http://code.google.com/p/processing/issues/detail?id=1392
+
++ Sketches exported to Linux weren't passed the command line arguments
+  http://code.google.com/p/processing/issues/detail?id=1359
+
++ "electricScroll" feature was causing weird jumps when double-clicking
+  http://code.google.com/p/processing/issues/detail?id=1055
+
++ Crash during library download was causing empty library list
+  http://code.google.com/p/processing/issues/detail?id=1093
+
++ In the net library, clientEvent() called even w/o data from server
+  http://code.google.com/p/processing/issues/detail?id=189
+
++ Add Server.ip() method to get the IP address of the host machine.
+  http://code.google.com/p/processing/issues/detail?id=1228
+
++ Modify “Copy as HTML” to add second HTML data type when writing the clipboard
+  http://code.google.com/p/processing/issues/detail?id=1065
+  Fix contributed by Ostap Andrusiv--thanks!
+
++ Shaders are passed wrong defaults when calling "filter" on a PGraphics object
+  http://code.google.com/p/processing/issues/detail?id=1301
+
++ beginContour() behaves differently in immediate and retained modes
+  http://code.google.com/p/processing/issues/detail?id=1417
+
++ P2D/P3D crashes when trying to display unicode text
+  http://code.google.com/p/processing/issues/detail?id=1308
+
++ Fix for PMatrix3D.mult() when vectors are identical
+  http://code.google.com/p/processing/issues/detail?id=921
+
++ Curves weren't rendered seperately when P3D or P2D specified.
+  http://code.google.com/p/processing/issues/detail?id=1317
+
++ FBO handling in PGL is not transparent.
+  http://code.google.com/p/processing/issues/detail?id=1282
+
++ Use of pixels[] array breaks after resize in OpenGL.
+  http://code.google.com/p/processing/issues/detail?id=1119
+
++ No stroke with OpenGL sketches on a 2007 Mac Mini (GMA 950)
+  http://code.google.com/p/processing/issues/detail?id=1222
+
++ ortho() displays strange line widths.
+  http://code.google.com/p/processing/issues/detail?id=1285
+
++ Resizeable frame crashes sketch with AMD video card.
+  http://code.google.com/p/processing/issues/detail?id=1175
+
++ set(x, y, PImage) doesn't work with P2D/P3D.
+  http://code.google.com/p/processing/issues/detail?id=1185
+
++ begin/endShape with a single vertex causing crash on P2D/P3D.
+  http://code.google.com/p/processing/issues/detail?id=1421
+
++ Using a PGraphics as a texture produces visual artifacts.
+  http://code.google.com/p/processing/issues/detail?id=1420
+
+[ android ] 
+
++ Like the desktop release, removed default imports. This includes:
+  android.view.MotionEvent, android.view.KeyEvent,android.graphics.Bitmap
+  due to conflicts w/ the new event system, and hoping to enforce better
+  cross-platform compatibility between Java, JavaScript, and Android modes.
+
++ Changed event handling to hopefully clean up some inconsistencies.
+  Removed motionX/Y/Pressure... these need to be handled separately. 
+  More here: http://wiki.processing.org/w/Android
+
++ mouseX/Y no longer include history with moves, which reduces fidelity 
+  a bit, but will hopefully prevent us overdoing it for future releases.
+
++ Fix how pmouseX/Y are set.
+  http://code.google.com/p/processing/issues/detail?id=238
+  http://code.google.com/p/processing/issues/detail?id=1018
+
+[ fixed earlier / cleaning ] 
+
++ When turning smoothing on, internal lines of shapes are visible.
+  http://code.google.com/p/processing/issues/detail?id=53
+
++ textAlign(CENTER) with P3D and OPENGL produces messy result
+  http://code.google.com/p/processing/issues/detail?id=65
+
++ Signature issue on contributed libraries affects unrelated OpenGL sketches
+  http://code.google.com/p/processing/issues/detail?id=261
+
++ Implement efficient version of copy() in PGraphicsOpenGL.
+  http://code.google.com/p/processing/issues/detail?id=119
+
++ copy() does not update the screen with OpenGL.
+  http://code.google.com/p/processing/issues/detail?id=118
+
++ strokeCap() and strokeJoin() for use with OPENGL.
+  http://code.google.com/p/processing/issues/detail?id=123
+
++ Fix inconsistent anti-aliasing with OpenGL.
+  http://code.google.com/p/processing/issues/detail?id=217
+
++ noCursor() + OPENGL = won't get past setup()
+  http://code.google.com/p/processing/issues/detail?id=1345
+
++ set() requires updatePixels() with OpenGL.
+  http://code.google.com/p/processing/issues/detail?id=89
+
++ Chopping out triangles in OpenGL (though it's only 2D drawing).
+  http://code.google.com/p/processing/issues/detail?id=193
+
++ Share interface for 3D across desktop and Android.
+  http://code.google.com/p/processing/issues/detail?id=970
+
++ Distortion of 2D shapes when sphereDetail() is used.
+  http://code.google.com/p/processing/issues/detail?id=762
+
++ OPENGL renderer stops rendering after text is written using textMode(SCREEN)
+  http://code.google.com/p/processing/issues/detail?id=710
+
++ Support 'black' as color for SVG files (fix from PhiLho)
+  http://code.google.com/p/processing/issues/detail?id=1010
+
++ Catch sun.dc.pr.PRException?
+  http://code.google.com/p/processing/issues/detail?id=39
+
++ Image created with img.get() works incorrectly when using filter()
+  http://code.google.com/p/processing/issues/detail?id=167
+
++ copy(image with transparency) doesn't keep the transparency at start up.
+  http://code.google.com/p/processing/issues/detail?id=601
+
++ Defects in the tessellation of SVG shapes in A3D
+  http://code.google.com/p/processing/issues/detail?id=291
+
++ Blacked-out screen when restoring Android app from background.
+  http://code.google.com/p/processing/issues/detail?id=381
+
++ Excessive rotation of application causes memory to run out
+  http://code.google.com/p/processing/issues/detail?id=235
+
++ Should alpha PImage stuff use a non-4byte config?
+  http://code.google.com/p/processing/issues/detail?id=242
+
++ Rounded rect support on Android
+  http://code.google.com/p/processing/issues/detail?id=929
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b6 (REV 0214) - 2 November 2012
+
+Patching up command line issues that went backwards in the last release, 
+a number of OpenGL fixes, and more internal changes and updates. 
+
+[ bug fixes ] 
+
++ Command line support was broken in 2.0b5, with an error about
+  processing-java ClassNotFoundException: BatchCompiler
+  http://code.google.com/p/processing/issues/detail?id=1334
+  On Mac OS X, you may need to re-run the "Install Command Line" tool.
+
++ Make sure the sketchbook is being picked up on the command line,
+  so that imported libraries are handled correctly.
+
++ Import statements were executed within multiline comments.
+  http://code.google.com/p/processing/issues/detail?id=911
+
++ Editor not responding properly if the "External Editor" preference
+  had been enabled with a previous release. 
+  http://code.google.com/p/processing/issues/detail?id=1355
+
++ A number of OpenGL fixes to better handle older chipsets, like the
+  GMA 950 (found on lots of older Mac Minis and similar hardware). 
+
++ Reverted back to an older version of the JOGL library to prevent
+  issues with sketches locking up. In particular, this should fix 
+  sketches that use the video library: 
+  http://code.google.com/p/processing/issues/detail?id=1338
+  http://code.google.com/p/processing/issues/detail?id=1364
+
++ Icon loading was causing an error if you used a package for your code.
+  http://code.google.com/p/processing/issues/detail?id=1346
+
++ No longer using --request on OS X 10.6, since it's not available. 
+  Avoids a harmless warning message on the console when running a sketch.
+
+[ changes/additions ] 
+
++ Added an option to Preferences to enable/disable advanced input method
+  support to handle complex scripts like Japanese, Korean, or Chinese.
+  http://code.google.com/p/processing/issues/detail?id=526
+
++ Add option for blinking and/or block caret in the editor. To disable 
+  caret blinking in the text editor, add this line to preferences.txt:
+  editor.caret.blink = true
+  Or to just a block caret, use this:
+  editor.caret.block = false
+  http://code.google.com/p/processing/issues/detail?id=1136
+
+[ internal ]
+
++ Removed applet-related preferences, and the 'applet' subfolder in the 
+  source/distribution.
+
++ Removed the old 'cmd' folder from the source/distribution
+
++ Preferences are now written in sorted order to make it easier to handle
+  comparisons or other debugging.
+
++ Major change to handle how the 'lib' folder is found, hopefully does a 
+  better job with command line support.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b5 (REV 0213) - 22 October 2012
+
+Fixes for a few regressions that showed up in 2.0b4, plus some internal
+changes to simplify how modes are handled.
+
+[ bug fixes ] 
+
++ Libraries not installed through IDE had blank names.
+  http://code.google.com/p/processing/issues/detail?id=1331
+
++ mouseButton not being set properly on Windows (and probably Linux).
+  http://code.google.com/p/processing/issues/detail?id=1332
+
++ Console disappearing with increased editor font size.
+  http://code.google.com/p/processing/issues/detail?id=1275
+
+[ changes/internal ] 
+
++ Change how modes are set up so that XQMode, our Google Summer of Code
+  project can work properly.
+
++ Implement multiple sizes of icons for PDE and core. This improves 
+  the quality of the icon seen on Windows and Linux attached to frames.
+  http://code.google.com/p/processing/issues/detail?id=632
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b4 (REV 0212) - 21 October 2012
+
+Command line support is back! Find and Replace works over multiple tabs!
+The Mac OS X version should work again in spite of Apple's best efforts!
+
+[ additions & removals ] 
+
++ Command line support is now available for Java mode. On Windows and Linux, 
+  use the processing-java program. On Mac OS X, there's an option in the 
+  Tools menu to install the command line tool. 
+  http://code.google.com/p/processing/issues/detail?id=142
+
+  Build and export options should even work in headless mode when enabled
+  (no guarantees, but simple test results were promising).
+  http://code.google.com/p/processing/issues/detail?id=220
+
+  Android and JavaScript mode are not supported, contributions are welcome:
+  http://code.google.com/p/processing/issues/detail?id=1323
+
++ Added a Tool for Mac OS X to help set up serial port. Using serial on 
+  OS X requires some incantations on the command line, and this prompts for
+  an administrator password and takes care of them for you. The commands
+  involve creating a folder and setting a few permissions. If everything 
+  is already set properly, the Tool will not be present in the Tools menu.
+
++ With the arrival of command line support, the misunderstood and sometimes
+  maligned "Use External Editor" option has been removed. 
+  http://code.google.com/p/processing/issues/detail?id=515
+
++ Fix several problems introduced by Apple's recent Java "update".
+  Apple's most recent Java update may render older versions of Processing
+  completely unusable, it's not quite clear yet. 
+
+[ bug fixes ] 
+
++ Fix the exceptionally slow startup (a 5 second delay) in recent releases.
+
++ Find & Replace over multiple tabs (thanks to Manindra Moharana for the patch!)
+  http://code.google.com/p/processing/issues/detail?id=25
+
++ calling jump() resets movie speed
+  http://code.google.com/p/processing/issues/detail?id=1303
+
++ Fixed sketch renaming regression in underscore handling
+  http://code.google.com/p/processing/issues/detail?id=1310
+
++ Fix library manager temporary folder problem on Linux)
+  http://code.google.com/p/processing/issues/detail?id=1295
+
++ Default sketchbook folder was going to wrong location on Linux
+  http://code.google.com/p/processing/issues/detail?id=1286
+
++ mouseButton wasn't getting set on mouseReleased()
+  http://code.google.com/p/processing/issues/detail?id=1294
+
+[ technical updates ] 
+
++ JOGL has been updated, which may help iron out some GL quirks.
+
++ Change all build.xml files to use Java 6 as both source and target
+  (avoids Java 7 warnings during build).
+
++ Updated ecj.jar to use jdt-core.jar... This is a larger file but were 
+  hoping that this would get our GSoC project "XQMode" working without
+  the need for patches. Sadly that's not the case, but stay tuned.
+
+[ known issues ] 
+
++ Fewer exclamation points will be used to introduce future releases.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b3 (REV 0211) - 10 September 2012
+
+Shaking out the beta bugs.
+
+[ major fixes ] 
+
++ registerMethod("keyEvent", ...) not calling key event methods.
+  http://code.google.com/p/processing/issues/detail?id=1225
+
++ "Processing is damaged and should be put in the trash" with 2.0b2.
+  Apple's asinine code signing strikes back!
+  http://code.google.com/p/processing/issues/detail?id=1226
+
++ Restore deprecated versions of getFont() and getImage() to address
+  library compatibility issues. The similar getBitmap() and getTypeface() 
+  methods on Android will not be restored.
+  http://code.google.com/p/processing/issues/detail?id=1223
+
+[ minor fixes ] 
+
++ Changing the default display in Preferences does not reset editor 
+  location, so it appears to have no effect.
+  http://code.google.com/p/processing/issues/detail?id=1162
+
++ Remove bad cast in PGL during error reporting.
+
++ Make Mode menu into a radio button, so it cannot be de-selected
+  http://code.google.com/p/processing/issues/detail?id=1227
+
+[ changes and additions ] 
+
++ Show error message when using createGraphics() with P2D, P3D, or OPENGL
+  and the main drawing surface is not an OpenGL renderer.
+  http://code.google.com/p/processing/issues/detail?id=1217
+
++ Make file selectable from the OS X menu bar. Thanks to Hansi for the
+  patch. Note that this only works for sketches that have been saved.
+  http://code.google.com/p/processing/issues/detail?id=1215
+
++ Added registerMethod(keyEvent) to Android, though motion and mouse
+  events are still unavailable.
+
++ Cleaning up the internals of Preferences and untitled sketches.
+  Fingers crossed that these don't give us last-minute regressions.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b2 (REV 0210) - 7 September 2012
+
+One major fix for libraries that use key events, and a number of minor 
+fixes that we've found along the way. 
+
+[ fixes and updates ] 
+
++ Libraries with using key events were reporting:
+  "java.lang.IllegalArgumentException: argument type mismatch"
+  in beta 1, this is now fixed. 
+
++ Added hint(ENABLE_STROKE_PURE) to deal with Java 2D regression.
+  http://code.google.com/p/processing/issues/detail?id=1137
+
++ Fix for stroke with beginShape(TRIANGLE_FAN)
+  http://code.google.com/p/processing/issues/detail?id=1137
+
++ hint() documentation now updated (except for the hint above). 
+  http://code.google.com/p/processing/issues/detail?id=1144
+
++ Using ortho() breaks stroke rendering
+  http://code.google.com/p/processing/issues/detail?id=1207
+
+[ fixed earlier ] 
+
++ POINTS mode vertices are huge
+  http://code.google.com/p/processing/issues/detail?id=1037
+
++ Potentially insufficient ellipse detail with P3D/OPENGL when scaled
+  http://code.google.com/p/processing/issues/detail?id=87
+
++ Implement support for complex shapes when using the OpenGL renderer 
+  http://code.google.com/p/processing/issues/detail?id=122
+
++ modelX/Y/Z broken when aiming a camera
+  http://code.google.com/p/processing/issues/detail?id=148
+
++ OpenGL broken with JDK 7 on OS X, fixed with new JOGL updates
+  http://code.google.com/p/processing/issues/detail?id=1070
+
++ Problems with OpenGL example sketches
+  http://code.google.com/p/processing/issues/detail?id=902
+
++ Memory improvements for updatePixels() with OpenGL (P2D and P3D)
+  http://code.google.com/p/processing/issues/detail?id=77
+
++ Text characters showing up as opaque rectangles 
+  http://code.google.com/p/processing/issues/detail?id=80
+
++ Changing framerate causes program to crash with P2D in 2.0a6
+  http://code.google.com/p/processing/issues/detail?id=1116
+
+[ android ] 
+
++ Updated examples from Andres and categories in the examples browser.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0b1 (REV 0209) - 3 September 2012
+
+Bug fixes, new registered methods for libraries, updated keywords,
+and we're beta!
+
+[ changes ] 
+
++ Require 10.6.8 as minimum Mac OS X system version. 
+
++ Change name from "Standard" to "Java" mode.
+
++ Save opened/closed state of entries in the examples browser
+  http://code.google.com/p/processing/issues/detail?id=827
+
++ Lots of internal changes to loadShape() and PShape. 
+
++ Work on making API more generic and consistent for cross-platform use.
+  Font PFont.getFont() -> Object PFont.getNative()
+  Typeface PFont.getTypeface() -> Object PFont.getNative()
+  Image PImage.getImage() -> Object PImage.getNative()
+  Bitmap PImage.getBitmap() -> Object PImage.getNative()
+
++ beginGL() and endGL() are gone, and beginPGL() and endPGL() exist 
+  in their place. The PGL class is a layer that lets us talk to 
+  OpenGL in a way that's cross-platform and consistent. It also has
+  many GL calls for people who want to access GL directly.
+
++ New syntax introduced for libraries and registered methods. 
+  Documentation coming soon.
+
+[ bug fixes ] 
+
++ Handle dimming the Find/Replace buttons.
+  http://code.google.com/p/processing/issues/detail?id=1056
+
++ Any double-click inside Examples window opened the last selection on Windows
+  http://code.google.com/p/processing/issues/detail?id=1201
+
++ loadImage() with spaces in path broken with exported applications on OS X
+  http://code.google.com/p/processing/issues/detail?id=1073
+
++ Minor speed fix for PVector.limit()
+  http://code.google.com/p/processing/issues/detail?id=1122
+
++ Jagged / Glitchy JAVA2D shape strokes in Java 1.6 due to recent
+  change introduced in Java update from Oracle.
+  http://code.google.com/p/processing/issues/detail?id=1068
+
++ GL Android sketches halting after rotation.
+  http://code.google.com/p/processing/issues/detail?id=1146
+
+[ known issues ] 
+
++ createShape() is not implemented with the default 2D renderer.
+
++ See the Changes page on the Wiki for more. 
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a9 (REV 0208) - 1 September 2012
+
+As we inch closer to beta, a quick release for testing. 
+
+Plenty of video and OpenGL graphics fixes from Andres, and some functions
+disappearing due to cleanups by Ben. (Andres giveth, Ben taketh away). 
+
+Consider this one to be 'nightly build' quality. 
+
+[ general ] 
+
++ Help menu broken when Processing has spaces in its path name in 2.0a8
+  http://code.google.com/p/processing/issues/detail?id=1164
+
++ We now have repeating textures. Use textureWrap(CLAMP) (the usual
+  version) or textureWrap(REPEAT). If this feature is used for evil
+  and cheesiness, it will be removed in future releases. 
+  http://code.google.com/p/processing/issues/detail?id=94
+
++ Fix lights in GL renderers on low-end android devices.
+  http://code.google.com/p/processing/issues/detail?id=1145
+
++ Pixels for createGraphics() now transparent for P2D, P3D.
+  http://code.google.com/p/processing/issues/detail?id=1156
+
+[ video ] 
+
++ GettingStartedCapture in 2.0a8 launches X11 in Mountain Lion
+  http://code.google.com/p/processing/issues/detail?id=1191
+
++ Some videos were giving OpenGL error with P2D/P3D.
+  http://code.google.com/p/processing/issues/detail?id=1166
+
++ Jump movie to multiple of the framerate for better accuracy.
+  http://code.google.com/p/processing/issues/detail?id=1182
+
++ Movie functions not working correctly in setup().
+  http://code.google.com/p/processing/issues/detail?id=1181
+
++ Fix initialization API for Capture.
+  http://code.google.com/p/processing/issues/detail?id=1184
+
++ Some movie examples were not working in P2D, P3D in 2.0a8
+  http://code.google.com/p/processing/issues/detail?id=1178
+
++ Wrong resolutions reported by Capture.list()
+  http://code.google.com/p/processing/issues/detail?id=1192
+
+[ advanced ] 
+
++ Several constants moved out of PConstants and into PGraphics.
+
++ API cleanup to PShape and unapproved methods.
+
++ Synchronized Android sources a bit (PShape, PConstants, etc.)
+
++ Removed several video functions that weren't approved.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a8 (REV 0207) - 5 August 2012
+
+A handful of bug fixes. Not as large a release as 2.0a7, but I decided 
+it best to get the updates out there and in use rather than waiting for
+beta 1 since I'm not sure when we'll be able to get that out. 
+
+[ miscellaneous ] 
+
++ Make sure smooth() is the default with both renderers
+  http://code.google.com/p/processing/issues/detail?id=1157
+
++ "Open" dialog on Linux wasn't showing directories
+  http://code.google.com/p/processing/issues/detail?id=1151
+
++ Double-click was immediately closing example folder (Windows and Linux)
+  http://code.google.com/p/processing/issues/detail?id=1150
+
++ Support native code in Android libraries. Thanks to m4rlonj for the patch!
+  http://code.google.com/p/processing/issues/detail?id=1117
+
++ Don't expand the folders in the examples window (Casey request)
+
++ Added cmd-shift-O (ctrl-shift-O) for opening examples window
+
++ Added recent sketches menu to the toolbar
+
++ Added 'empty sketchbook' indicator when the sketchbook menus are empty
+
++ Prevent users from deleting the last tab on the only sketch that is 
+  currently open on Windows and Linux. 
+
+[ serial ] 
+
++ Added 64-bit RXTX for Mac OS X serial from this page:
+  http://blog.iharder.net/2009/08/18/rxtx-java-6-and-librxtxserial-jnilib-on-intel-mac-os-x/
+
++ Added warning message on Mac OS X when /var/lock folders aren't available
+  http://code.google.com/p/processing/issues/detail?id=944
+  http://code.google.com/p/processing/issues/detail?id=937
+
++ bufferUntil() with values above 127 do not work properly
+  http://code.google.com/p/processing/issues/detail?id=1079
+
+[ plumbing ] 
+
++ Switch to using java.awt.Desktop classes for opening folders, links, etc.
+
++ Include createTextArea() in Editor for the GSOC projects.
+
++ Add code for setting the L&F from the prefs file for Linux.
+
++ Added 'all tabs' checkbox to Find & Replace, but not implemented yet.
+  This would be a great project for someone to finish:
+  http://code.google.com/p/processing/issues/detail?id=25
+
++ Added notes about "color(0, 0, 0, 0) produces black" to the Wiki.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a7 (REV 0206) - 29 July 2012
+
+Hopefully the last alpha before we hit 2.0 beta. 
+
+The big change is that we're dropping support for applets in 2.0, and in
+this release. See the Changes section of the Wiki for details. We've not
+updated all of the documentation to reflect this yet.
+
+OS X 10.8 Mountain Lion support has also been added, by virtue of our 
+paying $99/year for the privilege of releasing our free and open source
+application on OS X. When run on 10.8, versions prior to 2.0a7 would report
+that they were corrupt, invalid, or not trusted. Which is definitely us. 
+
+[ editor ] 
+
++ Implemented a "Recent Sketches" menu. This replaces re-opening 
+  sketches on startup, which behaved inconsistently anyway. 
+  http://code.google.com/p/processing/issues/detail?id=188
+
++ Use Swing file choosers by default on Linux. The default open/save
+  dialogs provided by Java are pretty gruesome, so we're switching to 
+  the Swing JFileChooser instead. To swap the behavior, set 
+  'chooser.files.native' in your preferences.txt file.
+
++ Suppress "invalid context 0x0" and "invalid drawable" because they're
+  (unfixable) Apple Java bugs and being reported as Processing bugs.
+  Also suppress XInitThreads message on Linux with JOGL, which is a
+  JOGL bug that'll hopefully be fixed in their next release.
+
++ Fix Movie Maker tool on OS X.
+
++ Update to Java 6 update 33 on Windows and Linux.
+
++ Add separate 32- and 64-bit releases for Windows and Linux. Lots of other
+  updates for 32/64-bit support in general.
+  http://code.google.com/p/processing/issues/detail?id=955
+
++ Replace processing.exe with a more standard version from launch4j, 
+  which should hopefully clean up some launcher issues.
+  http://code.google.com/p/processing/issues/detail?id=943
+  http://code.google.com/p/processing/issues/detail?id=176
+
++ Change how sketches open so that there's no longer differences between
+  the File menu 'Open' and the way it worked from the toolbar. Simplifies 
+  additional code that was quirky.
+  http://code.google.com/p/processing/issues/detail?id=1034
+
++ Add a warning dialog for libraries that aren't compatible.
+  http://code.google.com/p/processing/issues/detail?id=884
+
++ Fix up the file choosers used on Linux.
+  http://code.google.com/p/processing/issues/detail?id=1014
+
++ Instead of prompting for sketchbook location on Linux, just default to
+  a folder named 'sketchbook' in the user's home directory. This can easily
+  be changed later but simplifies things internally a bit. 
+
++ No longer allow underscore at beginning of sketch name (causes problems 
+  with Android, and also with applets, though we care less about those...)
+  http://code.google.com/p/processing/issues/detail?id=1047
+
++ Fixed a problem where sanitized names (underscores replacing unusable 
+  characters) could potentially overwrite existing folders.
+
+[ core ] 
+
++ Major changes to selectInput(), selectOutput(), and selectFolder(). 
+  See the Wiki: http://wiki.processing.org/w/Changes#Change_and_Removed
+  The changes are there to prevent a threading bug:
+  http://code.google.com/p/processing/issues/detail?id=173
+  http://code.google.com/p/processing/issues/detail?id=931
+  And also include an option to set the default file path:
+  http://code.google.com/p/processing/issues/detail?id=233
+
++ Change 'appletViewer' back to 'online'. Still deprecated, especially
+  because applets are going away. 
+
++ Add begin/endGL added to PGraphics/PApplet. 
+
++ Add hasChildren() to XML library.
+  http://code.google.com/p/processing/issues/detail?id=1045
+
++ Fix where displayWidth/Height not being set properly before setup()
+  http://code.google.com/p/processing/issues/detail?id=1120
+
++ XML now throws exceptions in its constructor (for advanced users). 
+  Use loadXML() instead of "new XML(this, ....)" 
+  http://code.google.com/p/processing/issues/detail?id=1138
+
++ loadXML() returns null when the file did not open properly
+  http://code.google.com/p/processing/issues/detail?id=1138
+
++ ortho() causing line and fill to be misaligned
+  http://code.google.com/p/processing/issues/detail?id=1143
+
++ Add some extra options for PApplet.main() for advanced users:
+  PApplet.main("SketchName") and PApplet.main("SketchName", args) 
+
+[ android ] 
+
++ Add full PAppletMethods implementation to Android, so that PGraphics  
+  and PImage methods are brought into PApplet.
+
++ Swap Run on Device and Run on Emulator
+  http://code.google.com/p/processing/issues/detail?id=1083
+
++ Fix XML crash on loading because of desktop-specific attribute
+  error: "http://apache.org/xml/features/nonvalidating/load-external-dtd"
+  http://code.google.com/p/processing/issues/detail?id=1128
+  This also fixes PShape on Android:
+  http://code.google.com/p/processing/issues/detail?id=1054
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a6 (REV 0205) - 1 June 2012
+
+Lots of changes since the last update as we move closer to beta.
+
+Major updates for 2.0 can be seen on the Changes page of the Wiki:
+http://wiki.processing.org/w/Changes
+
+[ changes ]
+
++ Lots of updates to how full screen, multiple displays, etc work:
+  http://wiki.processing.org/w/Window_Size_and_Full_Screen
+
++ Added an option for selecting the default display inside Preferences.
+
++ P2D and P3D are now variations of the OpenGL renderer. 
+
++ XML and Table are now part of the processing.data.* package. 
+  There's also new loadTable() and loadXML() methods in PApplet.
+
+[ bug fixes ]
+
++ Renaming .pde to .java (or vice versa) complains
+  http://code.google.com/p/processing/issues/detail?id=776
+  regression from: http://processing.org/bugs/bugzilla/543.html
+
++ handleFindReference in Editor.java should be public for alternative modes (?)
+  http://code.google.com/p/processing/issues/detail?id=713
+
++ Base.listFiles does not list recursively if extension is given
+  http://code.google.com/p/processing/issues/detail?id=718
+
++ ByteUnderflowException thrown and Font not reported
+  http://code.google.com/p/processing/issues/detail?id=442
+
++ Convert tabs to spaces when pasting text
+  http://code.google.com/p/processing/issues/detail?id=69
+
++ Fixed up some of the error messages inside Compiler.
+
++ When internal tools crash, don't add them to the menu
+  (prevents the PDE from locking up on startup).
+
+[ fixed earlier ] 
+
++ Export reports "Could not copy source file" (even though it works)
+  http://code.google.com/p/processing/issues/detail?id=638
+
++ Preferences window not visible on taskbar
+  http://code.google.com/p/processing/issues/detail?id=63
+
++ Paste value into color picker tool does not update box-slider
+  http://code.google.com/p/processing/issues/detail?id=68
+
++ Unable to access Javascript examples
+  http://code.google.com/p/processing/issues/detail?id=909
+
++ Closing sketch file closes applet
+  http://code.google.com/p/processing/issues/detail?id=606
+
+[ core ]
+
++ Add support for println(long) because it was converting the type to float
+  http://code.google.com/p/processing/issues/detail?id=969
+
++ createGraphics for JAVA2D generates the wrong error msg w/ w/h <= 0
+  http://code.google.com/p/processing/issues/detail?id=983
+
++ Removed NanoXML, added save() method, other wish list features.
+  http://code.google.com/p/processing/issues/detail?id=904
+
++ Fix whitespace issue with XML
+  http://code.google.com/p/processing/issues/detail?id=975
+
++ Make displayWidth/Height work properly with multiple screen.
+  (In the past, screen.width and screen.height just returned the default
+  display size, not necessarily the display being used.) 
+
++ Built in Hansi's full screen API for OS X, so that sketches can use
+  full screen without exclusive mode. See the Wiki for details.
+  http://wiki.processing.org/w/Window_Size_and_Full_Screen
+
++ Now attempts detect when a sketch's size is the full screen, 
+  and if so removes the frame border, etc.
+
++ --display option now works properly (on OS X and elsewhere)
+  http://code.google.com/p/processing/issues/detail?id=71
+
+[ OpenGL by Andres ] 
+
++ polygon shapes without fill slowdown render progressively
+  http://code.google.com/p/processing/issues/detail?id=1028
+
++ screenY(x,y,z) returns incorrect coordinate
+  http://code.google.com/p/processing/issues/detail?id=1007
+
++ lights() behaving differently with OPENGL2 than original OPENGL
+  http://code.google.com/p/processing/issues/detail?id=619
+
++ directionalLight() is wrong on box()
+  http://code.google.com/p/processing/issues/detail?id=966
+
++ PShape3D uses a lot of memory
+  http://code.google.com/p/processing/issues/detail?id=1046
+
++ triangle in first ring of sphere() not being made properly
+  http://code.google.com/p/processing/issues/detail?id=1005
+
++ beginRaw() not working with 3D
+  http://code.google.com/p/processing/issues/detail?id=744
+
++ set() in 3D does not work on 2.0a5
+  http://code.google.com/p/processing/issues/detail?id=1069
+
++ frustum() and ortho() broken in P3D
+  http://code.google.com/p/processing/issues/detail?id=867
+
++ get() with OPENGL is grabbing the wrong part of the image
+  http://code.google.com/p/processing/issues/detail?id=191
+
++ OpenGL noSmooth() does not work
+  http://code.google.com/p/processing/issues/detail?id=328
+
+[ android ] 
+
++ Android SDK Tools revision 19 (later may work too) are required.
+
++ Android mode no longer broken on Windows. Google has fixed the bug, 
+  but you'll need to use the latest SDK.
+  http://code.google.com/p/processing/issues/detail?id=1022
+
++ GL2 specific code in Processing 2.0a5 break P3D on GLES2 hardware
+  http://code.google.com/p/processing/issues/detail?id=1029
+
++ OpenGL/ES requires precision specifier on float types
+  http://code.google.com/p/processing/issues/detail?id=1035
+
++ loadShape() with obj files was broken in 2.0a5
+  http://code.google.com/p/processing/issues/detail?id=1048
+
++ camera() and arc() now work together
+  http://code.google.com/p/processing/issues/detail?id=751
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a5 (REV 0204) - 23 March 2012
+
+Major updates in this release include a huge revamp of the OpenGL library
+by Andres, fixes to get Android Mode working again, and a number of bug 
+fixes and additions as we head toward 2.0.
+
+Unfortunately, however, Android mode is still broken on Windows.
+http://code.google.com/p/processing/issues/detail?id=1022
+
+On the OpenGL front, we're working to have a single library that works 
+across both desktop and mobile, which is good news because it means we have 
+a fighting chance of making it work (rather than maintaining two entire sets 
+of a very complicated set of code), but the downside is that it requires 
+newer versions of OpenGL on both the desktop and mobile, so it may cause 
+problems with old OSes, mediocre graphics drivers, etc that worked with 
+earlier releases.
+
+[ bug fixes ] 
+
++ OpenGL applets are working again.
+  http://code.google.com/p/processing/issues/detail?id=845
+
++ Abnormal high Java CPU usage at empty sketch with draw() 
+  http://code.google.com/p/processing/issues/detail?id=729
+
++ "Framingham" example has BufferOverflowException
+  http://code.google.com/p/processing/issues/detail?id=900
+
++ Repeatedly calling texture() with new image raises memory error
+  http://code.google.com/p/processing/issues/detail?id=806
+
++ Doc comments not being properly terminated in export of applet
+  http://code.google.com/p/processing/issues/detail?id=877
+
++ Tweaks to the code to prevent multiple copies of Processing from 
+  running at once.
+
++ Fix bug with 'base' not getting set in the Mac OS X platform class.
+
++ Syntax highlighting not case sensitive in 1.5 through 2.0+
+  http://code.google.com/p/processing/issues/detail?id=913
+
++ Fix problem with application export on Linux
+  http://code.google.com/p/processing/issues/detail?id=945
+
++ Fix PImage.get() issue with width or height < 0.
+
++ (Mostly failed) attempts to improve the performance of tint() with Java2D.
+
++ Fix so that normals aren't attempted when no texture is set.
+
++ Several bug fixes inside Table as they relate to inserting/adding columns.
+
+[ changes/additions ] 
+
++ Enable smooth() by default.
+
++ Added setContent() to the XML library, other tweaks to XML export.
+
++ Make note of when library is not available (serial) with error msg
+  i.e. if running in 64-bit mode on OS X, can't do serial
+
++ Update to Java 6u29 for Linux and Windows (OS X now updated).
+
++ Don't show library conflict warning until someone tries to build 
+  with code that actually calls on one of those packages.
+
++ urlEncode() and urlDecode() added (docs coming later).
+
++ delay() is back again. F*king delay().
+
++ Added anti-alias methods so that FSAA can set up properly. The API for
+  these is not set yet. 
+
+[ in earlier releases ] 
+
++ Commenting via menu or shortcut does not set sketch to "need save".
+  http://code.google.com/p/processing/issues/detail?id=860
+
++ Moved the data folder outside the main jar in exported applications.
+  Otherwise enormous files are sometimes added to the jar, which makes
+  things needlessly slow.
+
++ Create new MovieMaker tool to write uncompressed QuickTime movies.
+  www.randelshofer.ch/blog/2010/10/writing-quicktime-movies-in-pure-java
+
++ Library imports failing for libs that define the same packages in 1.5.1
+  http://code.google.com/p/processing/issues/detail?id=725
+
++ Closing applet window in Processing 1.5 causes serial crash.
+  http://code.google.com/p/processing/issues/detail?id=635
+
+[ javascript ] 
+
++ Finalize JavaScript mode export folder name.
+  http://code.google.com/p/processing/issues/detail?id=848
+
++ Intermittent hangs of PDE when launching JavaScript Server
+  http://code.google.com/p/processing/issues/detail?id=936
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a4 (REV 0203) - 10 November 2011
+
+This is just a quick release so that I can procrastinate on packing for
+Chicago a little longer. A handful of bug fixes here:
+
++ Video capture was broken in 2.0a3 on OS X due to an issue with the build 
+  process. Should be all set now.
+
++ Fixed incessant "inefficient font rendering" debug message on Android.
+
++ Fixed android/code/build.xml to point at the correct SDK version.
+
++ Changing between 32- and 64- bit mode on OS X wasn't properly reloading
+  library paths. Now it should pick up the necessary 32- and 64-bit version
+  of a library that's needed. (However there are still no useful error
+  messages when natives aren't available for the platform--just an
+  UnsatisfiedLinkError when you try to run. Will fix.)
+
+[ andres' bug victims ] 
+
++ Multiple calls to curve() connect subsequent curves with lines in P3D/OPENGL
+  http://code.google.com/p/processing/issues/detail?id=865
+
++ Arc not drawn in P3D and OpenGL mode (2.0a2)
+  http://code.google.com/p/processing/issues/detail?id=890
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a3 (REV 0202) - 5 November 2011
+
+Some weekend bug fixing and regression repair for the recent alpha releases.
+
+Also several Android fixes to get things working again with more recent 
+updates from Google. You'll need to upgrade to this version of Processing 
+in order to continue using Android mode.
+
+[ environment ] 
+
++ Fix problem with serial not loading on Mac OS X.
+
++ Fix problem with popup menus on the toolbar disappearing immediately
+  when used on Mac OS X 10.7 (Lion).
+  http://code.google.com/p/processing/issues/detail?id=846
+  http://code.google.com/p/processing/issues/detail?id=887
+
++ Incorrect tab/line shown for preprocessor errors when more than 2 tabs
+  http://code.google.com/p/processing/issues/detail?id=873
+
++ Commenting via menu or shortcut does not set sketch to "need save"
+  http://code.google.com/p/processing/issues/detail?id=766
+
++ IDE Export Application button exports applet (fixed in 2.0a2)
+  http://code.google.com/p/processing/issues/detail?id=863
+
+[ core ] 
+
++ Fix for video frames not showing up in 3D.
+
++ Rounded rect() does not have a maximum length for corner radius
+  http://code.google.com/p/processing/issues/detail?id=813
+
+[ android ] 
+
++ Fix libraries when used with Android. Libraries can also specify
+  an Android version by including an 'android' subfolder.
+  http://code.google.com/p/processing/issues/detail?id=766
+
++ Fix problem with export menu, keys, toolbar being different.
+
++ Change default package name a bit.
+
++ Switch to SDK 8 (Android 2.2) as the minimum that we're supporting.
+  This allows us to rely on far more consistent OpenGL implementations.
+
++ Update the project files for Android SDK Tools Revision 15 (now required)
+  http://code.google.com/p/processing/issues/detail?id=876
+
++ Improve launching with the emulator.
+
++ Remove 'includeantruntime' warning during build.
+
++ "Date could not be parsed" error.
+  http://code.google.com/p/processing/issues/detail?id=864
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a2 (REV 0201) - 31 October 2011
+
+Happy Halloween! I'll be dressing up as an ArrayIndexOutOfBoundsException.
+
+This release is primarily focused on the new video library and making it
+usable across platforms. It also has some changes for how applications 
+are exported, and a number of other bug fixes and tweaks.
+
+[ platforms ] 
+
++ With this release, Java 1.6 is now required. We will no longer be 
+  supporting Java 1.5.
+
++ In perhaps related news, we are no longer supporting Mac OS X 10.5.
+  We have to support 10.6 and 10.7 across both 32- and 64-bit, and adding
+  yet another to that is simply not possible.
+
+[ 32- and 64-bit support is a nightmare ]
+
++ A great deal of effort is being put into supporting the emergence of
+  64-bit. Library support has changed significantly to get things working,
+  more on this coming soon.
+
++ Serial on Mac OS X and Windows is currently only available for 32-bit. 
+  Hoping someone can help us support a 64-bit version sometime soon. 
+
++ When exporting a 64-bit application for Windows, a .bat file is created,
+  because our .exe doesn't yet support 64-bit. Assuming you have a 64-bit
+  JVM installed, the .bat file should load things properly.
+
++ Because serial only supports 32-bit on OS X, exporting an application 
+  that uses serial will only create a application.macosx32 folder, which 
+  is a 32-bit app for Mac OS X. No application.macosx64 will be created, 
+  nor will a universal application.macosx folder. This is also the case 
+  for other libraries that have only 32- or 64-bit support. See earlier
+  note that 32- and 64-bit support is an f*ing nightmare.
+
+[ video ] 
+
++ The most significant change in this release is that the new video library
+  from Andres (based on his old gsvideo library) is nearing fully fucntional.
+
++ MovieMaker is going to be replaced by a Tool that allows you to sequence
+  a set of images together into a movie file. The tool currently has a GUI
+  bug that breaks it, but this will be fixed sometime soon.
+
+[ other changes ]
+
++ Application is now the default export (instead of Applet). 
+
++ Change to how dataPath() and dataFile() work. This is an undocumented
+  function, but for those using it, here's the skinny: 
+
+  dataPath() is only available with applications, not applets or Android.
+  On Windows and Linux, this is simply the data folder, which is located
+  in the same directory as the EXE file and lib folders. On Mac OS X, this
+  is a path to the data folder buried inside Contents/Resources/Java.
+  For the latter point, that also means that the data folder should not be
+  considered writable. Use sketchPath() for now, or inputPath() and
+  outputPath() once they're available in the 2.0 release.
+
+  dataPath() is not supported with applets because applets have their data
+  folder wrapped into the JAR file. To read data from the data folder that
+  works with an applet, you should use other methods such as createInput(),
+  createReader(), or loadStrings().
+
++ Additional library files included with application exports are now placed 
+  in the 'lib' folder on Linux and Windows, or buried inside the OS X app.
+  This helps prevent the unsightly mess of DLLs that were crowding the
+  root folder of exported applications on Windows and Linux.
+
++ If noLoop() has been called but a sketch is resized, redraw() will be 
+  called to update the screen.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 2.0a1 (REV 0200) - 2 September 2011
+
+First alpha release as we head toward 2.0. Please read the changes page 
+to learn about what's different: http://wiki.processing.org/w/Changes
+
+[ since we last spoke ] 
+
++ Lots of video work from Andres. 
+
++ Updated to Java 6u26 on Windows and Linux.
+
++ HTML escapes for < and > were not working properly
+  http://code.google.com/p/processing/issues/detail?id=771
+
++ Quit if multiple instances of Processing are running (see the Wiki).
+
++ Fixed another problem with missing shearX/Y() in JAVA2D
+  http://code.google.com/p/processing/issues/detail?id=784
+
++ Removed textMode(SCREEN).
+
++ Added expand(long) and expand(double) because of Table.
+
++ PImage.save() with full path raises exception
+  http://code.google.com/p/processing/issues/detail?id=808
+
++ Fix problem where loading data from an http:// stream would 
+  run out of memory on Android. 
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0199 - 27 June 2011
+
+Handful of bug fixes, primarly to deal with issues introduced in 0198. 
+
++ Remove error messages for UpdateCheck w/o internet connection.
+
++ char c = 'u' breaks sketches in 0198
+  http://code.google.com/p/processing/issues/detail?id=752
+  Also additional fixes to handling bad character constants in the preprocessor
+
++ Deal with extraneous error messages about the emulator and AVD when trying
+  to run Processing on an Android device.
+
++ Fix broken loadShape().
+
++ Fix broken loadNode() and XML usage in general.
+
++ Fix problem with save() writing multiple image files with an extra .tif
+  at the end. 
+
++ Added no-op orientation() method to the desktop version so that code
+  will work unchanged between Android and desktop.
+
++ Add warning for missing glyphs in PFont. 
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0198 - 23 June 2011
+
+Major internal work as we start blowing things up for 2.0. The main things are
+covered on the changes page in the Wiki: http://wiki.processing.org/w/Changes
+
+This is an interim release so that Andres can do a workshop. Not recommended
+for casual use. Hostile or belligerent whiners need not apply.
+
+Android mode has received zero testing, so XML, SVG, 3D, and other major 
+features may be broken. See statement directly above.
+
+[ bugs fixed ] 
+
++ Examples window placed off-screen when PDE window is maximized
+  http://code.google.com/p/processing/issues/detail?id=669
+
++ Make examples window respond to ESC, and double-click events to 
+  expand/collapse nodes.
+
++ Launch script for Linux fails to open a sketches with relative paths
+  http://code.google.com/p/processing/issues/detail?id=707
+
++ Badly formed character constant exception
+  http://code.google.com/p/processing/issues/detail?id=714
+
++ Resize box on OS X is not present in Examples box
+  http://code.google.com/p/processing/issues/detail?id=730
+
++ New/Rename Tab commands inhibited when Console/Message Area is hidden
+  http://code.google.com/p/processing/issues/detail?id=745
+
++ Make sketch.properties usable elsewhere by loading/reloading
+  http://code.google.com/p/processing/issues/detail?id=722
+
++ Export to Application reports "Could not copy source file:" 
+  http://code.google.com/p/processing/issues/detail?id=638
+
++ Automatically insert the 'import processing.opengl' when P3D used.
+
++ Export Application Fails When Large File in Data Folder
+  http://code.google.com/p/processing/issues/detail?id=747
+
+[ reference ]
+
++ Add some notes about how to work with deployJava.js and applets
+  http://dev.processing.org/bugs/show_bug.cgi?id=1259
+
+[ core ]
+
++ Added quadraticVertex() method to do a quadratic bezier vertex.
+
++ More efficient version of copy() added for 2D.
+
++ Implemented rounded rectangle method.
+  http://code.google.com/p/processing/issues/detail?id=265
+
++ Removed the delay() method. It was awful.
+
++ Addded thread() method that takes a function name as a parameter, 
+  and runs it on its own thread. No more classes!
+
++ PImage.save() returns a success boolean (rather than throwing an 
+  exception when it fails).
+
+[ core bugs fixed ]
+
++ saveBytes() error when writing to existing file
+  http://code.google.com/p/processing/issues/detail?id=667
+
++ problem with destroy() calling System.exit()
+  http://code.google.com/p/processing/issues/detail?id=698
+
++ post() is called after setup() 
+  http://code.google.com/p/processing/issues/detail?id=455
+
++ Remove auto-sizing from binary() (was inconsistent with hex() method).
+
+[ libraries ]
+
++ Reverted back to the older serial libs, which should improve stability a bit.
+  Also grabbed the 64 bit Linux driver and a patch for /dev/ttyACM0 from
+  the Arduino guys. Thanks to Dave Mellis for the pointer.
+  http://code.google.com/p/processing/issues/detail?id=634
+
++ Fix applet exporting for new OpenGL, also fixes signed applet requirement.
+  http://code.google.com/p/processing/issues/detail?id=429
+
++ New XML library that more accurately reflects how DOM parsing works.
+  Also straightening out the API a bit. Documentation to come later.
+  http://code.google.com/p/processing/issues/detail?id=277
+  http://code.google.com/p/processing/issues/detail?id=440
+
+[ andres' bag of awesome ]
+
++ Finish OPENGL2 renderer
+  http://code.google.com/p/processing/issues/detail?id=495
+
++ Using createGraphics() image repeatedly runs out of memory with OPENGL
+  http://code.google.com/p/processing/issues/detail?id=483
+
++ Resizing window in OPENGL breaks ImageCaches
+  http://code.google.com/p/processing/issues/detail?id=184
+
++ Resize not working in revision 5707
+  camera() and perspective() were commented out in setSize()
+  http://dev.processing.org/bugs/show_bug.cgi?id=1391
+
++ Resizing opengl destroys context and textures
+  http://dev.processing.org/bugs/show_bug.cgi?id=1176
+
++ Implement repeating textures
+  http://code.google.com/p/processing/issues/detail?id=94
+
+[ android ] (these were missing from the actual release notes)
+
++ mask() has no effect unless image has already been drawn in A3D
+  http://code.google.com/p/processing/issues/detail?id=623
+
++ point() doesn't render in A3D
+  http://code.google.com/p/processing/issues/detail?id=592
+
++ excessive rotation of application causes memory to run out
+  http://code.google.com/p/processing/issues/detail?id=235
+
++ mirroring in A3D when background() not called within draw()
+  http://code.google.com/p/processing/issues/detail?id=624
+
++ removed A2D and A3D constants
+
++ colorMode() error 
+  http://code.google.com/p/processing/issues/detail?id=223
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.5.1 (REV 0197) - 15 May 2011
+
+This release fixes a handful of regressions and quirks that were found in
+the Processing 1.5 release last month. 
+
+[ editor ] 
+
++ Windows splash screen for version 1.5 says "1.2"
+  http://code.google.com/p/processing/issues/detail?id=631
+
++ "Import Library" was broken for several built-in libraries.
+  http://code.google.com/p/processing/issues/detail?id=637
+
++ Fixed broken update checker.
+
++ Reverted to the old shell script on Linux.
+  http://code.google.com/p/processing/issues/detail?id=633
+
++ Applets exported on Windows can't find files in the data folder.
+  http://code.google.com/p/processing/issues/detail?id=666
+
++ File > New and Command-N stop working on OS X after running a sketch
+  http://code.google.com/p/processing/issues/detail?id=664
+
+[ core ] 
+
++ Reverted to the old createFont() behavior, where native fonts will
+  be used with createFont() in more situations.
+  http://code.google.com/p/processing/issues/detail?id=662
+
+[ svg ] 
+
++ Improve handling of transformations in SVG files.
+  http://code.google.com/p/processing/issues/detail?id=388
+
++ Fix bug in SVG parser for shorthand curves (T/t and S/s)
+  http://code.google.com/p/processing/issues/detail?id=350
+
++ Prevent shape(PshapeSVG) from failing if SVG contains <path d=""/>
+  http://code.google.com/p/processing/issues/detail?id=434
+
++ Fix misshapen quadratic bezier curves when drawing SVG files.
+
+[ examples ] 
+
++ HsvSpace example sketch in 1.5 download requires additional import
+  http://code.google.com/p/processing/issues/detail?id=661
+
++ Obsolete Network > HTTPClient sketch
+  http://code.google.com/p/processing/issues/detail?id=655
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.5 (REV 0196) - 17 April 2011
+
+A lot has changed in the nine months since 1.2.1 was released, the biggest
+being the introduction of "modes" for the editor, allowing you to switch
+between Android development or the classic desktop/web mode. More modes are
+coming in future releases.
+
+Another significant change is a fix for applets that were stuttering or 
+appearing to run very, very slowly in Firefox 4 and Chrome. That's the major
+reason that we're releasing this version in advance on 2.0 later this summer.
+
+All of the changes since 1.2.1 are listed in this document. If you get stuck,
+give it a search to see if there might be a clue about something that has
+changed. Or if you have problems, please file a bug.
+
+For people who have been using OPENGL2 in the pre-releases, the library
+has been removed from 1.5, and will return in future pre-releases before
+eventually replacing the built-in OpenGL library for 2.0.
+
+Meanwhile, here are the changes since revision 0195, the last pre-release:
+
+[ pde ] 
+
++ A new version of the reference and examples have been posted online.
+
++ Upgraded to Quaqua 7.3.4 on OS X. Fixes mode menu checkbox on OS X
+
++ Added a fix for text focus handling in the editor (0195 problem)
+  http://code.google.com/p/processing/issues/detail?id=627
+
++ File -> Save no longer stops the running sketch
+  http://dev.processing.org/bugs/show_bug.cgi?id=810
+  http://code.google.com/p/processing/issues/detail?id=100
+
++ Fixed a bug in the LoadFile2 example 
+  http://code.google.com/p/processing/issues/detail?id=522
+
++ Shift-indent without selection increases indention
+  http://code.google.com/p/processing/issues/detail?id=458
+
++ Allow more than one sketch to run at a time (problem in 0194/5)
+  http://code.google.com/p/processing/issues/detail?id=567
+
++ Fix caret bug leading to slow degredation of the PDE.
+
++ Fix Color Selector to be more efficient with many sketch windows.
+
++ Fix sketch marked as modified too aggressively
+  http://dev.processing.org/bugs/show_bug.cgi?id=328
+  http://code.google.com/p/processing/issues/detail?id=57
+  http://code.google.com/p/processing/issues/detail?id=620
+
++ Prevent "save" from clearing undo information
+  http://code.google.com/p/processing/issues/detail?id=411
+
++ Rename/Save As doesn't properly have its focus set (fixed in 0195)
+  http://dev.processing.org/bugs/show_bug.cgi?id=31
+  http://code.google.com/p/processing/issues/detail?id=13
+
+[ peter lewis ]
+
+Several fixes for text selection and editing, provided by a
+Mac software developer hero of my youth, Peter N Lewis.
+
++ Use Selection For Find
+  http://code.google.com/p/processing/issues/detail?id=571
+
++ Double-clicking whitespace selects adjacent chars
+  http://code.google.com/p/processing/issues/detail?id=59
+  http://code.google.com/p/processing/issues/detail?id=576
+
++ Find/Replace all around very ugly, fix it up
+  http://dev.processing.org/bugs/show_bug.cgi?id=67
+  http://code.google.com/p/processing/issues/detail?id=23
+  http://code.google.com/p/processing/issues/detail?id=580
+
++ Several additional tweaks
+  http://dev.processing.org/bugs/show_bug.cgi?id=68
+  http://code.google.com/p/processing/issues/detail?id=24
+
+[ core ]
+
++ Fix minor native fonts issue.
+
+[ android ] 
+
++ Workaround for loadImage(url) bug in Google's Android source.  
+  Issue tracked down by psoden. (Thanks!)
+  http://code.google.com/p/processing/issues/detail?id=629
+
++ Build an interface for control of permissions on Android (earlier)
+  http://code.google.com/p/processing/issues/detail?id=275
+
++ Implement createGraphics() (completed in earlier releases)
+  http://code.google.com/p/processing/issues/detail?id=240
+
++ Android 0192 sketch in static mode crashes on exit (fixed in 0193 or so)
+  http://code.google.com/p/processing/issues/detail?id=518
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0195 - 10 April 2011
+
+Bug fixes and several Android updates. Working to close in on a proper 
+Processing 1.5 release.
+
+This release has several changes to renaming sketches, using Save As, 
+and how untitled sketches are handled. Please help test!
+
+Note that on the Android side, this release once again requires installation
+of the Google APIs. See the Android Wiki page for details.
+
+[ general ] 
+
++ Sketch restarts automatically after pressing stop button on PDE
+  http://code.google.com/p/processing/issues/detail?id=561
+
++ 'unexpected token void' for any type of error (due to fallback)
+  http://code.google.com/p/processing/issues/detail?id=551
+
++ Deal with weird states when closing last editor window on OS X
+
++ With one sketch open, changing the mode doesn't close the original editor
+  http://code.google.com/p/processing/issues/detail?id=569
+
++ Move library examples to the examples menu
+  http://dev.processing.org/bugs/show_bug.cgi?id=1278
+  http://code.google.com/p/processing/issues/detail?id=181
+
++ Ctrl-slash not working on Linux (fix from pkalauskas, thanks!)
+  http://code.google.com/p/processing/issues/detail?id=596
+
++ Update to Java 6u24 for Linux and Windows
+
++ Export .java source files with applets and applications.
+  http://code.google.com/p/processing/issues/detail?id=570
+
++ Reference broken in 0194.
+  http://code.google.com/p/processing/issues/detail?id=572
+
++ Other reference tweaks
+
++ Fix exception spew when clicking between editor windows.
+
++ Don't reload sketch on "save as"
+  http://code.google.com/p/processing/issues/detail?id=62
+
++ Smooth text on the status bar on Linux.
+
++ Clear up some issues with focus handling in the editor.
+
++ Save As/Rename don't properly set focus
+  http://code.google.com/p/processing/issues/detail?id=13
+
++ "No library found" message when using import statements and the code folder
+  http://code.google.com/p/processing/issues/detail?id=568
+
++ Remove version number from splash image
+  http://code.google.com/p/processing/issues/detail?id=324
+
++ Subfolders in /libraries folder not supported in 0194, 
+  bring them back for toxi and the toxiclibs folks.
+  http://code.google.com/p/processing/issues/detail?id=578
+
+[ core ] 
+
++ Deal with bad screen updates for sketches running < 60 fps in JAVA2D
+
++ OPENGL2 record only saves one line in a LINES shape (fix from Andres)
+  http://code.google.com/p/processing/issues/detail?id=579
+
++ normal() command commented out in sphere() method
+  http://code.google.com/p/processing/issues/detail?id=602
+
++ save() and other pixel operations no longer working with JAVA2D in 0194
+  http://code.google.com/p/processing/issues/detail?id=594
+
+[ android ] 
+
++ point() doesn't render in A3D
+  http://code.google.com/p/processing/issues/detail?id=592
+
++ Android stuck at "Starting Build"
+  http://code.google.com/p/processing/issues/detail?id=590
+
++ Deal with missing android-core.zip (No such file or directory)
+  http://code.google.com/p/processing/issues/detail?id=577
+
++ Error messages about "No library found for android.*"
+
++ When returning to android application, sometimes screen stays black
+  http://code.google.com/p/processing/issues/detail?id=237
+
++ Device Killed or Disconnected Error Message with Libraries
+  http://code.google.com/p/processing/issues/detail?id=565
+
++ Better error handling when certain SDK components are not installed.
+
++ Canceling an attempt to find the Android SDK leaves no window open, 
+  or crash when trying to change to Android mode w/ no Android SDK
+  http://code.google.com/p/processing/issues/detail?id=605
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0194 - 9 March 2011
+
+Lots of fixes for late-breaking problems in release 0193.
+
+[ fixes ] 
+
++ The Auto Format command went missing in 0193. It's back for 0194, but is 
+  now located in the Edit menu, where it will stay for the rest of its long
+  and happy life.
+
++ The "Import Library" menu wasn't being updated properly in 0193. Note that
+  for the time being, there are no core libraries on Android. (OpenGL is built
+  in, for instance.)
+
++ Fix mode switching for Windows and Linux.
+
++ Library examples weren't showing up in 0193, now they're back.
+
++ Fix for flicker problem in the default renderer.
+  http://code.google.com/p/processing/issues/detail?id=558
+
++ The examples menu wasn't completely removed in 0193. 
+
++ Remove "temporarily skipping deletion of" debugging message on export.
+
++ Properly reload examples & libraries when changing the sketchbook location.
+
++ Fix a problem with untitled sketches and mode switching.
+
++ Fix problem with Sketch Permissions for Android.
+  http://code.google.com/p/processing/issues/detail?id=559
+
+[ notes ] 
+
++ Because both OpenGL and OpenGL2 are present, there may be conflicts if you
+  implement any OpenGL-specific code outside the Processing API. If your sketch
+  includes either of the following lines:
+
+  import javax.media.opengl.*;
+  import javax.media.opengl.glu.*;
+
+  then you should remove one of the OpenGL libraries, depending on which you
+  would like to use. 
+
++ OpenGL is built-in on Android. You don't need to add it as a library, the
+  way you do with the desktop. A "import processing.opengl.*" line won't
+  hurt anything (the preprocessor removes it), but it's also not necessary.
+  (This is also noted in the Android wiki.)
+
++ Library examples no longer show up buried in the sketchbook. Instead they
+  can be found in the "Libraries" and "Contributed Libraries" sections of
+  the examples window.
+
+[ additions ]
+
++ Added a new icon for "Export to Application", along the lines of the 
+  icons used on the Android side. 
+
++ Remove warning about the broken build.
+  http://code.google.com/p/processing/issues/detail?id=519
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0193 - 8 March 2011
+
+The PDE is receiving a major overhaul. The most obvious change is that 
+there's now a menu that allows you to switch between "modes". "Standard"
+is the Java-based mode that we're all used to, and "Android" compiles 
+things for Android devices. 
+
+Basically it's all pre-releases from here until 2.0. 
+
+With the mode support, it will soon be possible to embed other projects, 
+like the Python version, or the JS exporter, directly inside the PDE. 
+More on this later.
+
+This release also fixes a handful of Android problems, like the use of
+libraries, the code folder, and so on.
+
+[ core ] 
+
++ Fix problem that made applets suck in Google Chrome and Firefox 4.
+
++ Fix java.lang.OutOfMemoryError using get() and image() inside a tight loop.
+  http://code.google.com/p/processing/issues/detail?id=42
+
++ Changed default font to Lucida Sans, available on all platforms. 
+  This means that your text may be a slightly different size if you haven't
+  used textFont(), but hey, you probably don't use the default font, right? 
+  A fella (or gal) like you?
+
++ textAlign() incorrect with default font on Mac OS X 10.6
+  http://code.google.com/p/processing/issues/detail?id=362
+
++ Clean up how PDF fonts are handled. Default to writing fonts as shapes, 
+  which makes PDF files larger, but is likely to work in more cases. If you
+  want editable/real text, you can call textMode(MODEL) right after creating
+  the PDF renderer (directly below size() or beginRecord()).
+  http://code.google.com/p/processing/issues/detail?id=416
+
++ Saving a PGraphics as jpg using save() makes a cmyk file
+  http://code.google.com/p/processing/issues/detail?id=415
+
++ Fix bizarre window placement when using Present mode on OS X.
+
+[ pde changes/fixes ] 
+
++ Added support for separate 32 and 64 bit versions of libraries.
+
++ Added a 64 bit version of the OpenGL library.
+
++ Updates to Java 6u23 in the download.
+
++ Fix issue with javac.exe not being included in the download.
+
++ Also added opengl2, which rolls GLGraphics and the new Android OpenGL
+  library into a newer, faster, more amazinger OpenGL that will eventually
+  be the default.
+
++ Added a *lot* of examples. This has also had the effect of making the 
+  download enormous. It's currently obese. We'll sort that out later.
+
++ Code folder oddity on application export (in SVN)
+  http://code.google.com/p/processing/issues/detail?id=486
+
++ Processing cannot run because it could not ... store your settings.
+  http://code.google.com/p/processing/issues/detail?id=410
+
++ AutoFormat unecessarily adds spaces to function with multiple args
+  http://code.google.com/p/processing/issues/detail?id=462
+
++ Fix for linux build script (thanks to Kevin Keraudren)
+  http://code.google.com/p/processing/issues/detail?id=466
+
++ Fix the encoding on OS X for the "Fix Encoding and Reload" function
+
++ Hex value from color picker does not start with #
+  http://code.google.com/p/processing/issues/detail?id=529
+
++ Console, preferences cleanup: removed build.path, as well as
+  console.output.file, and console.error.file. Also removed 'console' 
+  true/false from preferences.
+
++ Change console to write to the 'console/' folder in settings.
+  This may eventually create a problem with logs that need to be cleaned,
+  but we'll keep an eye on it for now.
+
++ Add splash image on OS X.
+
++ Added window for examples. It's a bit ugly, but the menu was too much
+  and we should be able to clean this feller up later. Also makes the 
+  examples a bit more obvious.
+
++ Updated the serial library for Mac OS X
+  http://code.google.com/p/processing/issues/detail?id=503
+  http://rxtx.qbang.org/wiki/index.php/Download
+
++ Accented letter input is broken (on OS X and Windows)
+  http://code.google.com/p/processing/issues/detail?id=335
+  Had to disable input method support (Japanese) for now.
+
++ For projects with too many tabs, condense the ones that are used less.
+  http://dev.processing.org/bugs/show_bug.cgi?id=54
+  http://code.google.com/p/processing/issues/detail?id=17
+
+[ fixed in 0192 ] 
+
++ Auto-format screws up if/else/else if blocks
+  http://code.google.com/p/processing/issues/detail?id=325
+
++ Exported libraries don't mantain symbolic links
+  http://code.google.com/p/processing/issues/detail?id=353
+
+[ android edits ]
+
++ Add better icons from Casey for exported applications. 
+
++ Remove the need to download the android core.jar separately
+  http://code.google.com/p/processing/issues/detail?id=421
+
++ Remove the Google APIs requirement, just use the standard.
+  This means losing the standard skin on the emulator, but we'll see
+  about bringing it back in some other fashion in the future.
+  We weren't actually using the Google APIs, so it seemed silly
+  because of how much complexity it added.
+
++ Deal with issue of debug certificates expiring.
+  http://forum.processing.org/topic/ant-rules-r3-xml-209-395-error#25080000000262001
+
++ Fix use of .java files in Android projects
+  http://code.google.com/p/processing/issues/detail?id=404
+
++ Save state for whether using Android or Standard mode
+  http://dev.processing.org/bugs/show_bug.cgi?id=1380
+  http://code.google.com/p/processing/issues/detail?id=202
+
++ New mode support makes the Android switch less clunky
+  http://dev.processing.org/bugs/show_bug.cgi?id=1379
+  http://code.google.com/p/processing/issues/detail?id=201
+
++ With mode support, "Run on Device" and "Run in Emulator" instead of 
+  "Run" and "Present".
+
+[ internal changes ] 
+
++ Removed build.path from preferences.txt.
+  Not really used anywhere, just trying to clean things up.
+
++ Removed 'console.output.file' and 'console.error.file'.
+  These weren't respected as paths, no reason for them.
+
++ Change console to write to the 'console/' folder in settings. 
+  This may eventually create a problem with logs that need to be cleaned, 
+  but we'll keep an eye on it for now.
+
++ Removed 'console' true/false from preferences.
+
++ Cannot reproduce problem with wrong character encoding in the console.
+  http://code.google.com/p/processing/issues/detail?id=197
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0192 - 18 December 2010
+
+This release contains a roll-up of lots of bug fixes. However, it's being
+released before it's ready, so it should only be used by people who are having
+trouble with the new Android SDK release (revision 8) from Google, which 
+broke Android support last week.
+
+This version of Processing for Android *requires* Android SDK Tools Release 8. 
+If you're not using release 8, and don't have the necessary components 
+installed, you'll get (confusing) error messages saying that the SDK location 
+is not set, and that it could not find an SDK in the location that you specify.
+
+As for this being an early release, the problem is that major changes were
+underway regarding how libraries are handled, so it's quite possible that
+library support (in both the standard or Android version) or code folder
+support is somewhat broken. So with that caveat, no whining, please.
+
+On a happier note, the changes:
+
+[ android fixes ] 
+
++ Compile android-core with Java 5 as the target so that it works on OS X 10.5.
+
+[ additions from andres ] 
+
++ A3D should use lower color depth on older devices.
+  http://code.google.com/p/processing/issues/detail?id=391
+
++ New API for begin/endRecord().
+
++ Finish OpenGL blending modes in A3D
+  http://code.google.com/p/processing/issues/detail?id=290
+
++ Automatic normal calculation in A3D
+  http://code.google.com/p/processing/issues/detail?id=345
+
++ Improve texture handling in A3D's PFont
+  http://code.google.com/p/processing/issues/detail?id=394
+
++ OpenGL resource release mechanism in A3D is broken
+  http://code.google.com/p/processing/issues/detail?id=456
+
++ Multitexturing in A3D
+  http://code.google.com/p/processing/issues/detail?id=344
+
++ Problems when loading images asynchronously in A3D.
+  http://code.google.com/p/processing/issues/detail?id=465
+
+[ preprocessor, from jdf ]
+
++ Fixed "Syntax error on token "else", } expected"
+  http://code.google.com/p/processing/issues/detail?id=400
+
++ Autoformat bug (new java "for loop" syntax)
+  http://code.google.com/p/processing/issues/detail?id=420
+
++ Fix matching brace problem in PDE
+  http://code.google.com/p/processing/issues/detail?id=417
+
++ Fix syntax highlighting of focusGained and others
+  http://dev.processing.org/bugs/show_bug.cgi?id=659
+  http://code.google.com/p/processing/issues/detail?id=82
+
++ Error when compiling with static final global variable.
+  http://code.google.com/p/processing/issues/detail?id=427
+
++ AutoFormat unecessarily adds spaces to function with multiple args
+  http://code.google.com/p/processing/issues/detail?id=462
+
+[ edits from Lonnen ] 
+
++ Fix for disappearing horizontal scroll bar regression
+  http://code.google.com/p/processing/issues/detail?id=316
+
++ Fix problems with stop().
+  http://dev.processing.org/bugs/show_bug.cgi?id=131
+  http://code.google.com/p/processing/issues/detail?id=43
+  ...as a result, dispose() methods aren't being called on libraries
+  http://dev.processing.org/bugs/show_bug.cgi?id=131
+  http://dev.processing.org/bugs/show_bug.cgi?id=77 (dupe)
+  http://dev.processing.org/bugs/show_bug.cgi?id=183 (dupe)
+  ...also a double stop() called with noLoop()
+  http://dev.processing.org/bugs/show_bug.cgi?id=1270
+  http://code.google.com/p/processing/issues/detail?id=180
+
++ Properly enforce the minimum size for editor windows.
+  http://code.google.com/p/processing/issues/detail?id=451
+
++ Patch: Processing IDE destroys symbolic links
+  http://code.google.com/p/processing/issues/detail?id=432
+
++ Windows: Processing cannot run because it could not ... store your settings.
+  http://code.google.com/p/processing/issues/detail?id=410
+
++ PGraphicsJava2D.resize() not working the same as PGraphics2D.resize()
+  http://dev.processing.org/bugs/show_bug.cgi?id=1107
+  http://code.google.com/p/processing/issues/detail?id=150
+  Resize is not available with renderers, use createGraphics().
+  Added a note to the reference.
+
+[ more fixes and edits ]
+
++ Don't let PDE open sketches with bad names (reported by Max)
+
++ Exported libraries don't mantain symbolic links
+  http://code.google.com/p/processing/issues/detail?id=353
+
++ Repair regression in XMLElement.getBoolean(String, boolean)
+  http://code.google.com/p/processing/issues/detail?id=399
+
++ color() problem with alpha
+  http://code.google.com/p/processing/issues/detail?id=327
+
++ PVector.angleBetween() regression
+  http://code.google.com/p/processing/issues/detail?id=435
+
++ Fix for linux build script (thanks to Kevin Keraudren)
+  http://code.google.com/p/processing/issues/detail?id=466
+
++ shearX and shearY not properly implemented with P2D and JAVA2D
+  http://code.google.com/p/processing/issues/detail?id=452
+
++ frame.setResizable(true) does not enable maximize button. 
+  Thanks to Christian Thiemann for a workaround.
+  http://code.google.com/p/processing/issues/detail?id=467
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0191 - 30 September 2010
+
+Bug fix release. Contains major fixes to 3D for Android.
+
+[ changes ] 
+
++ Added option to preferences panel to enable/disable smoothing of text
+  inside the editor.
+
++ Added more anti-aliasing to the Linux interface. Things were downright
+  ugly in places where defaults different from Windows and Mac OS X.
+
+[ bug fixes ] 
+
++ Fix a problem with Linux permissions in the download.
+  http://code.google.com/p/processing/issues/detail?id=343
+
++ Fix 'redo' command to follow various OS conventions.
+  http://code.google.com/p/processing/issues/detail?id=363
+  Linux: ctrl-shift-z, macosx cmd-shift-z, windows ctrl-y
+  http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
+  http://developer.apple.com/mac/library/documentation/UserExperience/Conceptual/AppleHIGuidelines/XHIGUserInput/XHIGUserInput.html
+
++ Remove extraneous console messages on export.
+
++ When exporting, don't include a library multiple times. 
+
++ Fixed a problem where no spaces in the size() command caused an error.
+  http://code.google.com/p/processing/issues/detail?id=390
+
+[ andres 1, android 0 ]
+
++ Implemented offscreen operations in A3D when FBO extension is not available
+  http://code.google.com/p/processing/issues/detail?id=300
+
++ Get OpenGL matrices in A3D when GL_OES_matrix_get extension is not available
+  http://code.google.com/p/processing/issues/detail?id=286
+
++ Implemented calculateModelviewInverse() in A3D
+  http://code.google.com/p/processing/issues/detail?id=287
+
++ Automatic clear/noClear() switch in A3D
+  http://code.google.com/p/processing/issues/detail?id=289
+
++ Fix camera issues in A3D
+  http://code.google.com/p/processing/issues/detail?id=367
+
++ Major fixes for type to work properly in 3D (fixes KineticType)
+  http://code.google.com/p/processing/issues/detail?id=358
+
++ Lighting and materials testing in A3D
+  http://code.google.com/p/processing/issues/detail?id=294
+
++ Generate mipmaps when the GL_OES_generate_mipmaps extension is not available.
+  http://code.google.com/p/processing/issues/detail?id=288
+
++ Finish screen pixels/texture operations in A3D
+  http://code.google.com/p/processing/issues/detail?id=298
+
++ Fixed a bug in the camera handling. This was a quite urgent issue, 
+  since affected pretty much everything. It went unnoticed until now because
+  the math error canceled out with the default camera settings.
+  http://forum.processing.org/topic/possible-3d-bug
+
++ Also finished the implementation of the getImpl() method in PImage, 
+  so it initializes the texture of the new image in A3D mode. 
+  This makes the CubicVR example to work fine.
+
+[ core ] 
+
++ Fix background(PImage) for OpenGL
+  http://code.google.com/p/processing/issues/detail?id=336
+
++ Skip null entries with trim(String[]) 
+
++ Fix NaN with PVector.angleBetween
+  http://code.google.com/p/processing/issues/detail?id=340
+
++ Fix missing getFloat() method in XML library
+
++ Make sure that paths are created with saveStream(). 
+  (saveStream() wasn't working when intermediate directories didn't exist)
+
++ Make createWriter() use an 8k buffer by default. 
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0190 - 18 August 2010
+
+This release is primarily for Android users. For the desktop version, there
+are some problems with fonts. If you're using text, especially with PDFs,
+you may want to wait until the next release.
+
+Android users should read the Wiki (http://wiki.processing.org/w/Android)
+which has a lot of new information. 
+
+[ android ] 
+
++ Added a new menu to cover enabling/disabling Android mode. 
+
++ Added a Permissions dialog, so that you can set permissions for your 
+  applications, e.g. so you can read from the internet or save files.
+
++ Added support for icons. Put files named icon-32.png, icon-48.png, 
+  and icon-72.png in your sketch folder, and they'll be added to your
+  project when it's created. Otherwise you'll get an ugly blue dot 
+  default icon. You've been warned.
+
++ Finish implementing the size() command on Android. See the Wiki for notes.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1397
+  http://code.google.com/p/processing/issues/detail?id=211
+
++ Finish implementation of P3D/OpenGL/A3D for Android.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1396
+  http://dev.processing.org/bugs/show_bug.cgi?id=1401
+
++ Allow screenWidth/Height as parameters to size().
+
++ Fix mouseX/Y mapping when using smaller screen sizes.
+
++ Fix text ascent/descent problem, text("blah\nblah") wasn't working.
+
++ Fixed how the manifest file is read/written. 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1429
+  http://code.google.com/p/processing/issues/detail?id=221
+
++ Copied the XML and font changes from the desktop version of core.
+
++ Removing 'import processing.opengl.*' in the preprocessor, since it's
+  not needed, and will cause a conflict.
+
++ Added functions to lock orientation if necessary. Use:
+  orientation(LANDSCAPE) and orientation(PORTRAIT) if you need control.
+
++ createGraphics() works with A3D/P3D/OPENGL for phones that support it.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1488
+  http://code.google.com/p/processing/issues/detail?id=240
+
++ Fix errors showing up that .java files were duplicates.
+  http://code.google.com/p/processing/issues/detail?id=232
+
+[ core ] 
+
++ Changed skewX/Y to shearX/Y.
+
++ ENABLE_NATIVE_FONTS was being ignored, native fonts were always used 
+  in some cases. However, this broke some other things. But that's why
+  this is a pre-release, not a final.
+
+[ xml fixes and changes ] 
+
++ Changed the XML constructor to take a String for a node name, instead of
+  parsing a document from a String. Instead, use XMLElement.parse(String) 
+  if you want to read a file.
+
++ Added getBoolean() methods.
+  http://code.google.com/p/processing/issues/detail?id=304
+
++ Removed namespace versions of the getXxxx() methods. These were never
+  documented, and cause more trouble than they're worth.
+
++ Changing getIntAttribute() et al to getInt(). The old versions are still
+  there, but have been deprecated.
+
++ Added listChildren() method.
+
++ XML attributes named "xmlns" always returned NULL, now fixed.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1196
+  http://code.google.com/p/processing/issues/detail?id=166
+
++ When re-saving an .ods file, wasn't including all the namespace at the top.
+
++ Several fixes to how namespaces are handled (or not handled).
+
++ Methods to saved XML elements back out again.
+  http://dev.processing.org/bugs/show_bug.cgi?id=963
+  http://code.google.com/p/processing/issues/detail?id=126
+
++ Update XMLElement constructor problem.
+  http://code.google.com/p/processing/issues/detail?id=342
+
+[ environment ] 
+
++ Added more specific language to Lnux/Sun/Java error messages on Linux. 
+  Also added support for "Oracle" in the name.
+
++ Fix the New/Open buttons on the toolbar
+  http://code.google.com/p/processing/issues/detail?id=323
+
++ Changed how "Save As" works, now copies everything in the sketch folder.
+  But still ignores applet, application.*, screen-* files/folders
+
++ Edit > Copy as HTML didn't properly encode < and >
+  Also added support for other Unicode entities for non-ASCII characters.
+  http://code.google.com/p/processing/issues/detail?id=351
+
++ Ctrl-Z will undo, but not scroll to where the undo happens. Fixed earlier.
+  http://dev.processing.org/bugs/show_bug.cgi?id=35
+  http://code.google.com/p/processing/issues/detail?id=15
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.2.1 (REV 0189) - 14 July 2010
+
+Fix for a problem with some static-mode programs. See below for
+the other changes since 1.1.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.2 (REV 0188) - 13 July 2010
+
+Changes too numerous to mention, see the notes below for all the 
+revisions that followed the 1.1 release in March.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0187 - 12 July 2010
+
+More bug fixes, and one new treat for OS X users. Hopefully we're about 
+set to call this one 1.2. Please test and report any issues you find:
+http://code.google.com/p/processing/issues/list
+
+[ additions ] 
+
++ On Mac OS X, you're no longer required to have a sketch window open at 
+  all times. This will make the application feel more Mac-like--a little
+  more elegant and trendy and smug with superiority.
+
++ Added a warning to the Linux version to tell users that they should be 
+  using the official version of Java from Sun if they're not.
+  http://wiki.processing.org/w/Supported_Platforms#Linux
+  There isn't a perfect way to detect whether Sun Java is in use, 
+  so please let us know how it works or if you have a better idea. 
+
+[ fixes ] 
+
++ "Unexpected token" error when creating classes with recent pre-releases.
+  http://code.google.com/p/processing/issues/detail?id=292
+
++ Prevent horizontal scroll offset from disappearing. 
+  Thanks to Christian Thiemann for the fix. 
+  http://code.google.com/p/processing/issues/detail?id=280
+  http://code.google.com/p/processing/issues/detail?id=10
+
++ Fix NullPointerException when making a new sketch on non-English systems.
+  http://code.google.com/p/processing/issues/detail?id=283
+
++ Fixed a problem when using command-line arguments with exported sketches
+  on Windows. Thanks to davbol for the fix.
+  http://code.google.com/p/processing/issues/detail?id=303
+
++ Added requestFocusInWindow() call to replace Apple's broken requestFocus(),
+  which should return the previous behavior of sketches getting focus 
+  immediately when loaded in a web browser.
+  http://code.google.com/p/processing/issues/detail?id=279
+
++ Add getDocumentBase() version of createInput() for Internet Explorer. 
+  Without this, sketches will crash when trying to find files on a web server
+  that are not in the exported .jar file. This fix is only for IE. Yay IE!
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0186 - 26 June 2010
+
+Minor updates following up on 0185.
+
+[ mixed bag ] 
+
++ Android SDK requirement is now API 7 (Android 2.1), because Google has
+  deprecated API 6 (2.0.1). 
+
++ More Linux PDF fixes from Matthias Breuer. Thanks!
+
++ PDF library matrix not reset between frames. (Fixed in 0185.)
+  http://dev.processing.org/bugs/show_bug.cgi?id=1227
+
++ Updated the URLs opened by the software to reflect the new site layout.
+  http://code.google.com/p/processing/issues/detail?id=278
+
++ Updated the included examples with recent changes.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0185 - 20 June 2010
+
+Primarily a bug fix release. The biggest change are a couple tweaks for 
+problems caused by Apple's Update 2 for Java on OS X, so this should make
+Processing usable on Macs again. 
+
+[ bug fixes ] 
+
++ Fix for Apple bug that caused an assertion failure when requestFocus() 
+  was called in some situations. This was causing the PDE to become unusable
+  for opening sketches, and focus highlighting was no longer happening.
+  http://code.google.com/p/processing/issues/detail?id=258
+  http://dev.processing.org/bugs/show_bug.cgi?id=1564
+  http://dev.processing.org/bugs/show_bug.cgi?id=1569
+
++ Fixed two bugs with fonts created with specific charsets.
+
++ Fix from jdf for PImage(java.awt.Image img) and ARGB images
+  public PImage(java.awt.Image) was setting the format to RGB (even if ARGB)
+
++ Large number of beginShape(POINTS) not rendering correctly on first frame
+  http://dev.processing.org/bugs/show_bug.cgi?id=1572
+
++ Fix for PDF library and createFont() on Linux, thanks to Matthias Breuer.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1566
+
++ Fix from takachin for a problem with full-width space with Japanese IME.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1531
+
++ Reset matrix for the PDF library in-between frames
+  also added begin/endDraw between frames
+  http://dev.processing.org/bugs/show_bug.cgi?id=1227
+
+[ additions ] 
+
++ Add the changes for "Copy as HTML" to replace the "Copy for Discourse"
+  function, now that we've shut down the old YaBB discourse board.
+  http://code.google.com/p/processing/issues/detail?id=271
+
++ Option to disable re-opening sketches when you start Processing. 
+  The default will stay the same, but if you don't like the feature, 
+  alter your preferences.txt file to change:
+  last.sketch.restore=true
+  to the following:
+  last.sketch.restore=false
+  The issue was originally filed here:
+  http://dev.processing.org/bugs/show_bug.cgi?id=1501
+  http://code.google.com/p/processing/issues/detail?id=245
+  However the main problem with this is that due to other errors, the wrong
+  sketches are being opened, sketches are sometimes forgotten, or windows
+  are opened concurrently on top of one another, creating a bad situation:
+  http://code.google.com/p/processing/issues/detail?id=177
+  http://code.google.com/p/processing/issues/detail?id=179
+  Those bugs are not yet fixed, but will be addressed in future releases.
+
++ Option to change the default naming of sketches via preferences.txt. 
+  First, you can change the prefix, which defaults to:
+  editor.untitled.prefix=sketch_
+  And the suffix is handled using dates. The current default (since 1.0) is:
+  editor.untitled.suffix=MMMdd
+  Or if you want to switch back to the old (six digit) style, you could use:
+  editor.untitled.suffix=yyMMdd
+  http://dev.processing.org/bugs/show_bug.cgi?id=1091
+
++ Updated bundled JRE/tools to 6u20 for Windows and Linux
+
++ Several SVG fixes and additions, including some tweaks from PhiLho. These
+  changes will be documented in a future release once the API changes are
+  complete.
+
++ Added option to launch a sketch directly w/ linux. Thanks to Larry Kyrala.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1549
+
++ Pass actual exceptions from InvocationTargetException in registered 
+  methods, which improves how exceptions are reported with libraries.
+
++ Added loading.gif to the js version of the applet loader. Not sure 
+  if this is actually working or not, but it's there.
+
+[ android ] 
+
++ Added permissions for INTERNET and WRITE_EXTERNAL_STORAGE to the default
+  AndroidManifest.xml file. This will be addressed in greater detail here:
+  http://code.google.com/p/processing/issues/detail?id=275
+  And with the implementation of code signing here:
+  http://code.google.com/p/processing/issues/detail?id=222
+
++ Lots of work happening underneath with regards to Android, more updates
+  soon as things start evening out a bit.
+
++ Defaulting to a WVGA screen for the default Processing AVD. 
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0184 - 14 April 2010
+
+Pre-release version with more bug fixes. Proper release notes will 
+accompany an actual release. If you're curious in the meantime, look
+at todo.txt and done.txt from the source tree.
+
++ The 'Export' option now works in Android, so that you can get at 
+  the debug APK that's created.
+
++ Problems finding javac.exe on Windows should now be fixed. 
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0183 - 31 March 2010
+
+Bug fixes for Android, should remove the API v5 requirement and make
+things work fine with API v6, the new minimum.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0182 - 29 March 2010 
+
+Bug fix pre-release. This updates three areas:
+
++ All known bugs with auto-format have been fixed (!)
+
++ A handful of bug fixes for the Java 5 syntax changes.
+
++ Fixes for using text with PDF Export.
+
+A more thorough revisions update will be written for the next full
+release version (1.2? 1.5? 2.0?) that includes all these changes.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0181 - 19 March 2010
+
+Another update for the preprocessor changes (see below).
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0180 - 15 March 2010
+
+This is a interim release with a reworked preprocessor that adds Java 5 
+syntax. We're releasing this interim version because we need help testing 
+it since it has an impact on any sketch created in the Processing environment.
+Basically, we mighta goofed something up big, and we wanna catch it before
+we throw it to the wolves. 
+
+The release also fixes a number of preprocessor bugs. Those changes will
+be documented a bit later. 
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.1 (REV 0179) - 11 March 2010
+
+This is the first general-purpose release since 1.0.9. The text below merges 
+all of the changes from all the interim revisions, with the exception of the
+changes for the upcoming Android tools, which are not enabled in this release.
+
+Lots of bug fixes over 1.0.9, and several changes that improve how fonts are
+handled. Because of the large number of changes (and that some functionality
+actually changes, if that's actually a word), this is release 1.1 instead
+of release 1.0.10. Which is nice, because release 1.0.10 sounds baffling.
+
+[ font changes ]
+
++ It's no longer necessary to use textFont() before text() and other 
+  text-handling functions. The default "SansSerif" font is used, which 
+  varies by platform. 
+
++ Also in this release, the createFont() method will only load characters 
+  as they are used, which should greatly improve the font situation on 
+  non-Roman systems like Japanese. This will use far less memory, and should
+  be all around much more efficient. Formerly, createFont() took several 
+  seconds to run, depending on the speed of your system. 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1111
+
++ Fixed a problem with the Create Font tool ignoring the 'smooth' setting
+  on some systems.
+
++ Fixed a separate problem with the createFont() method also ignoring the
+  'smooth' setting.
+
++ With the Create Font tool, you can also specify what Unicode character 
+  blocks you'd like to use, making a much smaller font.
+
++ Fonts are no longer power of 2 by default. This should also make them more
+  memory efficient. With future OpenGL updates, this will work even better.
+
+[ other changes ] 
+
++ Lots of edits to the HTML that's used for exported applets. If JavaScript
+  is enabled, Sun's new loading functions are used, which offer the best
+  compatibility across browsers. If not, the old loading method is used.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1057
+
++ Changed the OpenGL HTML template to load differently, which should fix a
+  NullPointerException in JOGLAppletLanucher with Java 6 Update 18 on Windows,
+  and should also be more efficient altogether, because the JOGL libraries can 
+  be downloaded just once from Sun, rather than for each sketch that uses them.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1452
+
++ Code from Takachin that handles full input method support in the editor for
+  Japanese and other scripts that are more complicated than Roman text.
+  http://dev.processing.org/bugs/show_bug.cgi?id=854
+  Thanks Takachin! 
+
++ Now using iText 2.1.7.
+
++ Changed how imports are handled in sketches. This may break some sketches
+  that use java.xxx packages that aren't covered in the Processing reference.
+
++ With great help from Hansi, moved the build scripts over to Ant.
+  http://dev.processing.org/bugs/show_bug.cgi?id=151
+  Also moved the special JRE for Linux and Windows out of SVN. It'll only be
+  downloaded when 'ant dist' is run. 
+
++ Javadoc is slowly improving. More on that later.
+
++ Deprecated 'screen', and added screenWidth and screenHeight. Discussion here:
+  http://dev.processing.org/bugs/show_bug.cgi?id=1499
+
+[ bug fixes ] 
+
++ Fix for filter(DILATE/ERODE) from Dave Bollinger
+  http://dev.processing.org/bugs/show_bug.cgi?id=1477
+
++ Added implementation for get/set methods inside PImage (w/o pixels[])
+
++ Updated JNA to version 3.2.4 to support Windows 7 64-bit
+  http://dev.processing.org/bugs/show_bug.cgi?id=1424
+  Thanks to Maik for tracking down the problem and solution!
+
++ Fix from taifun_browser to handle texture memory leak with OpenGL and P3D.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1423
+
++ Hitting ESC inside Color Selector would quit Processing
+  http://dev.processing.org/bugs/show_bug.cgi?id=1006
+
++ To fix video, and some other libraries on Snow Leopard, exported applications
+  are now explicitly set to run 32-bit on OS X.
+
++ Fix LITERAL_class so that blah.class syntax can be used in PDE code. 
+  Found and fixed by Christian Thiemann. Thank you!
+  http://dev.processing.org/bugs/show_bug.cgi?id=1466
+
++ Fix from Chris Lonnen to lock the minimum size for the main processing editor
+  frame. (When too small, the console would disappear, etc.) Thanks Chris!
+  http://dev.processing.org/bugs/show_bug.cgi?id=25
+
++ If you overwrite PApplet.main(), you're responsible for what happens.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1446
+
++ Re-enabled hack for temporary clipping. Clipping still needs to be
+  implemented properly, however. Please help!
+  http://dev.processing.org/bugs/show_bug.cgi?id=1393
+
++ SVG paths that use 'e' (exponent) not handled properly
+  http://dev.processing.org/bugs/show_bug.cgi?id=1408
+
++ Change build scripts to use UTF-8 for encoding with javac
+  http://dev.processing.org/bugs/show_bug.cgi?id=1394
+
++ Fix ant.jar/ant-launcher.jar error in the windows/linux build scripts
+  http://dev.processing.org/bugs/show_bug.cgi?id=1403
+
++ Fixed a problem where imports inside comments were being included.
+
+[ keys ] 
+
++ Added ctrl-ins, shift-ins, shift-delete for cut/copy/paste on Windows and 
+  Linux, but disabled by default on Mac OS X. You can change the setting by
+  altering "editor.keys.alternative_cut_copy_paste" in preferences.txt.
+  http://dev.processing.org/bugs/show_bug.cgi?id=162
+
++ Added a preference to change shift-backspace to just mean backspace, 
+  rather than delete. Set this entry in preferences.txt:
+  editor.keys.shift_backspace_is_delete = true
+  http://dev.processing.org/bugs/show_bug.cgi?id=1463
+
++ Added an option for home and end keys traveling to the start/end of the 
+  current line rather than the beginning/ending of a sketch. The latter is
+  the HIG default for Mac OS X, but drives some people nuts. Change with:
+  editor.keys.home_and_end_travel_far = false
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0178 - 4 March 2010
+
+Tons of Android work in this release. A2D has been tested and runs correctly
+for all of the examples in "Basics" and "Topics". A3D is not quite finished
+yet, and the size() command is still causing crashes. 
+
+This release also contains lots of work on Android Mode for the PDE, which
+is being worked on by Jonathan Feinberg.
+
+[ core ] 
+
++ Fix for filter(DILATE/ERODE) from Dave Bollinger
+  http://dev.processing.org/bugs/show_bug.cgi?id=1477
+
++ Deprecated 'screen', adding screenW and screenH. See discussion here:
+  http://dev.processing.org/bugs/show_bug.cgi?id=1499
+
++ Added implementation for get/set methods inside PImage (w/o pixels[])
+
+[ fixes to android core ] 
+
++ Fix noLoop() and static-mode sketches.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1467
+
++ Fix the freakout that happens with onPause()
+  http://dev.processing.org/bugs/show_bug.cgi?id=1483
+
++ App not pausing or closing when switching to another activity
+  http://dev.processing.org/bugs/show_bug.cgi?id=1404
+
++ Bezier curves were broken in A2D (extra point is drawn connecting the 
+  shape to the corner).
+
++ Fixed other minor bugs in shape drawing.
+
++ mask() now implemented in A2D
+
++ updatePixels() now work properly for A2D
+
++ set() should now be working
+
++ Using set() on an image that doesn't have a bitmap, or has pixels loaded.
+
++ requestImage() now working
+
++ Drastically improve the performance of the time functions (minute() et al)
+
++ Point wasn't detecting different stroke weights. 
+
++ Point wasn't working with strokeWeight > 1.
+
++ Fix rotate() bug (was using degrees instead of radians)
+  http://dev.processing.org/bugs/show_bug.cgi?id=1497
+
++ arc() now working properly
+
++ createGraphics() works, at least with A2D (or aliases P2D and JAVA2D)
+
++ Fixed "The application ... has stopped unexpectedly." when quitting slow app
+  http://dev.processing.org/bugs/show_bug.cgi?id=1485
+
++ test createFont()
+
++ createGraphics() broken
+  http://dev.processing.org/bugs/show_bug.cgi?id=1437
+
++ Remove legacy PGraphics3D class from processing.core.android
+  http://dev.processing.org/bugs/show_bug.cgi?id=1402
+
+[ android mode ] 
+
++ Exception handling is much improved.
+
++ Get stdout and stderr from the emulator/device (println() now works).
+  http://dev.processing.org/bugs/show_bug.cgi?id=1381
+
++ Removed the ANDROID_SDK env variable requirement.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1471
+  http://dev.processing.org/bugs/show_bug.cgi?id=1469
+
+
+PROCESSING REV 0177 - 21 February 2010
+
+Fix for the Android tools complaining "Open quote is expected for 
+attribute "{1}" associated with an element type android:minSdkVersion."
+
+Just posting a new revision because it's easier than writing instructions
+for swapping the pde.jar file.
+
+
+PROCESSING REV 0176 - 20 February 2010
+
+Android changes are at the top, changes for the rest of Processing are listed
+below that (a tipoff being that there's no PDF library on Android...)
+
+[ android ]
+
++ Minimum platform support is changing to 2.0 instead of 1.6. That means 
+  "Eclair" or later, and goodbye to my T-Mobile G1, undoubtedly the ugliest
+  cell phone I have ever owned. Hello to Droid and Nexus One. 
+  Performance is very poor on pre-2.0 devices anyway. 
+
++ Known issue: Sketches that use noLoop() are currently broken. 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1467
+
++ Added support for libraries and the code folder.
+
++ Classes have moved to the processing.core package instead of 
+  processing.android.core.
+
++ Slashes in the SDK path are now escaped properly on Windows.
+
++ Fix problems preventing Android Mode from running on Windows
+  http://dev.processing.org/bugs/show_bug.cgi?id=1432
+
++ The tint() method now works.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1435
+
++ loadFont() and text() now work properly. createFont() has not been tested.
+
+[ changes ] 
+
++ Lots of edits to the HTML that's used for exported applets. If JavaScript
+  is enabled, Sun's new loading functions are used, which offer the best
+  compatibility across browsers. If not, the old loading method is used.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1057
+
++ Changed the OpenGL HTML template to load differently, which should fix a
+  NullPointerException in JOGLAppletLanucher with Java 6 Update 18 on Windows,
+  and should also be more efficient altogether, because the JOGL libraries can 
+  be downloaded just once from Sun, rather than for each sketch that uses them.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1452
+
++ Code from Takachin that handles full input method support in the editor for
+  Japanese and other scripts that are more complicated than Roman text.
+  http://dev.processing.org/bugs/show_bug.cgi?id=854
+  Thanks Takachin! 
+
++ Downgraded the PDF library to use iText 1.5.4, because later versions seem
+  to load slower, and don't seem to offer additional benefits. If the PDF 
+  library gets worse, please post a bug and we'll go back to the 2.x release
+  we were using, or upgrade to the more recent 5.x series.
+
++ Changed how imports are handled in sketches. This may break some sketches
+  that use java.xxx packages that aren't covered in the Processing reference.
+
++ With great help from Hansi, moved the build scripts over to Ant.
+  http://dev.processing.org/bugs/show_bug.cgi?id=151
+  Also moved the special JRE for Linux and Windows out of SVN. It'll only be
+  downloaded when 'ant dist' is run. This makes the build and maintenance 
+  more of a mess for me, but will save me from people whining about the 
+  large files.
+
++ Javadoc is slowly improving. More on that later.
+
+[ bug fixes ] 
+
++ Updated JNA to version 3.2.4 to support Windows 7 64-bit
+  http://dev.processing.org/bugs/show_bug.cgi?id=1424
+  Thanks to Maik for tracking down the problem and solution!
+
++ Fix from taifun_browser to handle texture memory leak with OpenGL and P3D.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1423
+
++ Hitting ESC inside Color Selector would quit Processing
+  http://dev.processing.org/bugs/show_bug.cgi?id=1006
+
++ To fix video, and some other libraries on Snow Leopard, exported applications
+  are now explicitly set to run 32-bit on OS X.
+
++ Fix LITERAL_class so that blah.class syntax can be used in PDE code. 
+  Found and fixed by Christian Thiemann. Thank you!
+  http://dev.processing.org/bugs/show_bug.cgi?id=1466
+
++ Fix from Chris Lonnen to lock the minimum size for the main processing editor
+  frame. (When too small, the console would disappear, etc.) Thanks Chris!
+  http://dev.processing.org/bugs/show_bug.cgi?id=25
+
++ If you overwrite PApplet.main(), you're responsible for what happens.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1446
+
+[ keys ] 
+
++ Added ctrl-ins, shift-ins, shift-delete for cut/copy/paste on Windows and 
+  Linux, but disabled by default on Mac OS X. You can change the setting by
+  altering "editor.keys.alternative_cut_copy_paste" in preferences.txt.
+  http://dev.processing.org/bugs/show_bug.cgi?id=162
+
++ Changed shift-backspace to just mean backspace, rather than delete. You
+  can change back to the old behavior by setting this entry in preferences.txt:
+  editor.keys.shift_backspace_is_delete = true
+  http://dev.processing.org/bugs/show_bug.cgi?id=1463
+
++ Added an option for home and end keys traveling to the start/end of the 
+  current line rather than the beginning/ending of a sketch. The latter is
+  the HIG default for Mac OS X, but drives some people nuts. Change with:
+  editor.keys.home_and_end_travel_far = false
+
+[ fonts ]
+
++ Starting in this release, the createFont() method will only load characters 
+  as they are used, which should greatly improve the font situation on 
+  non-Roman systems like Japanese. This will use far less memory, and should
+  be all around much more efficient. Formerly, createFont() took several 
+  seconds to run, depending on the speed of your system. 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1111
+
++ Fixed a problem with the Create Font tool ignoring the 'smooth' setting
+  on some systems.
+
++ Fixed a separate problem with the createFont() method also ignoring the
+  'smooth' setting.
+
++ With the Create Font tool, you can also specify what Unicode character 
+  blocks you'd like to use, making a much smaller font.
+
++ Fonts are no longer power of 2 by default. This should also make them more
+  memory efficient. With future OpenGL updates, this will work even better.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING REV 0172 through 0175
+
+These releases are mostly about Android (listed at the top), but also contain
+any interim fixes that happened in the meantime.
+
+[ android ] 
+
++ Fix problem with Android HTML dialog box
+  several <BR> items showing up when first loading
+  http://dev.processing.org/bugs/show_bug.cgi?id=1395
+
++ Fix problem with windows claiming "does not appear to contain an Android SDK"
+
++ Implement loadImage() and other loadXxxx() functions
+  http://dev.processing.org/bugs/show_bug.cgi?id=1414
+
++ Correctly handle space bar, tab, other special keys
+  http://dev.processing.org/bugs/show_bug.cgi?id=1405
+
++ Fix problem with motion events not coming through
+  http://dev.processing.org/bugs/show_bug.cgi?id=1382
+
++ "taskdef class com.android.ant.SetupTask cannot be found" on Linux
+  http://dev.processing.org/bugs/show_bug.cgi?id=1407
+
++ Updates for r4 version of the SDK.
+
+[ changes ] 
+
++ In the editor toolbar, shift-new and shift-open on the toolbar open a 
+  new window. Also, when shift is down, change text of the toolbar item 
+  to represent what it does. 
+
++ Replaced com.apple.eawt.Application invocation to deal with deprecation.
+  This may cause problems with older releases (or on 10.4 or 10.5), not sure.
+
++ Use xdg-open as launcher on linux
+  http://dev.processing.org/bugs/show_bug.cgi?id=1358
+
++ Default wildcard imports are causing naming conflicts, changed how 
+  they're set up in the preferences file.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1103
+
++ Changed createInputRaw() to only bother checking URLs if : present
+
+[ bug fixes ] 
+
++ Re-enabled hack for temporary clipping. Clipping still needs to be
+  implemented properly, however. Please help!
+  http://dev.processing.org/bugs/show_bug.cgi?id=1393
+
++ SVG paths that use 'e' (exponent) not handled properly
+  http://dev.processing.org/bugs/show_bug.cgi?id=1408
+
++ Change build scripts to use UTF-8 for encoding with javac
+  http://dev.processing.org/bugs/show_bug.cgi?id=1394
+
++ Fix ant.jar/ant-launcher.jar error in the windows/linux build scripts
+  http://dev.processing.org/bugs/show_bug.cgi?id=1403
+
++ Fixed a problem where imports inside comments were being included.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.9 (REV 0171) - 20 October 2009
+
+Happy birthday to Casey!
+
+[ bug fixes ]
+
++ Removed NPOT texture support until further testing, because it was 
+  resulting in blurring images in OPENGL sketches.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1352
+
++ Complete the excision of the Apple menu bug code.
+  http://dev.processing.org/bugs/show_bug.cgi?id=786
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.8 (REV 0170) - 18 October 2009
+
+A bonfire of bug fixes. 
+
+[ environment ]
+
++ Fix bug causing preferences to not save correctly.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1320
+  http://dev.processing.org/bugs/show_bug.cgi?id=1322
+  http://dev.processing.org/bugs/show_bug.cgi?id=1325
+  http://dev.processing.org/bugs/show_bug.cgi?id=1329
+  http://dev.processing.org/bugs/show_bug.cgi?id=1336
+  http://dev.processing.org/bugs/show_bug.cgi?id=1337
+  http://dev.processing.org/bugs/show_bug.cgi?id=1344
+
++ Remove menu dimming code, in-frame menu bar, and warning message on OS X.
+  A year later, Apple fixed the spinning wheel w/ the menu bar problem.
+  http://dev.processing.org/bugs/show_bug.cgi?id=786
+
++ Fix "Unrecognized option: -d32" on OS X 10.4
+  http://dev.processing.org/bugs/show_bug.cgi?id=1324
+
++ Update the outdated "Get the latest Java Plug-in here" in exported applets.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1331
+
++ Use temporary files when saving files inside the PDE. Prevents problems
+  when the save goes badly (e.g. disk is full).
+  http://dev.processing.org/bugs/show_bug.cgi?id=967
+
++ Fix problem with "Save changes before closing?" was being ignored.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1193
+
++ Fix problems with adding/deleting tabs.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1332
+  http://dev.processing.org/bugs/show_bug.cgi?id=1092
+
++ Saving the project with the same name (but different case) 
+  as an existing tab was deleting code on Windows and OS X.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1102
+
+[ core ] 
+
++ filter(RGB) supposed to be filter(OPAQUE) 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1346
+
++ Implement non-power-of-2 textures for OpenGL (on cards where available). 
+  This is a partial fix for texture edge problems:
+  http://dev.processing.org/bugs/show_bug.cgi?id=602
+
++ Fix get() when used with save() in OpenGL mode
+
++ Immediately update projection with OpenGL. In the past, projection 
+  updates required a new frame. This also prevents camera/project from 
+  being reset when the drawing size is changed.
+
++ Removed an error that caused the cameraNear value to be set to -8. 
+  This may cause other problems with drawing/clipping however.
+
++ Removed methods from PApplet that use doubles. These were only temporarily
+  available in SVN, but that's that.
+
++ Use temporary file with saveStrings(File) and saveBytes(File).
+
+[ updates ]
+
++ Updated to Minim 2.0.2. (Thanks Damien!)
+  http://code.compartmental.net/tools/minim
+
++ Updated Java on Linux and Windows to 6u16.
+
++ Updated Quaqua to 6.2 on Mac OS X.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.7 (REV 0169) - 4 September 2009
+
+Bug fixes and updates, also some tweaks for Mac OS X Snow Leopard. 
+
+[ changes ] 
+
++ Tweaks for Mac OS X Snow Leopard, to force it to run in 32-bit mode.
+  This should bring back the video library (if temporarily), and hopefully
+  fix serial as well, though I didn't have a serial device handy to test. 
+
++ Fix problem where line highlighting was off in 'static' mode.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1263
+
++ Auto-format was killing Unicode characters (how did this last so long?)
+  http://dev.processing.org/bugs/show_bug.cgi?id=1312
+
++ PVector.angleDistance() returning NaN due to precision errors
+  http://dev.processing.org/bugs/show_bug.cgi?id=1316
+
++ Removed a major try/catch block from PApplet.main(), hopefully 
+  this will allow some exception stuff to come through properly.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.6 (REV 0168) - 12 August 2009
+
+Bug fixes and minor changes. Most important are replacement JOGL libraries
+so that OpenGL applets won't present an "expired certificate" error.
+
+[ bug fixes ] 
+
++ Replaced the faulty JOGL library that had expired certificates (Sun bug).
+  http://dev.processing.org/bugs/show_bug.cgi?id=1271
+  https://jogl.dev.java.net/servlets/ProjectDocumentList?folderID=9260&expandFolder=9260&folderID=0
+
++ Updated the Linux launcher script that enables Processing to be run
+  from other directories, symlinks, or from launch items.
+  http://dev.processing.org/bugs/show_bug.cgi?id=825
+  Thanks to Ferdinand Kasper for the fix!
+
++ strokeWeight() was making lines 2x too thick with P2D
+  http://dev.processing.org/bugs/show_bug.cgi?id=1283
+
++ PImage.getImage() setting the wrong image type
+  http://dev.processing.org/bugs/show_bug.cgi?id=1282
+
++ image() not working with P2D, P3D, and OPENGL when noFill() used
+  http://dev.processing.org/bugs/show_bug.cgi?id=1299
+  http://dev.processing.org/bugs/show_bug.cgi?id=1222
+
++ Auto format problem with program deeper then 10 levels
+  http://dev.processing.org/bugs/show_bug.cgi?id=1297
+
++ Fixed a crash on startup problem (console being null)
+
++ Recursive subfolder copy of library folders when exporting application
+  http://dev.processing.org/bugs/show_bug.cgi?id=1295
+
+[ changes ]
+
++ PDF member functions set protected instead of private
+  http://dev.processing.org/bugs/show_bug.cgi?id=1276
+
++ On OS X, update Info.plist to be 32/64 explicit and also updated 
+  JavaApplicationStub for update 4.
+
++ Clicking the preferences location in the Preferences window will 
+  now open the parent folder for the preferences file. 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1279
+
++ Update to Java 6 update 15 for the Windows and Linux releases.
+
+[ fixed earlier ] 
+
++ Mangled menu text with Java 6u10.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1065
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.5 (REV 0167) - 7 June 2009
+
+Bug fix release, mostly dealing with regressions from 1.0.4.
+
+[ bug fixes ] 
+
++ Make the tab key work again inside the editor
+  http://dev.processing.org/bugs/show_bug.cgi?id=1267
+
++ Deal with duplicate entries for sketchbook in the file menu
+  http://dev.processing.org/bugs/show_bug.cgi?id=1260
+
+[ changes ]
+
++ Support for smooth text in the PDE editor. Set editor.antialias=true
+  inside preferences.txt to enable smooth text.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1266
+
++ Updated reference files.
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.4 (REV 0166) - 31 May 2009
+
+Bug fix release. 
+
+[ changes ] 
+
++ Changed the workaround for Apple's Java bug related to the menus in OS X.
+  Rather than placing the menubar inside the sketch window, File > Sketchbook
+  and File > Examples are simply dimmed out. Instead, use the Open button
+  on the toolbar, which provides access to the same items. The preference
+  to place the menu bar inside the window is still available, in case you 
+  prefer the previous workaround.
+  http://dev.processing.org/bugs/show_bug.cgi?id=786
+
++ Also updated the included runtime on Windows and Linux to Java 6u14.
+
+[ bug fixes ]
+
++ Fixed IDE crash when changing color scheme on windows 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1237
+
++ Typo in the Linux shell script was preventing it from running
+  http://dev.processing.org/bugs/show_bug.cgi?id=1250
+
++ OS X finder info on application updated to say 1.0.4
+  http://dev.processing.org/bugs/show_bug.cgi?id=1226
+
++ Removed warning message "Non-String for 8 value in 'Properties' 
+  sub-dictionary in 'Java' sub-dictionary of Info.plist" on OS X
+
++ Added warning to build script for users on OS X 10.4
+  http://dev.processing.org/bugs/show_bug.cgi?id=1179
+
++ Disable point() going to set() from PGraphicsJava2D. The set() command 
+  doesn't honor alpha consistently, and it also causes problems with PDF
+
++ PImage cacheMap problem when using PImage.get() 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1245
+
++ Fix problems with > 512 points and P3D/OPENGL
+  http://dev.processing.org/bugs/show_bug.cgi?id=1255
+  Thanks to user DopeShow for the patch
+
++ imageMode(CENTER) doesn't work properly with P2D
+  http://dev.processing.org/bugs/show_bug.cgi?id=1232
+
++ Reset matrices when using beginRecord() with PDF
+  http://dev.processing.org/bugs/show_bug.cgi?id=1227
+
++ Resizing window no longer distorts OpenGL graphics
+  http://dev.processing.org/bugs/show_bug.cgi?id=1176
+  Many thanks to Pablo Funes for the patch
+
++ Fix significant point() and set() slowdown on OS X
+  http://dev.processing.org/bugs/show_bug.cgi?id=1094
+
+[ known issues ] 
+
++ Currently no 64-bit support for any platforms. On some platforms, you'll 
+  simply need to replace the Java folder with the distribution with something
+  more suitable for your operating system. 
+
++ Command line support is currently broken
+  http://dev.processing.org/bugs/show_bug.cgi?id=1048
+
++ Text of menus/interface elements sometimes mangled (e.g. toolbar repeats
+  several times, other oddness). See bug report for a workaround
+  http://dev.processing.org/bugs/show_bug.cgi?id=1065
+
++ Video library threading problems with other libraries
+  http://dev.processing.org/bugs/show_bug.cgi?id=882
+
++ See dev.processing.org/bugs for much, much more!
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.3 (REV 0165) - 24 February 2009
+
+Bug fix release to repair a couple of regressions caused by changes in 1.0.2, 
+as well as a couple other new problems encountered since.
+
+[ bug fixes ]
+
++ endRecord or endRaw produces a RuntimeException with the PDF library
+  http://dev.processing.org/bugs/show_bug.cgi?id=1169
+
++ Problem with beginRaw/endRaw and OpenGL
+  http://dev.processing.org/bugs/show_bug.cgi?id=1171
+
++ Set strokeWeight on points and lines with begin/endRaw
+  http://dev.processing.org/bugs/show_bug.cgi?id=1172
+
++ Fix strokeWeight quirks with P3D when used with points and lines
+
++ ArrayIndexOutOfBoundsException with point()
+  http://dev.processing.org/bugs/show_bug.cgi?id=1168
+
+[ changes ] 
+
++ Update to iText 2.1.4 for the PDF library
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.2 (REV 0164) - 21 February 2009
+
+This release fixes many bugs and adds two minor functions to the XML library.
+
+[ bug fixes ] 
+
++ Empty "code" folder causing problems with Export
+  http://dev.processing.org/bugs/show_bug.cgi?id=1084
+
++ Sketches not loading when .pde file is opened from the Windows Explorer 
+  on Asian Windows systems. 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1089
+
++ Disable copying of metadata and resource forks in OS X build
+  http://dev.processing.org/bugs/show_bug.cgi?id=1098
+
++ Suppress goofy Apple error message about JVMArchs 
+
++ StringIndexOutOfBoundsException caused by import statements with no dots
+  http://dev.processing.org/bugs/show_bug.cgi?id=1145
+
++ Pressing <Esc> in "Are you sure you want to Quit?" dialog causes quit
+  http://dev.processing.org/bugs/show_bug.cgi?id=1134
+
++ Fix QUADS and QUAD_STRIP with P2D
+  http://dev.processing.org/bugs/show_bug.cgi?id=1162
+
++ ArrayIndexOutOfBoundsException when drawing curves in P3D and OPENGL
+  http://dev.processing.org/bugs/show_bug.cgi?id=1153
+
++ Problems with negatve arc() angles in OpenGL, P3D, other inconsistencies
+  http://dev.processing.org/bugs/show_bug.cgi?id=1095
+
++ requestImage() causing problems with JAVA2D
+
++ Fix minor strokeWeight bug with OpenGL
+
++ Minor bug fix to SVG files that weren't being resized properly
+
++ OpenGL is rendering darker in 0149+
+  http://dev.processing.org/bugs/show_bug.cgi?id=958
+  Thanks to Dave Bollinger for tracking this down and providing a solution
+
++ OutOfMemoryError with ellipse() in P3D and OPENGL
+  http://dev.processing.org/bugs/show_bug.cgi?id=1086
+
++ ArrayIndexOutOfBoundsException with P3D and OPENGL
+  http://dev.processing.org/bugs/show_bug.cgi?id=1117
+
++ point(x,y) ignores noStroke() in some renderers
+  http://dev.processing.org/bugs/show_bug.cgi?id=1090
+
++ Fix Windows startup problem when scheme coloring was odd
+  http://dev.processing.org/bugs/show_bug.cgi?id=1109
+  Changes to the system theme could cause Processing to not launch
+
++ Fix several point() problems with P3D
+  http://dev.processing.org/bugs/show_bug.cgi?id=1110
+
++ nextPage() not working properly with PDF as the renderer
+  http://dev.processing.org/bugs/show_bug.cgi?id=1131
+
++ Save style information when nextPage() is called in PDF renderer
+
++ beginRaw() broken (no DXF, etc working)
+  http://dev.processing.org/bugs/show_bug.cgi?id=1099
+  http://dev.processing.org/bugs/show_bug.cgi?id=1144
+
++ Fix algorithm for quadratic to cubic curve conversion 
+  http://dev.processing.org/bugs/show_bug.cgi?id=1122
+  Thanks to user bits.in.shambles for providing a fix.
+
++ tint() not working in P2D
+  http://dev.processing.org/bugs/show_bug.cgi?id=1132
+
++ blend() y coordinates inverted when using OpenGL
+  http://dev.processing.org/bugs/show_bug.cgi?id=1137
+
++ Fix for getChild() and getChildren() with XML elements that have null names
+
+[ additions ] 
+
++ Added listChildren() method to XMLElement
+
++ Added optional toString(boolean) parameter to enable/disable indents
+  in XMLElement
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0.1 (REV 0163) - 29 November 2008
+
+Processing 1.0 has arrived! You can read an overview of changes introduced
+in the last few months here: http://processing.org/reference/changes.html
+
+Also see the "known issues" section of the troubleshooting page:
+http://processing.org/reference/troubleshooting/#known
+
+This release (1.0.1) fixes a handful of issues that only showed up once we 
+had more testing, particularly with the wider audience we've received in the
+past week following the announcement.
+
+[ bug fixes ] 
+
++ ArrayIndexOutOfBoundsException with File > New
+  http://dev.processing.org/bugs/show_bug.cgi?id=1067
+
++ "CallStaticVoidMethod() threw an exception" on some Mac OS X machines
+  http://dev.processing.org/bugs/show_bug.cgi?id=1063
+  http://dev.processing.org/bugs/show_bug.cgi?id=1078
+
++ "editor.indent" preference setting does not work properly
+  http://dev.processing.org/bugs/show_bug.cgi?id=1073
+
++ Fixed some "An error occurred while starting the application" problems
+
++ Added a note about the Minim library to the changes page.
+
++ Disable parsing of regexps with the split() command
+  http://dev.processing.org/bugs/show_bug.cgi?id=1060
+
++ Fixed ArrayIndexOutOfBoundsException in ellipseImpl().
+  http://dev.processing.org/bugs/show_bug.cgi?id=1068
+
++ Fixed problem where small ellipses weren't showing up.
+
+[ changes ] 
+
++ Implement multi-line tab via tab key (also outdent)
+  http://dev.processing.org/bugs/show_bug.cgi?id=1075
+
++ Code with 'import' and a space incorrectly parsed as an import statement
+  http://dev.processing.org/bugs/show_bug.cgi?id=1064
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+PROCESSING 1.0 (REV 0162) - 24 November 2008
+
+Processing 1.0 has arrived! You can read an overview of changes introduced
+in the last few months here: http://processing.org/reference/changes.html
+
+[ known issues ] 
+
++ Sketches that size(w, h, OPENGL) and do not clear the background on each 
+  frame can cause major flickering or problems when the screen clears anyway.
+  There are several possible solutions:
+
+  1. You may need to disable the default 2x smoothing by using
+     hint(DISABLE_OPENGL_2X_SMOOTH).
+  
+  2. Update the drivers for your graphics card.
+
+  3. Get a decent graphics card -- the OpenGL renderer is for advanced
+     use, we don't support using it with cheaper built-in graphics hardware 
+     like the Intel GMA 950. 
+
+  4. If you're running Windows Vista, try disabling the Aero theme. 
+
+  This flickering issue is being tracked here:
+  http://dev.processing.org/bugs/show_bug.cgi?id=1056
+
++ "An error occurred while starting the application" when launching
+  Processing.exe on Windows. This is a high priority however we cannot
+  reproduce it on any of our test machines, which has delayed a fix.
+  http://dev.processing.org/bugs/show_bug.cgi?id=986
+
++ With P2D, P3D, and OPENGL, series of connected lines (such as the stroke 
+  around a polygon, triangle, or ellipse) produce unattractive results when 
+  strokeWeight is set.
+  http://dev.processing.org/bugs/show_bug.cgi?id=955
+
++ Unlike most applications, the menu bar is inside the editor window when
+  Processing is used with Mac OS X 10.5. This is a workaround for an Apple 
+  bug in Java 1.5 and 1.6 on Mac OS X 10.5 that causes the menu bar to be 
+  so excessively slow that the application appears to have crashed.
+  http://dev.processing.org/bugs/show_bug.cgi?id=786
+
+  Please file a bug report with Apple at bugreporter.apple.com if you want
+  this fixed. The problem has existed since the spring, and we first filed 
+  a bug  with them in June, and we have received no indication that it when 
+  it will be fixed, or if it will ever be fixed.
+
+  Or if you want to take your chances with the slow menu bar, 
+  you can change the default setting in the Preferences window.
+
++ Sketches that use the video library plus OpenGL have a problem on some
+  OS X machines. The workaround is listed in Comment #16 of this bug:
+  http://dev.processing.org/bugs/show_bug.cgi?id=882#c16
+
++ Command line support arrived in a recent release, but is not working yet.
+  http://dev.processing.org/bugs/show_bug.cgi?id=1048
+
++ OpenGL rendering is more dim/darker in release 0149 and later.
+  http://dev.processing.org/bugs/show_bug.cgi?id=958
+  Any help tracking this down would be most appreciated.
+
++ The first few frames of OpenGL sketches on Windows run slowly.
+  http://dev.processing.org/bugs/show_bug.cgi?id=874
+
++ When used with P3D, strokeWeight does not interpolate the Z-coordinates 
+  of the lines, which means that when rotated, these flat lines may 
+  disappear. (Since, uh, lines are, you know, flat.) The OPENGL renderer 
+  setting does not share this problem because it always draws lines 
+  perpendicular to the screen (which we hope to do in a future release).
+  http://dev.processing.org/bugs/show_bug.cgi?id=956
+
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+
+in spite of their historical feel good campiness, i've removed the
+notes from earlier releases because this file was getting out of hand. 

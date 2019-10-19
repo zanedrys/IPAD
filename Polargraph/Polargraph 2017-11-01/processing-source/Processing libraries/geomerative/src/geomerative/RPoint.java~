@@ -1,0 +1,274 @@
+/**
+    Copyright 2004-2008 Ricard Marxer  <email@ricardmarxer.com>
+
+    This file is part of Geomerative.
+
+    Geomerative is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Geomerative is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Geomerative.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+package geomerative;
+
+import processing.core.*;
+
+/**
+ * RPoint is a very simple interface for creating, holding and drawing 2D points.
+ * @eexample RPoint
+ * @usage Geometry
+ * @related x
+ * @related y
+ */
+public class RPoint extends PVector
+{
+
+  /**
+   * Create a new point, given the coordinates.
+   * @eexample RPoint_constructor
+   * @usage Geometry
+   * @param x  the x coordinate of the new point
+   * @param y  the y coordinate of the new point
+   * @related x
+   * @related y
+   */
+  public RPoint(float x,float y)
+  {
+    super(x, y);
+  }
+
+  public RPoint(double x, double y)
+  {
+    super((float)x, (float)y);
+  }
+
+  /**
+   * Create a new point at (0, 0).
+   * @eexample RPoint_constructor
+   * @usage Geometry
+   * @related x
+   * @related y
+   */
+  public RPoint()
+  {
+    super(0, 0);
+  }
+
+  /**
+   * Copy a point.
+   * @eexample RPoint_constructor
+   * @usage Geometry
+   * @param p  the point we wish to make a copy of
+   * @related x
+   * @related y
+   */
+  public RPoint(RPoint p)
+  {
+    this(p.x, p.y);
+  }
+
+  /**
+   * @invisible
+   */
+  float getX()
+  {
+    return this.x;
+  }
+
+  /**
+   * @invisible
+   */
+  float getY()
+  {
+    return this.y;
+  }
+
+
+  /**
+   * @invisible
+   */
+  void setLocation(float nx, float ny)
+  {
+    set(nx, ny, 0);
+  }
+
+  /**
+   * Use this to apply a transformation to the point.
+   * @eexample RPoint_transform
+   * @usage Geometry
+   * @param m  the transformation matrix to be applied
+   * @related translate ( )
+   * @related rotate ( )
+   * @related scale ( )
+   */
+  public void transform(RMatrix m)
+  {
+    float tempx = m.m00*x + m.m01*y + m.m02;
+    float tempy = m.m10*x + m.m11*y + m.m12;
+
+    x = tempx;
+    y = tempy;
+  }
+
+  /**
+   * Apply a translation to the point.
+   * @eexample RPoint_translate
+   * @usage Geometry
+   * @param tx  the coefficient of x translation
+   * @param ty  the coefficient of y translation
+   * @related transform ( )
+   * @related rotate ( )
+   * @related scale ( )
+   */
+  public void translate(float tx, float ty)
+  {
+    add(tx, ty, 0);
+  }
+
+  /**
+   * Apply a translation to the point.
+   * @eexample RPoint_translate
+   * @usage Geometry
+   * @param t  the translation vector to be applied
+   * @related transform ( )
+   * @related rotate ( )
+   * @related scale ( )
+   */
+  public void translate(RPoint t)
+  {
+    add(t);
+  }
+
+  /**
+   * Apply a rotation to the point, given the angle and optionally the coordinates of the center of rotation.
+   * @eexample RPoint_rotate
+   * @usage Geometry
+   * @param angle  the angle of rotation to be applied
+   * @param vx  the x coordinate of the center of rotation
+   * @param vy  the y coordinate of the center of rotation
+   * @related transform ( )
+   * @related translate ( )
+   * @related scale ( )
+   */
+  public void rotate(float angle, float vx, float vy)
+  {
+    sub(vx, vy, 0);
+    
+    rotate(angle);
+    
+    add(vx, vy, 0);
+  }
+
+
+  /**
+   * Apply a rotation to the point, given the angle and optionally the point of the center of rotation.
+   * @eexample RPoint_rotate
+   * @usage Geometry
+   * @param angle  the angle of rotation to be applied
+   * @param v  the position vector of the center of rotation
+   * @related transform ( )
+   * @related translate ( )
+   * @related scale ( )
+   */
+  public void rotate(float angle, RPoint v)
+  {
+    sub(v);
+    
+    rotate(angle);
+    
+    add(v);
+  }
+
+  /**
+   * Apply a scaling to the point, given the scaling factors.
+   * @eexample RPoint_scale
+   * @usage Geometry
+   * @param sx  the scaling coefficient over the x axis
+   * @param sy  the scaling coefficient over the y axis
+   * @related transform ( )
+   * @related translate ( )
+   * @related rotate ( )
+   */
+  public void scale (float sx, float sy)
+  {
+    this.x *= sx;
+    this.y *= sy;
+  }
+
+  /**
+   * Apply a scaling to the point, given a scaling factor.
+   * @eexample RPoint_scale
+   * @usage Geometry
+   * @param s  the scaling coefficient for a uniform scaling
+   * @related transform ( )
+   * @related translate ( )
+   * @related rotate ( )
+   */
+  public void scale (float s)
+  {
+    mult(s);
+  }
+
+  /**
+   * Apply a scaling to the point, given a scaling vector.
+   * @eexample RPoint_scale
+   * @usage Geometry
+   * @param s  the scaling vector
+   * @related transform ( )
+   * @related translate ( )
+   * @related rotate ( )
+   */
+  public void scale (RPoint s)
+  {
+    mult(s);
+  }
+
+  /**
+   * Use this to obtain the norm of the point.
+   * @eexample RPoint_norm
+   * @usage Geometry
+   * @return float, the norm of the point
+   * @related angle ( )
+   */
+  public float norm ()
+  {
+    return mag();
+  }
+
+  /**
+   * Use this to obtain the square norm of the point.
+   * @eexample RPoint_norm
+   * @usage Geometry
+   * @return float, the norm of the point
+   * @related angle ( )
+   */
+  public float sqrnorm ()
+  {
+    return magSq();
+  }
+
+  /**
+   * Use this to obtain the angle between the vector and another vector
+   * @eexample RPoint_angle
+   * @usage Geometry
+   * @param p  the vector relative to which we want to evaluate the angle
+   * @return float, the angle between the two vectors
+   * @related norm ( )
+   */
+  public float angle (RPoint p)
+  {
+    return PVector.angleBetween((PVector)this, (PVector)p);
+  }
+
+  public void print(){
+    System.out.print("("+x+","+y+")\n");
+  }
+}

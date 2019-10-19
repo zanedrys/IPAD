@@ -1,0 +1,389 @@
+Polargraph changelog.
+
+2017-11-01
+Re-package of same versions, now WITHOUT MacOS precompiled binary 
+because of reports of virus (http://www.polargraph.co.uk/forum/polargraphs-group2/code-software-forum2/polargraph-controller-doing-mining-on-osx-thread642/).
+
+
+2017-05-10
+polargraphcontroller 2.4.2
+* Expanded the serial port listing window.
+* Added MacOS precompiled binary.
+
+polargraph_firmware_polarshield 1.4
+* Added autorun feature. Machine will automatically run a file on the SD card called autorun.txt on boot.
+
+
+2016-03-29
+polargraphcontroller 2.4.0
+* Added: Feature to swap the POLYGONIZER style that Geomerative uses when dealing
+with shapes. Currently only two are supported - UNIFORMLENGTH (1), which also uses a 
+numberspinner to specify the actual uniform length, and ADAPTATIVE. Prior to v2.2.2,
+polargraphcontroller used ADAPTATIVE, but http://www.polargraph.co.uk/forum/polargraphs-group2/troubleshooting-forum5/saw-tooth-circle-and-dubious-text-thread395/
+prompted me to change it to UNIFORMLENGTH. But then http://www.polargraph.co.uk/forum/polargraphs-group2/troubleshooting-forum5/svg-differences-between-polargraphcontroller-2-1-1-2-3-0-thread523.0/#postid-3106
+has prompted this more recent change. Horses for courses, right?
+* Fixed: Zooming would always keep the machine origin fixed, so you'd have to
+periodically grab and re-centre the preview machine. Now the position of the
+mouse on the machine is the origin, and the machine zooms around it. Should have
+always been like that.
+* Fixed: Zooming speed did not scale. Now one "spin" on the wheel zooms
+the same sized increment no matter the current zoom level.
+* Found: Changing the window size by stretching the edges _does_ properly
+reflow the buttons and enable them. Maximising the window does not. So 
+manually roll the window out to the size you want, rather than maximising it
+(Windows 10).
+
+polargraph_firmware_polarshield 1.3.1
+* Fixed: The pen lift height command was borked. Now unborked. Or at least,
+borked in a more functional way.
+
+
+
+2016-01-26
+polargraphcontroller 2.3.0
+* Added: Density preview is now posterized by default, and is linked to the
+pen width setting. So should be able to use this to better visualise the link
+between pen width and grid size. 
+* Fixed: Queue preview bug: http://www.polargraph.co.uk/forum/polargraphs-group2/code-software-forum2/updated-controller-thread504.0/#postid-2938
+thanks jbscribble.
+* Fixed: Slight improvement in pixel rendering speed.
+
+2016-01-24
+Bundle:
+* Added: Adafruit_MotorShield to the packaged arduino-source/libraries.
+
+polargraphcontroller 2.2.2
+* Added: The pixel density preview can now be posterized using a number 
+spinner in the UI. This might be useful to visualise results when your 
+dynamic range is compressed. Like when you're using a really small pixel, 
+or a thick pen.
+
+* Added: The console is back! But different. This might be useful but is only
+intended as an interim solution. Ctrl-C for console. 
+Partial solution to issue 8 (https://github.com/euphy/polargraphcontroller/issues/8)
+
+* Fixed: The fix about motor defaults to be like PolargraphSD, mentioned in the 
+previous version (2.1.1) actually has been fixed this time.
+
+* No MacOS build in this package. I've got no way of doing those on-demand.
+
+polargraph_server_a1 1.2.1
+* Fixed: Compiles in Arduino IDE v1.6.6 and v1.6.7.
+
+polargraph_server_polarshield 1.3
+* Updated: The comms protocol used in the polargraph_server_a1 has been brought 
+over to polarshield. It uses proper line endings instead of checksums. In theory
+this is actually faster too, since it can 
+
+* Fixed: Compiles in Arduino IDE v1.6.6 and v1.6.7.
+
+
+2015-11-10
+polargraphcontroller 2.1.1
+* Fixed: The fit-machine-to-window sometimes backfires, and ends up with a
+negative machine size. There is now something to catch that.
+* Updated: Set default motor setup to be like PolargraphSD 
+(200 steps / 8x stepMultiplier).
+
+polargraph_server_polarshield 1.2.2
+* Fixed: https://github.com/euphy/polargraph_server_polarshield/issues/8
+Pen width is no longer "nan" after startup. This was an EEPROM loading issue.
+* Updated: Visibility of "calibrate" button can be controlled by a boolean.
+More suitable for general consumption.
+* Fixed: Uncommented #USE_LCD so ... it uses the LCD touch. This might have
+caused a lot of problems, so thanks to Erea for harrassing my into looking
+more closely at it.
+* Discovered: Doesn't work in Arduino IDE 1.6.6. DOES work in 1.6.5.
+
+2015-10-25
+polargraphcontroller 2.1.0
+* Closed: https://github.com/euphy/polargraphcontroller/issues/6
+A sloppy merge meant that the GCode importing feature did not make it to
+the master branch from the Processing2 branch!
+* Closed: https://github.com/euphy/polargraphcontroller/issues/5
+Window resizing left some ControlP5 buttons impossible to activate.
+* Updated: https://github.com/euphy/polargraphcontroller/issues/2
+Machine scales to fit window vertically on startup.
+* Added: Button (Cycle Preview Style) to cycle through the different pixel
+density preview styles.
+* Upgraded bundled ControlP5 library to v2.2.5 
+(https://github.com/sojamo/controlp5/releases/tag/v2.2.5).
+* Included MacOS binary kindly built by Rainer Killinger 
+(https://github.com/abcdev).
+
+2015-09-13
+polargraphcontroller 2.0
+Updated to run in Processing v2.2.1, with the modern versions of ControlP5
+and Geomerative.  Functional differences are small, but the frame rate is 
+now limited to be pretty low, so it no longer grabs and entire core of your
+CPU and strangles it to the ground. It's more gentle.
+
+Processing v2.2.1 apparently cannot export MacOS binaries any more (from
+Windows), so either a Mac user can help me by sending me one compiled on
+your machine, or Mac users will have to make do with the old version 
+(packaged), or just run from source.
+
+Though there have not been any intentional changes (beyond the frame rate
+thing), Processing and ControlP5 have moved on a lot since v1.5, so I 
+bet there will be breaking things. I haven't come across them yet, but 
+consider this beta, and please let me know how you get on.
+
+2015-07-18
+polargraph_server_polarshield 1.2
+Actually working this time. I'd left a little surprise in by accident.
+
+2015-07-15
+Changed bundle versioning system to be timestamp-based. This is because it 
+contains different products, and each of the products could be on different 
+versions. So it never really worked.
+
+polargraph_server_polarshield 1.2
+Updated code to compile in Arduino IDE v1.6x. This also meant updating the
+UTFT library to v2.81.
+
+2015-05-19
+polargraphcontroller 1.2
+Added ability to import g-code as a vector format. This works for the few
+cases I have tried (stuff exported from inkscape, Dullbits' "death to sharpie"),
+but I'm sure there's a world of edge cases that the simplistic parser does not 
+handle well.
+
+Added "Preview cord offset" feature. When you have a queue full of commands,
+the controller shows you a preview of them. Change the "preview cord offset"
+value to see what the drawing will look like if the cords are set up wrong.
+The purpose of this is to help in troubleshooting. Not sure if it will yet.
+Happy birthday, Kongo!
+
+polargraph_server_a1 1.2
+Have added MEGA as a compilation target, and added the features from the MEGA
+branch into this codebase. For this reason, polargraph_server_mega is no 
+longer included in the bundle.
+Features are:
+* SD card reading
+* Norwegian pixel
+* Spiral pixel
+* Sprite drawing
+And I'm sure there's other ones too. I've rejigged how the configuration is
+done in the main .ino file, and it should be a bit harder to mess up now.
+This is all a bit new, and I'm sure there will be issues. I only have about
+half of the hardware I need to test it properly.
+
+2014-10-05
+polargraph_server_a1 1.10.6
+Added SERIAL_STEPPER_DRIVER as a possible driver board. This is a shortcut
+to using _a1 with generic driver modules like stepsticks, Pololu things, and
+Easydrivers. Just set the pin numbers in the configuration.ino file.
+Fixed a problem with "move to point" where only the first parameter was used.
+Added a pixel debug #define.
+
+2014-09-19
+polargraph_server_a1 1.10.2
+Thanks to billc and rincey12 for finding that penlift commands without height
+parameters didn't work (https://github.com/euphy/polargraph_server_a1/issues/2).
+This was a leftover bug from the switch from Strings to char-arrays. 
+
+2014-09-17
+polargraphcontroller 1.10.2
+That line filtering thing... Er didn't really work. It mostly filtered EVERYTHING
+out, and it's pretty rare you want that. I'll work on that another time.
+
+2014-09-14
+http://www.polargraph.co.uk/2014/09/significant-changes-to-uno-firmware/
+polargraph_server_a1 1.10
+Removed checksum from commands. Significant rework on the strings that are used for 
+commands and params - now uses char arrays and atoi / atol / atof etc directly instead 
+of Strings and the little helpers I wrote. This now leaves enough memory free to run
+all the features at once, even with the AFMSv2 - great stuff. Comms protocol 
+requires exactly one change in the controller:
+polargraphcontroller 1.10
+Added termination character at the end of the 'send command' function. This 
+should always have been there - I assumed it was, but alas no. It's lack caused
+problems, which were indirectly solved by the checksum boondoggle, but this fix should
+make that less necessary.
+Changed behaviour of vector drawing, so that when a line leaves the drawing area 
+(like when the artwork is larger than the drawing frame, for instance), the machine 
+lifts the pen, and drops it at the position where the line re-enters the frame. This 
+makes for a kind of "borderless" effect. I found nested artworks ended up with a lot
+of duplicated perimeters.
+
+2014-08-02
+http://www.polargraph.co.uk/2014/08/feedback-in-the-controller/
+polargraph_server_polarshield 1.10
+Added MSG string to some outgoing communications to allow the controller
+to sensibly parse and display the message. Added a #define USE_LCD to be
+able to turn off the touch-detection routines. They go a bit daft when there's 
+no screen attached. I'm sure there's a way to detect if a screen is connected
+automatically. But that's not happening yet.
+polargraph_server_a1 1.9
+As above, but slightly less verbose.
+polargraphcontroller 1.9
+Displays certain kinds of messages that come in from the connected machine. This is
+a debugging feature really.
+
+2014-08-01
+polargraph_server_polarshield 1.9
+Added 'ADJUST PENLIFT POSITION' feature on the touch UI.
+Reinstated the screen saver timeout.
+A host of fiddles to get things working on the new Polarshield v2 more reliably. 
+The touch is no longer interrupt-driven.
+
+polargraphcontroller 1.8
+Added new pixel density preview styles. More realistic and AMAZING.
+
+2014-05-25
+polargraph_server_polarshield 1.8
+Moved the motor and server pin declarations into preprocessor #defines, and introduced the concept of different MOTHERBOARDs, as in Marlin etc. Fairly certain I will regret this decision, but in the meantime, it makes it practical for folk to compile the firmware to run on RAMPS.
+
+2014-03-12
+polagraphcontroller 1.7.1
+Ok thats a bit embarrassing. Made the change for v1.7, tested it, _removed it_, committed. Hm. It's back.
+
+2014-03-10 
+polargraphcontroller: 1.7
+- Kongorilla and Nosetinker helped me to a solution to the Secret of the Gappy Drawings.
+(http://www.polargraph.co.uk/forum/polargraphs-group2/troubleshooting-forum5/mind-the-gaps-thread222.0/)
+- Made the serial port selection window a bit taller.
+
+2014-02-02
+polargraph_server_polarshield: 1.7.25
+- Fixed the SD card filename loading. Added a second level "more" menu for the "adjust
+pen lift" functions (as yet not existing). Drawing from file (on SD card) now also
+echoes the commands to the front screen. Because this slows drawing down - because the LCD is slow - there is a feature under "more..." to mute it.
+
+2014-02-01
+polargraph_server_polarshield: 1.7.24
+- Moved to semantic versioning. Changed the SD card init routines, and displayed progress
+on screen during init too. This seems to have allowed one of my troublesome SD cards to
+actually work.
+
+2014-01-27
+polargraph_server_polarshield: 1.7u23
+- Made the 2.4" screen the default.
+- Fixed a bug in the pixel drawing algorithm that overrode the density with 3. That uses the proper density now, but also it uses a slightly more efficiently structured pixel drawing
+procedure too. Hopefully the output is the same. It saves a few bytes anyway. Issue 3.
+
+2013-07-20
+polargraph_server_polarshield: 1.7
+- Small fix for issue where pen is not lifted between lines on the norwegian pixel.
+- Added facility to use a 2.4 inch screen.  This is in the form of a pair of #defines
+in the main file, one of which should be commented out. The 2.2 inch screen is still 
+the default.
+
+2013-05-12
+polargraph_server_*: 1.66 (changed the version on mega back to being in sync)
+- Corrected bad casting on floats in previous version, ha.
+
+2013-05-11
+polagraph_server_a1, polargraph_server_polarshield: 1.65, polargraph_server_mega: 1.7a
+- Added casting to float when doing calculations that multiply longs.  
+
+2013-05-09
+polargraphcontroller: 1.6
+- Removed live webcam feature, it now draws from the loaded image (bitmap).
+Still a couple of quirks, but this is to get it out there.
+
+2013-05-05
+- Included WinVDIG 1.0.5 in the archive.
+
+polargraph_server_a1: 1.63
+- Fixed problem that meant that "currentlyRunning" was false, and so nothing
+moved.  Duh.
+- Moved copies of EEPROMAnything.h into sketch folders rather than have
+it as a library.  Just feels better that way.
+
+2013-04-30
+polargraph_server_mega: 1.7a
+- Contains beta stuff for a new swirling roving style.  It is the most infuriating
+thing I have ever witnessed.
+
+polargraph_server_a1: 1.62
+- HA! Version for Arduino UNO.  This loads on an UNO, but is too large for a
+Duemilanove.
+
+Controller: 1.5
+- Added a the swirl rove render buttons required to use the 1.7a firmware.
+
+2013-04-27
+Server: 1.62
+- Fixed significant bug that caused vector lines (move direct / C17) to be finished
+off with too much of a flourish.  It caused the drawing to get progressively higher 
+and higher on the surface.  So that's not cool.  I could not replicate the issue
+in polargraph_server_polarshield, only in polargraph_server_mega (using the adafruit
+motorshield), so I'm a bit puzzled about what it is.  Anyway, I have also applied the
+fix in p_s_polarshield.
+- Changed pen lift height test so it ends with the pen up (lifted), rather than down.
+
+Controller: 1.5
+- Can buttons to rotate live webcam image, preview live and processed video
+feed, flip video left to right.
+
+2013-04-21
+Server: 1.61
+- EEPROM_anything is the general purpose eeprom saver/loader routine.  It alerted 
+me that I was saving a float (which was four bytes) into an address that was
+only two.  So it wasn't reloading properly.  So the addresses have been 
+changed.  Note that you will need to upload your machine size again after loading this 
+firmware.
+
+Controller: 1.42
+- Now possible to set picture frame size even if there is no image loaded.
+
+2013-04-20
+Server: 1.6
+- Circular pixel (spiral) now working FAST.  Sorted out, and looking very
+beautiful.  The acceleration profile can cause some problems when drawing very tiny circles, but fix by reducing acceleration.
+
+Controller: 1.41
+- Renamed circular pixel to spiral pixel.
+
+2013-04-19
+- Source code now being kept in github rather than google's SVN system.
+https://github.com/euphy/polargraphcontroller
+https://github.com/euphy/polargraph_server_polarshield
+https://github.com/euphy/polargraph_server_mega
+
+Though the google project page will be kept for the time being, and
+downloads there will be maintained.
+
+Controller: 1.4
+- Added webcam feature to draw sketches from live video feed.  This
+requires the wonderful Diewald CV kit library, written by Thomas Diewald.
+This is available from http://thomasdiewald.com/processing/libraries/diewald_CV_kit/
+- Added vector line sorting.  Standard sorting is "none", but longest first,
+largest area first and centre-first are available internally.  Centre-first
+was designed for the live drawer to allow the most important features to be 
+drawn first, and background later.  Totally worked.
+- Keyboard shortcuts now require "ctrl+" to work.  So ctrl-c for console.  Ctrl-i
+for info, that kind of thing.  This is to prevent these things from being
+triggered why trying to type into text fields.  That was driving me mental.
+- Vector handle (for moving) is now in the centre of the shape, and resizing 
+happens from the centre too.
+- Return to home button.
+- Pen lift positions configurable, with "test range" function.
+
+Server: 1.5
+- Pen lift positions are now configurable and can be saved to eeprom. The 
+settings take the form of an up position and a down position.  The C13 and C14
+commands now take an optional second parameter that sets the position to go to.
+Setting it that way does NOT save to eeprom.
+Pen lift code contributed by Andreas (Televio - http://www.polargraph.co.uk/
+forum/?mingleforumaction=viewtopic&t=182), thanks!
+- Pen lift range test function, C45 takes an up, down position and a third 
+value to control if it is a test or a save.  If the value is 0, or missing,
+then a range test is performed (just a back-and-forth wiggle to the chosen 
+points) and the values set for that session.  IF the value is 1, then the
+value is set in EEPROM too.
+- Speed and acceleration can be saved to eeprom too now, with an optional
+1 (save) parameter added to the regular set speed commands.  eg C31,<speed>,1,END.
+- Comms is much faster.  I am a little suspicious of how safe it is, but I've 
+not seen it fail, so fingers crossed.
+- Fixed a problem introduced by a fix in v1.2x of AccelStepper, that made for
+ridiculous vector drawing.  This fix may not be backwards compatible with 
+older versions of AccelStepper (older than todays: 1.31).  But probably is.
+
+Unfortunately this version no longer fits on an Arduino Duemilanove.  I think it 
+might be a couple of extra features in accelstepper, but that might just be
+scapegoating the brilliant Mike MacAuley, and it's probably my rubbish.  It 
+might still fit on an UNO, but until I can test it, this distro contains only
+updates for the MEGA based machines.  UNO owners should continue to use the
+1.2x firmware, with an Accelstepper version 1.17.
