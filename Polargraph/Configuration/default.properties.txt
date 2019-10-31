@@ -1,19 +1,19 @@
 #   ***  Polargraph properties file   ***  
-#Wed Oct 30 15:35:53 EST 2019
+#Wed Oct 30 18:56:44 EST 2019
 controller.pixel.samplearea=10
 controller.pictureframe.position.y=127
 controller.pictureframe.position.x=145
 controller.testPenWidth.startSize=0.5
 controller.machine.colour=969696
 machine.motors.mmPerRev=50.0
-controller.window.width=1884
+controller.window.width=1916
 controller.frame.colour=C80000
 controller.image.position.y=85
 controller.image.position.x=60
-machine.motors.accel=100
+machine.motors.accel=49
 controller.image.height=222
 controller.machine.serialport=0
-controller.window.height=922
+controller.window.height=1014
 controller.maxSegmentLength=2
 controller.geomerative.polygonizerLength=1
 machine.penlift.up=70
@@ -30,7 +30,7 @@ controller.page.colour=DCDCDC
 controller.testPenWidth.incrementSize=0.5
 controller.image.width=177
 machine.motors.stepsPerRev=200.0
-machine.pen.size=4.05
+machine.pen.size=0.5
 controller.page.width=588
 controller.pixel.mask.color=00FF00
 controller.machine.baudrate=57600
@@ -44,7 +44,7 @@ controller.image.filename=
 controller.vector.position.x=303.84
 controller.homepoint.y=128
 controller.guide.colour=FFFFFF
-machine.motors.maxSpeed=1500
+machine.motors.maxSpeed=997
 controller.homepoint.x=362
 controller.density.preview.style=1
 controller.pixel.scaling=1
